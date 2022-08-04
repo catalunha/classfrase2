@@ -2,11 +2,13 @@ import 'package:classfrase/app/presentation/controllers/auth/email/auth_register
 import 'package:classfrase/app/presentation/controllers/auth/login/login_dependencies.dart';
 import 'package:classfrase/app/presentation/controllers/auth/splash/splash_dependencies.dart';
 import 'package:classfrase/app/presentation/controllers/home/home_dependencies.dart';
+import 'package:classfrase/app/presentation/controllers/phrase/phrase_dependecies.dart';
 import 'package:classfrase/app/presentation/controllers/user/profile/user_profile_dependencies.dart';
 import 'package:classfrase/app/presentation/views/auth/login/auth_login_page.dart';
 import 'package:classfrase/app/presentation/views/auth/register/email/auth_register_email.page.dart';
 import 'package:classfrase/app/presentation/views/auth/splash/splash_page.dart';
 import 'package:classfrase/app/presentation/views/home/home_page.dart';
+import 'package:classfrase/app/presentation/views/phrase/add_edit/phrase_addedit_page.dart';
 import 'package:classfrase/app/presentation/views/user/profile/user_profile_page.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +20,8 @@ class Routes {
 
   static const home = '/home';
   static const userProfile = '/user/profile';
+
+  static const phraseAddEdit = '/phrase/addedit';
 
   static final pageList = [
     GetPage(
@@ -38,12 +42,18 @@ class Routes {
     GetPage(
       name: Routes.home,
       binding: HomeDependencies(),
+      bindings: [HomeDependencies(), PhraseDependencies()],
       page: () => HomePage(),
     ),
     GetPage(
       name: Routes.userProfile,
       binding: UserProfileDependencies(),
       page: () => UserProfilePage(),
+    ),
+    GetPage(
+      name: Routes.phraseAddEdit,
+      binding: PhraseDependencies(),
+      page: () => PhraseAddEditPage(),
     ),
   ];
 }
