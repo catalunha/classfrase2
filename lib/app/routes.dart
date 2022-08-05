@@ -1,12 +1,16 @@
 import 'package:classfrase/app/presentation/controllers/auth/email/auth_register_email_dependencies.dart';
 import 'package:classfrase/app/presentation/controllers/auth/login/login_dependencies.dart';
 import 'package:classfrase/app/presentation/controllers/auth/splash/splash_dependencies.dart';
+import 'package:classfrase/app/presentation/controllers/classifying/classifying_dependecies.dart';
 import 'package:classfrase/app/presentation/controllers/home/home_dependencies.dart';
 import 'package:classfrase/app/presentation/controllers/phrase/phrase_dependecies.dart';
 import 'package:classfrase/app/presentation/controllers/user/profile/user_profile_dependencies.dart';
+import 'package:classfrase/app/presentation/services/classification/classification_depedencies.dart';
 import 'package:classfrase/app/presentation/views/auth/login/auth_login_page.dart';
 import 'package:classfrase/app/presentation/views/auth/register/email/auth_register_email.page.dart';
 import 'package:classfrase/app/presentation/views/auth/splash/splash_page.dart';
+import 'package:classfrase/app/presentation/views/classifying/category_group_page.dart';
+import 'package:classfrase/app/presentation/views/classifying/classifying_page.dart';
 import 'package:classfrase/app/presentation/views/home/home_page.dart';
 import 'package:classfrase/app/presentation/views/phrase/add_edit/phrase_addedit_page.dart';
 import 'package:classfrase/app/presentation/views/phrase/list/phrase_archived_page.dart';
@@ -24,6 +28,8 @@ class Routes {
 
   static const phraseAddEdit = '/phrase/addedit';
   static const phraseArchived = '/phrase/archived';
+  static const phraseClassifying = '/phrase/classifying';
+  static const phraseCategoryGroup = '/phrase/category_group';
 
   static final pageList = [
     GetPage(
@@ -44,7 +50,11 @@ class Routes {
     GetPage(
       name: Routes.home,
       binding: HomeDependencies(),
-      bindings: [HomeDependencies(), PhraseDependencies()],
+      bindings: [
+        HomeDependencies(),
+        PhraseDependencies(),
+        ClassificationDependencies(),
+      ],
       page: () => HomePage(),
     ),
     GetPage(
@@ -61,6 +71,16 @@ class Routes {
       name: Routes.phraseArchived,
       binding: PhraseDependencies(),
       page: () => PhraseArchivedPage(),
+    ),
+    GetPage(
+      name: Routes.phraseClassifying,
+      binding: ClassifyingDependencies(),
+      page: () => ClassifyingPage(),
+    ),
+    GetPage(
+      name: Routes.phraseCategoryGroup,
+      binding: ClassifyingDependencies(),
+      page: () => CategoryGroupPage(),
     ),
   ];
 }

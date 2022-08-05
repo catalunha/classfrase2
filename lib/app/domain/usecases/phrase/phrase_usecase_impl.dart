@@ -22,4 +22,22 @@ class PhraseUseCaseImpl implements PhraseUseCase {
   @override
   Future<void> isArchive(String id, bool mode) async =>
       await _repository.isArchive(id, mode);
+
+  @override
+  Future<void> onChangeClassOrder(String id, List<String> classOrder) async =>
+      await _repository.onChangeClassOrder(id, classOrder);
+
+  @override
+  Future<void> onSaveClassification(
+          String id,
+          Map<String, Classification> classifications,
+          List<String> classOrder) async =>
+      await _repository.onSaveClassification(
+        id,
+        classifications,
+        classOrder,
+      );
+
+  @override
+  Future<PhraseModel?> read(String id) async => await _repository.read(id);
 }

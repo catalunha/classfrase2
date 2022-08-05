@@ -5,5 +5,9 @@ abstract class PhraseRepository {
   Future<List<PhraseModel>> list(GetQueryFilterPhrase queryType);
   Future<String> append(PhraseModel model);
   Future<void> delete(String id);
+  Future<PhraseModel?> read(String id);
   Future<void> isArchive(String id, bool mode);
+  Future<void> onChangeClassOrder(String id, List<String> classOrder);
+  Future<void> onSaveClassification(String id,
+      Map<String, Classification> classifications, List<String> classOrder);
 }

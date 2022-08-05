@@ -21,6 +21,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
 
   final _phraseList = <PhraseModel>[].obs;
   List<PhraseModel> get phraseList => _phraseList;
+
   final _phraseArchivedList = <PhraseModel>[].obs;
   List<PhraseModel> get phraseArchivedList => _phraseArchivedList;
 

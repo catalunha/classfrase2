@@ -42,13 +42,6 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: PhraseList(),
           ),
-          // Expanded(
-          //   child: SingleChildScrollView(
-          //     child: Obx(() => Column(
-          //           children: buildPhraseList(context),
-          //         )),
-          //   ),
-          // ),
         ],
       ),
     );

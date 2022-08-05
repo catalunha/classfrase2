@@ -75,4 +75,49 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
     parseObject.set('isArchived', mode);
     await parseObject.save();
   }
+
+  @override
+  Future<void> onChangeClassOrder(String id, List<String> classOrder) async {
+    var parseObject = ParseObject(PhraseEntity.className)..objectId = id;
+    parseObject.set('classOrder', classOrder);
+    await parseObject.save();
+  }
+
+  @override
+  Future<void> onSaveClassification(
+      String id,
+      Map<String, Classification> classifications,
+      List<String> classOrder) async {
+    var parseObject = ParseObject(PhraseEntity.className)..objectId = id;
+    var data = <String, dynamic>{};
+    for (var item in classifications.entries) {
+      data[item.key] = item.value.toMap();
+    }
+    print('data: $data');
+    parseObject.set('classifications', data);
+    parseObject.set('classOrder', classOrder);
+    await parseObject.save();
+  }
+
+  @override
+  Future<PhraseModel?> read(String id) async {
+    QueryBuilder<ParseObject> query =
+        QueryBuilder<ParseObject>(ParseObject(PhraseEntity.className));
+    query.whereEqualTo('objectId', id);
+    query.includeObject(['user', 'user.profile']);
+    query.first();
+    final ParseResponse response = await query.query();
+    PhraseModel? temp;
+    if (response.success && response.results != null) {
+      for (var element in response.results!) {
+        // print((element as ParseObject).objectId);
+        temp = PhraseEntity().fromParse(element);
+      }
+      // return listTemp;
+    } else {
+      print('nao encontrei esta Phrase...');
+      // return [];
+    }
+    return temp;
+  }
 }

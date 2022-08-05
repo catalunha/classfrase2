@@ -10,9 +10,9 @@ class PhraseModel {
   List<String> phraseList;
 
   final Map<String, Classification> classifications;
-  final List<String>? allCategoryList;
-
   final List<String> classOrder;
+
+  final List<String>? allCategoryList;
   final String? folder;
   final String? font;
   final String? diagramUrl;

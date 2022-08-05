@@ -2,6 +2,7 @@ import 'package:classfrase/app/presentation/controllers/phrase/phrase_controller
 import 'package:classfrase/app/presentation/views/phrase/list/parts/phrase_card.dart';
 import 'package:classfrase/app/presentation/views/utils/app_icon.dart';
 import 'package:classfrase/app/presentation/views/utils/app_link.dart';
+import 'package:classfrase/app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -42,16 +43,10 @@ class PhraseList extends StatelessWidget {
         ),
         widgetList: [
           IconButton(
-            tooltip: 'Classificar esta frase',
-            icon: const Icon(AppIconData.letter),
-            onPressed: () async {
-              Navigator.pushNamed(
-                context,
-                '/classifying',
-                arguments: phrase.id,
-              );
-            },
-          ),
+              tooltip: 'Classificar esta frase',
+              icon: const Icon(AppIconData.letter),
+              onPressed: () =>
+                  Get.toNamed(Routes.phraseClassifying, arguments: phrase)),
           // SizedBox(
           //   width: 50,
           // ),

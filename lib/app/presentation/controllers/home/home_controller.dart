@@ -7,15 +7,16 @@ import 'package:get/get.dart';
 class HomeController extends GetxController with LoaderMixin, MessageMixin {
   final AuthUseCase _authUseCase;
 
-  HomeController({required AuthUseCase authUseCase})
-      : _authUseCase = authUseCase;
+  HomeController({
+    required AuthUseCase authUseCase,
+  }) : _authUseCase = authUseCase;
 
   final _loading = false.obs;
   set loading(bool value) => _loading(value);
   final _message = Rxn<MessageModel>();
 
   @override
-  void onInit() {
+  void onInit() async {
     loaderListener(_loading);
     messageListener(_message);
     super.onInit();
