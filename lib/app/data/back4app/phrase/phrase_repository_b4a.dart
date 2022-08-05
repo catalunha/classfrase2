@@ -1,4 +1,5 @@
 import 'package:classfrase/app/data/back4app/entity/phrase_entity.dart';
+import 'package:classfrase/app/data/back4app/enum/phrase_enum.dart';
 import 'package:classfrase/app/data/back4app/phrase/phrase_repository_exception.dart';
 import 'package:classfrase/app/data/repositories/phrase_repository.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
@@ -6,17 +7,34 @@ import 'package:get/get.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
-  Future<QueryBuilder<ParseObject>> getQuery() async {
+  Future<QueryBuilder<ParseObject>> getQueryAll() async {
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(PhraseEntity.className));
+    query.whereEqualTo('isArchived', false);
+    query.whereEqualTo('isDeleted', false);
+    query.orderByAscending('folder');
+    query.includeObject(['user', 'user.profile']);
+    return query;
+  }
+
+  Future<QueryBuilder<ParseObject>> getQueryArchived() async {
+    QueryBuilder<ParseObject> query =
+        QueryBuilder<ParseObject>(ParseObject(PhraseEntity.className));
+    query.whereEqualTo('isDeleted', false);
+    query.whereEqualTo('isArchived', true);
     query.orderByAscending('folder');
     query.includeObject(['user', 'user.profile']);
     return query;
   }
 
   @override
-  Future<List<PhraseModel>> list() async {
-    final query = await getQuery();
+  Future<List<PhraseModel>> list(GetQueryFilterPhrase queryType) async {
+    QueryBuilder<ParseObject> query;
+    if (queryType == GetQueryFilterPhrase.archived) {
+      query = await getQueryArchived();
+    } else {
+      query = await getQueryAll();
+    }
 
     final ParseResponse response = await query.query();
     List<PhraseModel> listTemp = <PhraseModel>[];
@@ -49,5 +67,12 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
   Future<void> delete(String id) async {
     var parseObject = ParseObject(PhraseEntity.className)..objectId = id;
     await parseObject.delete();
+  }
+
+  @override
+  Future<void> isArchive(String id, bool mode) async {
+    var parseObject = ParseObject(PhraseEntity.className)..objectId = id;
+    parseObject.set('isArchived', mode);
+    await parseObject.save();
   }
 }

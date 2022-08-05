@@ -51,15 +51,7 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // InputDescription(
-                //   label: 'Informe a frase',
-                //   required: true,
-                //   initialValue: widget._phraseController.phrase.phrase,
-                //   validator: widget.formController.validateRequiredText,
-                //   onChanged: (value) {
-                //     widget.formController.onChange(phrase: value);
-                //   },
-                // ),
+                const SizedBox(height: 10),
                 AppTextFormField(
                   label: 'Informe a frase',
                   controller: _phraseTEC,
@@ -113,6 +105,7 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
                         },
                         value: _isDeleted,
                       ),
+                const SizedBox(height: 60),
               ],
             )),
       ),

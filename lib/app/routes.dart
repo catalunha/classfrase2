@@ -9,6 +9,7 @@ import 'package:classfrase/app/presentation/views/auth/register/email/auth_regis
 import 'package:classfrase/app/presentation/views/auth/splash/splash_page.dart';
 import 'package:classfrase/app/presentation/views/home/home_page.dart';
 import 'package:classfrase/app/presentation/views/phrase/add_edit/phrase_addedit_page.dart';
+import 'package:classfrase/app/presentation/views/phrase/list/phrase_archived_page.dart';
 import 'package:classfrase/app/presentation/views/user/profile/user_profile_page.dart';
 import 'package:get/get.dart';
 
@@ -22,6 +23,7 @@ class Routes {
   static const userProfile = '/user/profile';
 
   static const phraseAddEdit = '/phrase/addedit';
+  static const phraseArchived = '/phrase/archived';
 
   static final pageList = [
     GetPage(
@@ -54,6 +56,11 @@ class Routes {
       name: Routes.phraseAddEdit,
       binding: PhraseDependencies(),
       page: () => PhraseAddEditPage(),
+    ),
+    GetPage(
+      name: Routes.phraseArchived,
+      binding: PhraseDependencies(),
+      page: () => PhraseArchivedPage(),
     ),
   ];
 }

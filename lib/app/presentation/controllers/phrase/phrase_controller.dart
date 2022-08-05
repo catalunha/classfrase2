@@ -1,3 +1,4 @@
+import 'package:classfrase/app/data/back4app/enum/phrase_enum.dart';
 import 'package:classfrase/app/data/back4app/phrase/phrase_repository_exception.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
 import 'package:classfrase/app/domain/models/user_model.dart';
@@ -20,6 +21,8 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
 
   final _phraseList = <PhraseModel>[].obs;
   List<PhraseModel> get phraseList => _phraseList;
+  final _phraseArchivedList = <PhraseModel>[].obs;
+  List<PhraseModel> get phraseArchivedList => _phraseArchivedList;
 
   final _phrase = Rxn<PhraseModel>();
   PhraseModel? get phrase => _phrase.value;
@@ -29,15 +32,34 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
     print('+++ init phrase');
     loaderListener(_loading);
     messageListener(_message);
-    await list();
+    await listAll();
     super.onInit();
     print('--- init phrase');
   }
 
-  Future<void> list() async {
+  Future<void> listAll() async {
     _phraseList.clear();
-    List<PhraseModel> temp = await _phraseUseCase.list();
+    List<PhraseModel> temp =
+        await _phraseUseCase.list(GetQueryFilterPhrase.all);
     _phraseList(temp);
+  }
+
+  Future<void> listArchived() async {
+    _phraseArchivedList.clear();
+    List<PhraseModel> temp =
+        await _phraseUseCase.list(GetQueryFilterPhrase.archived);
+    _phraseArchivedList(temp);
+    Get.toNamed(Routes.phraseArchived);
+  }
+
+  void unArchivePhrase(String id) async {
+    print('UnarchivePhrase: $id');
+    var phraseTemp =
+        _phraseArchivedList.firstWhere((element) => element.id == id);
+    _phraseArchivedList.clear();
+    await _phraseUseCase.isArchive(phraseTemp.id!, false);
+    await listAll();
+    Get.back();
   }
 
   void add() {
@@ -98,7 +120,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
         isError: true,
       );
     } finally {
-      list();
+      listAll();
       _loading(false);
     }
   }

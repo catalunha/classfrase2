@@ -1,0 +1,4 @@
+enum GetQueryFilterPhrase {
+  all,
+  archived,
+}

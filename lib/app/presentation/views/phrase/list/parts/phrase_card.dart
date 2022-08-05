@@ -26,6 +26,10 @@ class PhraseCard extends StatelessWidget {
               phrase.phrase,
               // style: AppTextStyles.trailingBold,
             ),
+            subtitle: Text(
+              phrase.folder ?? '',
+              // style: AppTextStyles.trailingBold,
+            ),
             trailing: trailing,
           ),
           Wrap(
