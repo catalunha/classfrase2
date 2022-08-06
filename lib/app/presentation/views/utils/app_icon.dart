@@ -6,6 +6,9 @@ class AppIconData {
   static const outbox = Icons.outbox;
   static const inbox = Icons.move_to_inbox;
 
+  static const sortAlpha = Icons.sort_by_alpha;
+  static const sortFolder = Icons.folder_copy_rounded;
+
   static const coffee = Icons.coffee_outlined;
   static const info = Icons.info_outline;
   static const exit = Icons.exit_to_app;

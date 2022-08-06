@@ -130,7 +130,7 @@ class CategoryGroupPage extends StatelessWidget {
                     : null,
                 child: ListTile(
                   title: Text(category.title),
-                  subtitle: Text(category.id!),
+                  // subtitle: Text(category.id!),
                   onTap: () {
                     _classifyingController.onSelectCategory(category.id!);
                   },

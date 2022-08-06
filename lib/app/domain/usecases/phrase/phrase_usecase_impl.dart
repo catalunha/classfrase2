@@ -40,4 +40,8 @@ class PhraseUseCaseImpl implements PhraseUseCase {
 
   @override
   Future<PhraseModel?> read(String id) async => await _repository.read(id);
+
+  @override
+  Future<List<PhraseModel>> listThisPerson(String personId) async =>
+      await _repository.listThisPerson(personId);
 }

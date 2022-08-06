@@ -6,6 +6,8 @@ abstract class PhraseUseCase {
   Future<PhraseModel?> read(String id);
 
   Future<List<PhraseModel>> list(GetQueryFilterPhrase queryType);
+  Future<List<PhraseModel>> listThisPerson(String personId);
+
   Future<void> delete(String id);
   Future<void> isArchive(String id, bool mode);
   Future<void> onChangeClassOrder(String id, List<String> classOrder);

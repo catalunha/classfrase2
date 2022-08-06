@@ -3,6 +3,8 @@ import 'package:classfrase/app/domain/models/user_model.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class UserEntity {
+  static const String className = 'User';
+
   UserModel fromParse(ParseUser parseUser) {
     return UserModel(
       id: parseUser.objectId!,

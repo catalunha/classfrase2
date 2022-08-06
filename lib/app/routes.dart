@@ -3,6 +3,7 @@ import 'package:classfrase/app/presentation/controllers/auth/login/login_depende
 import 'package:classfrase/app/presentation/controllers/auth/splash/splash_dependencies.dart';
 import 'package:classfrase/app/presentation/controllers/classifying/classifying_dependecies.dart';
 import 'package:classfrase/app/presentation/controllers/home/home_dependencies.dart';
+import 'package:classfrase/app/presentation/controllers/learn/learn_dependecies.dart';
 import 'package:classfrase/app/presentation/controllers/phrase/phrase_dependecies.dart';
 import 'package:classfrase/app/presentation/controllers/user/profile/user_profile_dependencies.dart';
 import 'package:classfrase/app/presentation/services/classification/classification_depedencies.dart';
@@ -12,6 +13,9 @@ import 'package:classfrase/app/presentation/views/auth/splash/splash_page.dart';
 import 'package:classfrase/app/presentation/views/classifying/category_group_page.dart';
 import 'package:classfrase/app/presentation/views/classifying/classifying_page.dart';
 import 'package:classfrase/app/presentation/views/home/home_page.dart';
+import 'package:classfrase/app/presentation/views/learn/list/learn_list_page.dart';
+import 'package:classfrase/app/presentation/views/learn/list/person_phrase_list_page.dart';
+import 'package:classfrase/app/presentation/views/learn/person_phrase_page.dart';
 import 'package:classfrase/app/presentation/views/phrase/add_edit/phrase_addedit_page.dart';
 import 'package:classfrase/app/presentation/views/phrase/list/phrase_archived_page.dart';
 import 'package:classfrase/app/presentation/views/user/profile/user_profile_page.dart';
@@ -30,6 +34,10 @@ class Routes {
   static const phraseArchived = '/phrase/archived';
   static const phraseClassifying = '/phrase/classifying';
   static const phraseCategoryGroup = '/phrase/category_group';
+
+  static const learnList = '/learn/list';
+  static const learnPersonPhraseList = '/learn/person/phrase/list';
+  static const learnPersonPhrase = '/learn/person/phrase';
 
   static final pageList = [
     GetPage(
@@ -81,6 +89,21 @@ class Routes {
       name: Routes.phraseCategoryGroup,
       binding: ClassifyingDependencies(),
       page: () => CategoryGroupPage(),
+    ),
+    GetPage(
+      name: Routes.learnList,
+      binding: LearnDependencies(),
+      page: () => LearnListPage(),
+    ),
+    GetPage(
+      name: Routes.learnPersonPhraseList,
+      binding: LearnDependencies(),
+      page: () => PersonPhraseListPage(),
+    ),
+    GetPage(
+      name: Routes.learnPersonPhrase,
+      binding: LearnDependencies(),
+      page: () => PersonPhrasePage(),
     ),
   ];
 }

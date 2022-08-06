@@ -1,15 +1,17 @@
 import 'package:classfrase/app/domain/models/phrase_model.dart';
+import 'package:classfrase/app/presentation/views/utils/app_icon.dart';
 import 'package:flutter/material.dart';
 
 class PhraseCard extends StatelessWidget {
   final PhraseModel phrase;
   final List<Widget>? widgetList;
-  final Widget? trailing;
+  // final Widget? trailing;
+  final bool isPublic;
   const PhraseCard({
     Key? key,
     required this.phrase,
     this.widgetList,
-    this.trailing,
+    this.isPublic = false,
   }) : super(key: key);
 
   @override
@@ -27,10 +29,14 @@ class PhraseCard extends StatelessWidget {
               // style: AppTextStyles.trailingBold,
             ),
             subtitle: Text(
-              phrase.folder ?? '',
+              phrase.folder,
               // style: AppTextStyles.trailingBold,
             ),
-            trailing: trailing,
+            trailing: isPublic
+                ? const Tooltip(
+                    message: 'Esta frase é pública.',
+                    child: Icon(AppIconData.public))
+                : null,
           ),
           Wrap(
             children: widgetList ?? [],

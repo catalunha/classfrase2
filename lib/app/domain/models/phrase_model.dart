@@ -13,7 +13,7 @@ class PhraseModel {
   final List<String> classOrder;
 
   final List<String>? allCategoryList;
-  final String? folder;
+  final String folder;
   final String? font;
   final String? diagramUrl;
 
@@ -33,7 +33,7 @@ class PhraseModel {
     this.allCategoryList,
     this.font,
     this.diagramUrl,
-    this.folder,
+    this.folder = '/',
   });
 
   PhraseModel copyWith({
@@ -83,7 +83,7 @@ class PhraseModel {
     data['isArchived'] = isArchived;
     data['isDeleted'] = isDeleted;
     data['isPublic'] = isPublic;
-    if (folder != null) data['folder'] = folder;
+    data['folder'] = folder;
     if (font != null) data['font'] = font;
     if (diagramUrl != null) data['diagramUrl'] = diagramUrl;
     return data;

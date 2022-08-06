@@ -8,6 +8,7 @@ class UserProfileModel {
   final String? name;
   final String? description;
   final String? phone;
+  final String? community;
   final String? email;
   final List<String>? routes;
   final bool? isActive;
@@ -17,6 +18,7 @@ class UserProfileModel {
     this.name,
     this.description,
     this.phone,
+    this.community,
     this.email,
     this.routes,
     this.isActive,
@@ -28,6 +30,7 @@ class UserProfileModel {
     String? name,
     String? description,
     String? phone,
+    String? community,
     String? email,
     List<String>? routes,
     bool? isActive,
@@ -38,6 +41,7 @@ class UserProfileModel {
       name: name ?? this.name,
       description: description ?? this.description,
       phone: phone ?? this.phone,
+      community: community ?? this.community,
       email: email ?? this.email,
       routes: routes ?? this.routes,
       isActive: isActive ?? this.isActive,
@@ -51,6 +55,7 @@ class UserProfileModel {
       'name': name,
       'description': description,
       'phone': phone,
+      'community': community,
       'email': email,
       'routes': routes,
       'isActive': isActive,
@@ -64,6 +69,7 @@ class UserProfileModel {
       name: map['name'],
       description: map['description'],
       phone: map['phone'],
+      community: map['community'],
       email: map['email'],
       routes: List<String>.from(map['routes']),
       isActive: map['isActive'],
@@ -77,7 +83,7 @@ class UserProfileModel {
 
   @override
   String toString() {
-    return 'UserProfileModel(id: $id, photo: $photo, name: $name, description: $description, phone: $phone, email: $email, routes: $routes, isActive: $isActive)';
+    return 'UserProfileModel(id: $id, photo: $photo, name: $name, description: $description, phone: $phone, community: $community, email: $email, routes: $routes, isActive: $isActive)';
   }
 
   @override
@@ -90,6 +96,7 @@ class UserProfileModel {
         other.name == name &&
         other.description == description &&
         other.phone == phone &&
+        other.community == community &&
         other.email == email &&
         listEquals(other.routes, routes) &&
         other.isActive == isActive;
@@ -102,6 +109,7 @@ class UserProfileModel {
         name.hashCode ^
         description.hashCode ^
         phone.hashCode ^
+        community.hashCode ^
         email.hashCode ^
         routes.hashCode ^
         isActive.hashCode;

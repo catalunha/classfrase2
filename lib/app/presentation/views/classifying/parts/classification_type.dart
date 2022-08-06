@@ -230,20 +230,20 @@ List<InlineSpan> buildPhrase2({
 List<InlineSpan> buildPhraseNoSelectable({
   required BuildContext context,
   required List<String> phraseList,
-  required List<int> selectedPhrasePosList,
+  // required List<int> selectedPhrasePosList,
 }) {
   List<InlineSpan> list = [];
   for (var wordPos = 0; wordPos < phraseList.length; wordPos++) {
     if (phraseList[wordPos] != ' ') {
       list.add(TextSpan(
         text: phraseList[wordPos],
-        style: selectedPhrasePosList.contains(wordPos)
-            ? TextStyle(
-                color: Colors.orange.shade900,
-                decoration: TextDecoration.underline,
-                decorationStyle: TextDecorationStyle.solid,
-              )
-            : null,
+        // style: selectedPhrasePosList.contains(wordPos)
+        //     ? TextStyle(
+        //         color: Colors.orange.shade900,
+        //         decoration: TextDecoration.underline,
+        //         decorationStyle: TextDecorationStyle.solid,
+        //       )
+        //     : null,
       ));
     } else {
       list.add(TextSpan(

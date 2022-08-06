@@ -27,6 +27,18 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
     return query;
   }
 
+  Future<QueryBuilder<ParseObject>> getQueryThisPerson(String personId) async {
+    QueryBuilder<ParseObject> query =
+        QueryBuilder<ParseObject>(ParseObject(PhraseEntity.className));
+    // query.whereEqualTo('user', personId);
+    query.whereEqualTo('user', ParseObject('_User')..objectId = personId);
+
+    query.whereEqualTo('isPublic', true);
+    query.orderByAscending('folder');
+    query.includeObject(['user', 'user.profile']);
+    return query;
+  }
+
   @override
   Future<List<PhraseModel>> list(GetQueryFilterPhrase queryType) async {
     QueryBuilder<ParseObject> query;
@@ -119,5 +131,24 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
       // return [];
     }
     return temp;
+  }
+
+  @override
+  Future<List<PhraseModel>> listThisPerson(String personId) async {
+    QueryBuilder<ParseObject> query;
+    query = await getQueryThisPerson(personId);
+
+    final ParseResponse response = await query.query();
+    List<PhraseModel> listTemp = <PhraseModel>[];
+    if (response.success && response.results != null) {
+      for (var element in response.results!) {
+        print((element as ParseObject).objectId);
+        listTemp.add(PhraseEntity().fromParse(element));
+      }
+      return listTemp;
+    } else {
+      print('Sem Phrases this person $personId...');
+      return [];
+    }
   }
 }

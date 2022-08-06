@@ -10,6 +10,7 @@ class UserProfileEntity {
       name: parseObject.get('name'),
       description: parseObject.get('description'),
       phone: parseObject.get('phone'),
+      community: parseObject.get('community'),
       photo: parseObject.get('photo')?.get('url'),
       email: parseObject.get('email'),
       isActive: parseObject.get('isActive'),
@@ -30,6 +31,9 @@ class UserProfileEntity {
     }
     if (userProfileModel.phone != null) {
       profileParse.set('phone', userProfileModel.phone);
+    }
+    if (userProfileModel.community != null) {
+      profileParse.set('community', userProfileModel.community);
     }
     // if (userProfileModel.photoParseFileBase != null) {
     //   profileParse.set('photo', userProfileModel.photoParseFileBase);

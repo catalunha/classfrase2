@@ -4,6 +4,7 @@ import 'package:classfrase/app/presentation/views/home/parts/popmenu_user.dart';
 import 'package:classfrase/app/presentation/views/phrase/list/parts/phrase_list.dart';
 import 'package:classfrase/app/presentation/views/utils/app_appbar.dart';
 import 'package:classfrase/app/presentation/views/utils/app_icon.dart';
+import 'package:classfrase/app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,6 +37,8 @@ class _HomePageState extends State<HomePage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               phraseInClass(),
+              sortAlpha(context),
+              sortFolder(context),
               phraseArchived(context),
             ],
           ),
@@ -104,11 +107,7 @@ class _HomePageState extends State<HomePage> {
               child: SizedBox(
                 width: 130,
                 child: ElevatedButton.icon(
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    '/learn',
-                    arguments: '',
-                  ),
+                  onPressed: () => Get.toNamed(Routes.learnList),
                   icon: const Icon(AppIconData.learn),
                   label: const Text('Aprender.'),
                 ),
@@ -148,6 +147,26 @@ class _HomePageState extends State<HomePage> {
           tooltip: 'Minhas frases arquivadas',
           icon: const Icon(AppIconData.box),
           onPressed: () => widget._phraseController.listArchived(),
+        ));
+  }
+
+  Expanded sortAlpha(BuildContext context) {
+    return Expanded(
+        flex: 1,
+        child: IconButton(
+          tooltip: 'Ordenação alfabética das frases',
+          icon: const Icon(AppIconData.sortAlpha),
+          onPressed: () => widget._phraseController.sortAlpha(),
+        ));
+  }
+
+  Expanded sortFolder(BuildContext context) {
+    return Expanded(
+        flex: 1,
+        child: IconButton(
+          tooltip: 'Ordenação por folder das frases',
+          icon: const Icon(AppIconData.sortFolder),
+          onPressed: () => widget._phraseController.sortFolder(),
         ));
   }
 }

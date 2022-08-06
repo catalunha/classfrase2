@@ -29,18 +29,7 @@ class PhraseList extends StatelessWidget {
       list.add(PhraseCard(
         key: ValueKey(phrase),
         phrase: phrase,
-        trailing: Wrap(
-          spacing: 5,
-          children: [
-            phrase.isPublic
-                ? const Tooltip(
-                    message: 'Esta frase é pública.',
-                    child: Icon(AppIconData.public))
-                : Container(
-                    width: 1,
-                  ),
-          ],
-        ),
+        isPublic: phrase.isPublic,
         widgetList: [
           IconButton(
               tooltip: 'Classificar esta frase',

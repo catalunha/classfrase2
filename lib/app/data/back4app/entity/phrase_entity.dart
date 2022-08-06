@@ -30,7 +30,7 @@ class PhraseEntity {
           .get<List<dynamic>>('classOrder')!
           .map((e) => e.toString())
           .toList(),
-      folder: parseObject.get<String>('folder'),
+      folder: parseObject.get<String>('folder') ?? '/',
       font: parseObject.get<String>('font'),
       diagramUrl: parseObject.get<String>('diagramUrl'),
       isArchived: parseObject.get<bool>('isArchived') ?? false,

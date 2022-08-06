@@ -125,4 +125,12 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
       _loading(false);
     }
   }
+
+  sortFolder() {
+    _phraseList.sort((a, b) => a.folder.compareTo(b.folder));
+  }
+
+  sortAlpha() {
+    _phraseList.sort((a, b) => a.phrase.compareTo(b.phrase));
+  }
 }
