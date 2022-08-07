@@ -8,6 +8,7 @@ import 'package:classfrase/app/presentation/controllers/auth/splash/splash_contr
 import 'package:classfrase/app/presentation/controllers/utils/loader_mixin.dart';
 import 'package:classfrase/app/presentation/controllers/utils/message_mixin.dart';
 import 'package:classfrase/app/routes.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class PhraseController extends GetxController with LoaderMixin, MessageMixin {
@@ -31,7 +32,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
 
   @override
   void onInit() async {
-    print('+++ onInit PhraseController');
+    debugPrint('+++ onInit PhraseController');
     loaderListener(_loading);
     messageListener(_message);
     await listAll();
@@ -54,7 +55,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
   }
 
   void unArchivePhrase(String id) async {
-    print('UnarchivePhrase: $id');
+    debugPrint('UnarchivePhrase: $id');
     var phraseTemp =
         _phraseArchivedList.firstWhere((element) => element.id == id);
     _phraseArchivedList.clear();
@@ -64,13 +65,13 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
   }
 
   void add() {
-    print('phrase add');
+    debugPrint('phrase add');
     _phrase.value = null;
     Get.toNamed(Routes.phraseAddEdit);
   }
 
   void edit(String id) {
-    print('phrase edit: $id');
+    debugPrint('phrase edit: $id');
     var phraseTemp = _phraseList.firstWhere((element) => element.id == id);
     _phrase(phraseTemp);
     Get.toNamed(Routes.phraseAddEdit);
@@ -85,7 +86,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
     bool isPublic = false,
     bool isDeleted = false,
   }) async {
-    print('addedit $phrase');
+    debugPrint('addedit $phrase');
     try {
       _loading(true);
       UserModel userModel;
@@ -101,7 +102,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
       // temp['123'] = Classification(categoryIdList: ['456'], posPhraseList: [1]);
       // temp['123a'] =
       //     Classification(categoryIdList: ['456a'], posPhraseList: [2]);
-      // print(temp);
+      // debugPrint(temp);
       PhraseModel model = PhraseModel(
           id: modelId,
           user: userModel,

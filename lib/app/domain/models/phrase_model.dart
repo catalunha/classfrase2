@@ -1,8 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/domain/models/user_model.dart';
-import 'package:flutter/foundation.dart';
 
 class PhraseModel {
   final String? id;
@@ -163,11 +164,6 @@ class PhraseModel {
   }
 
   @override
-  String toString() {
-    return 'PhraseModel( phrase: $phrase, font: $font, description: $diagramUrl, isArchived: $isArchived, folder: $folder,  isDeleted: $isDeleted)';
-  }
-
-  @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
@@ -200,5 +196,10 @@ class PhraseModel {
         classOrder.hashCode ^
         classifications.hashCode ^
         isDeleted.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'PhraseModel(id: $id, user: $user, phrase: $phrase, phraseList: $phraseList, classifications: $classifications, classOrder: $classOrder, allCategoryList: $allCategoryList, folder: $folder, font: $font, diagramUrl: $diagramUrl, isArchived: $isArchived, isDeleted: $isDeleted, isPublic: $isPublic)';
   }
 }
