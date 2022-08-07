@@ -39,19 +39,18 @@ class ClassifyingController extends GetxController
   ClassGroup get groupSelected => _groupSelected.value!;
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
-    print('onReady ClassifyingController');
+    debugPrint('onReady ClassifyingController');
     _phraseUseCase.read(phrase.id!);
   }
 
   @override
   void onInit() async {
-    print('+++ onInit ClassifyingController');
+    debugPrint('+++ onInit ClassifyingController');
     loaderListener(_loading);
     messageListener(_message);
     _phrase(Get.arguments);
-    print(phrase.toString());
+    debugPrint(phrase.toString());
     groupListSorted();
     super.onInit();
   }
@@ -77,15 +76,15 @@ class ClassifyingController extends GetxController
     ClassificationService classificationService = Get.find();
     Map<String, ClassCategory> category =
         classificationService.classification.category;
-    print('categoryFilter 1: ${category.length}');
+    debugPrint('categoryFilter 1: ${category.length}');
     List<ClassCategory> categoryListTemp =
         category.entries.map((e) => e.value).toList();
-    print('categoryFilter 2: ${categoryListTemp.length}');
+    debugPrint('categoryFilter 2: ${categoryListTemp.length}');
     List<ClassCategory> categoryFiltered = categoryListTemp
         .where((element) => element.group.id == groupSelected.id)
         .toList();
     categoryFiltered.sort((a, b) => a.title.compareTo(b.title));
-    print('categoryFilter 2: ${categoryFiltered.length}');
+    debugPrint('categoryFilter 2: ${categoryFiltered.length}');
 
     categoryList.addAll(categoryFiltered);
   }
@@ -95,7 +94,6 @@ class ClassifyingController extends GetxController
   }
 
   void onUpdateExistCategoryInPos(String groupId) {
-    ClassificationService classificationService = Get.find();
     Map<String, Classification> classifications = phrase.classifications;
     List<int> posPhraseListNow = [..._selectedPosPhraseList];
     posPhraseListNow.sort();
@@ -113,7 +111,7 @@ class ClassifyingController extends GetxController
   }
 
   void onSelectAllPhrase() {
-    List<int> allPos = [];
+    // List<int> allPos = [];
     _selectedPosPhraseList.clear();
     for (var wordPos = 0; wordPos < phrase.phrase.length; wordPos++) {
       if (phrase.phrase[wordPos] != ' ') {
@@ -148,11 +146,10 @@ class ClassifyingController extends GetxController
     } else {
       _selectedCategoryIdList.add(categoryId);
     }
-    print(_selectedCategoryIdList);
   }
 
   void onSaveClassification() async {
-    ClassificationService classificationService = Get.find();
+    // ClassificationService classificationService = Get.find();
     Map<String, Classification> classifications = phrase.classifications;
 
     List<int> posPhraseListNow = [..._selectedPosPhraseList];
