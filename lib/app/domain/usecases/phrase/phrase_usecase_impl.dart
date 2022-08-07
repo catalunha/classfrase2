@@ -1,5 +1,6 @@
 import 'package:classfrase/app/data/back4app/enum/phrase_enum.dart';
 import 'package:classfrase/app/data/repositories/phrase_repository.dart';
+import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
 import 'package:classfrase/app/domain/usecases/phrase/phrase_usecase.dart';
 

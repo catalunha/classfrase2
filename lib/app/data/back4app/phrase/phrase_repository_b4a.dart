@@ -2,6 +2,7 @@ import 'package:classfrase/app/data/back4app/entity/phrase_entity.dart';
 import 'package:classfrase/app/data/back4app/enum/phrase_enum.dart';
 import 'package:classfrase/app/data/back4app/phrase/phrase_repository_exception.dart';
 import 'package:classfrase/app/data/repositories/phrase_repository.dart';
+import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
 import 'package:get/get.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';

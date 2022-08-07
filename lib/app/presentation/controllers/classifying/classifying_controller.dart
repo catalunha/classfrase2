@@ -1,5 +1,6 @@
 import 'package:classfrase/app/domain/models/category_group_model.dart';
 import 'package:classfrase/app/domain/models/category_model.dart';
+import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
 import 'package:classfrase/app/domain/usecases/phrase/phrase_usecase.dart';
 import 'package:classfrase/app/presentation/controllers/utils/loader_mixin.dart';
@@ -36,9 +37,17 @@ class ClassifyingController extends GetxController
   final categoryList = <ClassCategory>[];
   final _groupSelected = Rxn<ClassGroup>();
   ClassGroup get groupSelected => _groupSelected.value!;
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    print('onReady ClassifyingController');
+    _phraseUseCase.read(phrase.id!);
+  }
 
   @override
   void onInit() async {
+    print('+++ onInit ClassifyingController');
     loaderListener(_loading);
     messageListener(_message);
     _phrase(Get.arguments);

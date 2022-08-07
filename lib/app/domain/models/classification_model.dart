@@ -13,6 +13,14 @@ class ClassificationModel {
     required this.category,
   });
 
+  List<ClassGroup> selectGroupListSorted() {
+    // ClassificationService classificationService = Get.find();
+    // Map<String, ClassGroup> group = classificationService.classification.group;
+    List<ClassGroup> groupListTemp = group.entries.map((e) => e.value).toList();
+    groupListTemp.sort((a, b) => a.title.compareTo(b.title));
+    return groupListTemp;
+  }
+
   ClassificationModel copyWith({
     Map<String, ClassGroup>? group,
     Map<String, ClassCategory>? category,

@@ -1,4 +1,5 @@
 import 'package:classfrase/app/data/back4app/entity/user_entity.dart';
+import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 

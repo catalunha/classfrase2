@@ -1,5 +1,6 @@
 import 'package:classfrase/app/data/back4app/enum/phrase_enum.dart';
 import 'package:classfrase/app/data/back4app/phrase/phrase_repository_exception.dart';
+import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
 import 'package:classfrase/app/domain/models/user_model.dart';
 import 'package:classfrase/app/domain/usecases/phrase/phrase_usecase.dart';
@@ -30,12 +31,11 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
 
   @override
   void onInit() async {
-    print('+++ init phrase');
+    print('+++ onInit PhraseController');
     loaderListener(_loading);
     messageListener(_message);
     await listAll();
     super.onInit();
-    print('--- init phrase');
   }
 
   Future<void> listAll() async {
@@ -98,10 +98,10 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
         modelId = this.phrase!.id;
       }
       Map<String, Classification> temp = <String, Classification>{};
-      temp['123'] = Classification(categoryIdList: ['456'], posPhraseList: [1]);
-      temp['123a'] =
-          Classification(categoryIdList: ['456a'], posPhraseList: [2]);
-      print(temp);
+      // temp['123'] = Classification(categoryIdList: ['456'], posPhraseList: [1]);
+      // temp['123a'] =
+      //     Classification(categoryIdList: ['456a'], posPhraseList: [2]);
+      // print(temp);
       PhraseModel model = PhraseModel(
           id: modelId,
           user: userModel,
