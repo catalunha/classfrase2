@@ -3,6 +3,7 @@ import 'package:classfrase/app/presentation/views/learn/parts/learn_phrase_card.
 import 'package:classfrase/app/presentation/views/learn/parts/person_tile.dart';
 import 'package:classfrase/app/presentation/views/utils/app_icon.dart';
 import 'package:classfrase/app/presentation/views/utils/app_link.dart';
+import 'package:classfrase/app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -67,11 +68,7 @@ class PersonPhraseListPage extends StatelessWidget {
             // ),
             IconButton(
               tooltip: 'Imprimir a classificação desta frase.',
-              onPressed: () => Navigator.pushNamed(
-                context,
-                '/pdf_learn',
-                arguments: phrase.id,
-              ),
+              onPressed: () => Get.toNamed(Routes.pdf, arguments: phrase),
               icon: const Icon(Icons.print),
             ),
             AppLink(
