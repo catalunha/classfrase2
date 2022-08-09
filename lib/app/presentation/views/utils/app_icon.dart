@@ -22,7 +22,7 @@ class AppIconData {
   static const public = Icons.public;
   static const learn = Icons.people_alt_outlined;
   static const print = Icons.print;
-  static const diagram = Icons.line_style;
+  static const diagram = Icons.line_axis_sharp;
 
   static const addInCloud = Icons.add;
   static const saveInCloud = Icons.cloud_upload_outlined;

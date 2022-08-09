@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
         child: IconButton(
           tooltip: 'Ordenação alfabética das frases',
           icon: const Icon(AppIconData.sortAlpha),
-          onPressed: () => widget._phraseController.sortAlpha(),
+          onPressed: () => widget._phraseController.sortByFolder(false),
         ));
   }
 
@@ -166,7 +166,7 @@ class _HomePageState extends State<HomePage> {
         child: IconButton(
           tooltip: 'Ordenação por folder das frases',
           icon: const Icon(AppIconData.sortFolder),
-          onPressed: () => widget._phraseController.sortFolder(),
+          onPressed: () => widget._phraseController.sortByFolder(true),
         ));
   }
 }

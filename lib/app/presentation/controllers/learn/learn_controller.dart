@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:classfrase/app/data/back4app/learn/learn_repository_exception.dart';
+import 'package:classfrase/app/data/back4app/user/user/user_repository_exception.dart';
 import 'package:classfrase/app/domain/models/learn_model.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
 import 'package:classfrase/app/domain/models/user_model.dart';
@@ -62,26 +65,50 @@ class LearnController extends GetxController with LoaderMixin, MessageMixin {
   }) async {
     print('add $email');
     try {
+      Get.back();
       _loading(true);
       UserModel userModel;
       SplashController splashController = Get.find();
       userModel = splashController.userModel!;
+      log('buscando $email');
       UserModel? person = await _userUseCase.readByEmail(email);
       if (person != null) {
+        log('pessoa encontrada ${person.id}');
         LearnModel model = LearnModel(
           user: userModel,
           folder: folder,
           person: person,
         );
-        print(model);
+        log(model.toString());
         await _learnUseCase.append(model);
       } else {
+        log('nao achei nenhuma pessoa com este email');
         throw Exception();
       }
-    } on LearnRepositoryException {
+    } on UserRepositoryException catch (e) {
+      _loading(false);
+
+      _message.value = MessageModel(
+        title: 'Oops em User',
+        message: e.message,
+        isError: true,
+      );
+    } on LearnRepositoryException catch (e) {
+      _loading(false);
+
+      _message.value = MessageModel(
+        title: 'Oops em Learn',
+        message: e.message,
+        isError: true,
+      );
+    } catch (e) {
+      // Get.back();
+      log('catch');
+      _loading(false);
+
       _message.value = MessageModel(
         title: 'Oops',
-        message: 'Não encontrei usuário com este email.',
+        message: 'Nao achei nenhuma pessoa com este email',
         isError: true,
       );
     } finally {

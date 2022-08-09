@@ -88,8 +88,8 @@ class CategoryGroupPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(AppIconData.saveInCloud),
-        onPressed: () {
-          _classifyingController.onSaveClassification();
+        onPressed: () async {
+          await _classifyingController.onSaveClassification();
           Get.back();
         },
       ),

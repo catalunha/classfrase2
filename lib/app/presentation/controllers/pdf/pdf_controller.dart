@@ -2,7 +2,6 @@ import 'package:classfrase/app/domain/models/category_group_model.dart';
 import 'package:classfrase/app/domain/models/category_model.dart';
 import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
-import 'package:classfrase/app/domain/usecases/phrase/phrase_usecase.dart';
 import 'package:classfrase/app/presentation/controllers/phrase/phrase_controller.dart';
 import 'package:classfrase/app/presentation/controllers/utils/loader_mixin.dart';
 import 'package:classfrase/app/presentation/controllers/utils/message_mixin.dart';
@@ -12,20 +11,13 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-class ClassifyingController extends GetxController
-    with LoaderMixin, MessageMixin {
-  final PhraseUseCase _phraseUseCase;
-
-  ClassifyingController({
-    required PhraseUseCase phraseUseCase,
-  }) : _phraseUseCase = phraseUseCase;
-
+class PdfController extends GetxController with LoaderMixin, MessageMixin {
   final _loading = false.obs;
   set loading(bool value) => _loading(value);
   final _message = Rxn<MessageModel>();
 
-  final _phraseCurrent = Rxn<PhraseModel>();
-  PhraseModel get phrase => _phraseCurrent.value!;
+  final _phrase = Rxn<PhraseModel>();
+  PhraseModel get phrase => _phrase.value!;
 
   final _selectedPosPhraseList = <int>[].obs;
   List<int> get selectedPosPhraseList => _selectedPosPhraseList;
@@ -48,10 +40,10 @@ class ClassifyingController extends GetxController
 
   @override
   void onInit() async {
-    debugPrint('+++ onInit ClassifyingController');
+    debugPrint('+++ onInit PdfController');
     loaderListener(_loading);
     messageListener(_message);
-    _phraseCurrent(Get.arguments);
+    _phrase(Get.arguments);
     debugPrint(phrase.toString());
     groupListSorted();
     super.onInit();
@@ -92,7 +84,7 @@ class ClassifyingController extends GetxController
   }
 
   void onChangeClassOrder(List<String> classOrder) async {
-    await _phraseUseCase.onChangeClassOrder(phrase.id!, classOrder);
+    // await _phraseUseCase.onChangeClassOrder(phrase.id!, classOrder);
   }
 
   void onUpdateExistCategoryInPos(String groupId) {
@@ -181,10 +173,10 @@ class ClassifyingController extends GetxController
             !classOrderTemp.contains(classificationsId), classificationsId);
         classificationsTemp[classificationsId] = classificationNew;
       }
-      await _phraseUseCase.onSaveClassification(
-          phrase.id!, classificationsTemp, classOrderTemp);
-      PhraseModel? temp = await _phraseUseCase.read(phrase.id!);
-      _phraseCurrent(temp);
+      // await _phraseUseCase.onSaveClassification(
+      //     phrase.id!, classificationsTemp, classOrderTemp);
+      // PhraseModel? temp = await _phraseUseCase.read(phrase.id!);
+      // _phrase(temp);
     } catch (e) {
       _message.value = MessageModel(
         title: 'Oops',

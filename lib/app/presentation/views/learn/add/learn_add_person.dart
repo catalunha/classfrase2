@@ -74,7 +74,7 @@ class _LearnAddPersonState extends State<LearnAddPerson> {
                               email: _emailTEC.text,
                               folder: _folderTEC.text,
                             );
-                            Navigator.pop(context);
+                            // Navigator.pop(context);
                           }
                         },
                         child: const Text('Buscar')),

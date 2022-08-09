@@ -30,6 +30,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
   final _phrase = Rxn<PhraseModel>();
   PhraseModel? get phrase => _phrase.value;
 
+  bool isSortedByFolder = true;
   @override
   void onInit() async {
     debugPrint('+++ onInit PhraseController');
@@ -109,6 +110,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
           phrase: phrase,
           folder: folder,
           isArchived: isArchived,
+          diagramUrl: diagramUrl,
           isPublic: isPublic,
           isDeleted: isDeleted,
           phraseList: PhraseModel.setPhraseList(phrase),
@@ -127,11 +129,29 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
     }
   }
 
-  sortFolder() {
-    _phraseList.sort((a, b) => a.folder.compareTo(b.folder));
+  // sortFolder(bool isSortedByAlpha) {
+  //   _phraseList.sort((a, b) => a.folder.compareTo(b.folder));
+  // }
+
+  // sortAlpha(bool isSortedByAlpha) {
+  //   _phraseList.sort((a, b) => a.phrase.compareTo(b.phrase));
+  // }
+  sortByFolder(bool value) {
+    isSortedByFolder = value;
+    sortBy();
   }
 
-  sortAlpha() {
-    _phraseList.sort((a, b) => a.phrase.compareTo(b.phrase));
+  sortBy() {
+    if (isSortedByFolder) {
+      _phraseList.sort((a, b) => a.folder.compareTo(b.folder));
+    } else {
+      _phraseList.sort((a, b) => a.phrase.compareTo(b.phrase));
+    }
+  }
+
+  void updatePhraseInPhraseList(PhraseModel phraseClassifying) {
+    _phraseList.removeWhere((element) => element.id == phraseClassifying.id);
+    _phraseList.add(phraseClassifying);
+    sortBy();
   }
 }

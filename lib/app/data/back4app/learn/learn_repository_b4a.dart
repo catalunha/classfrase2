@@ -38,14 +38,22 @@ class LearnRepositoryB4a extends GetxService implements LearnRepository {
 
   @override
   Future<String> append(LearnModel model) async {
-    final parseObject = await LearnEntity().toParse(model);
-    final ParseResponse parseResponse = await parseObject.save();
-    if (parseResponse.success && parseResponse.results != null) {
-      ParseObject userProfile = parseResponse.results!.first as ParseObject;
-      return userProfile.objectId!;
-    } else {
+    try {
+      final ParseObject parseObject = await LearnEntity().toParse(model);
+      final ParseResponse parseResponse = await parseObject.save();
+      if (parseResponse.success && parseResponse.results != null) {
+        ParseObject userProfile = parseResponse.results!.first as ParseObject;
+        return userProfile.objectId!;
+      } else {
+        throw LearnRepositoryException(
+            code: 1, message: 'Não foi possivel cadastrar/atualizar o bem.');
+      }
+    } catch (e) {
+      print('+++ print error em append');
+      print(e);
+      print('--- print error em append');
       throw LearnRepositoryException(
-          code: 1, message: 'Não foi possivel cadastrar/atualizar o bem.');
+          code: 1, message: 'Erro ao cadastrar learn');
     }
   }
 
