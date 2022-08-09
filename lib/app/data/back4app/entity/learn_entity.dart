@@ -21,15 +21,17 @@ class LearnEntity {
     final parseObject = ParseObject(LearnEntity.className);
     try {
       print('//+++ ParseObject');
-      if (model.id != null) {
-        parseObject.objectId = model.id;
-      }
+      // if (model.id != null) {
+      //   parseObject.objectId = model.id;
+      // }
       print('personId ${model.person.id}');
       parseObject.set('user', (await ParseUser.currentUser()));
       parseObject.set('folder', model.folder);
       parseObject.set('isDeleted', model.isDeleted);
       parseObject.set('person',
           (ParseObject('_User')..objectId = model.person.id).toPointer());
+      // parseObject.set(
+      //     'person', ParseObject('_User')..objectId = model.person.id); //error
       print('parseObject $parseObject');
       print('//--- ParseObject');
     } on Exception catch (e) {

@@ -105,5 +105,10 @@ class Routes {
       binding: LearnDependencies(),
       page: () => PersonPhrasePage(),
     ),
+    GetPage(
+      name: Routes.learnPersonPhrase,
+      binding: LearnDependencies(),
+      page: () => PersonPhrasePage(),
+    ),
   ];
 }
