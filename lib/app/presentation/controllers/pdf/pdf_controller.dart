@@ -4,6 +4,7 @@ import 'package:classfrase/app/domain/models/phrase_model.dart';
 import 'package:classfrase/app/presentation/controllers/phrase/phrase_controller.dart';
 import 'package:classfrase/app/presentation/controllers/utils/loader_mixin.dart';
 import 'package:classfrase/app/presentation/controllers/utils/message_mixin.dart';
+import 'package:classfrase/app/presentation/services/classification/classification_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +42,7 @@ class PdfController extends GetxController with LoaderMixin, MessageMixin {
     messageListener(_message);
     _phrase(Get.arguments);
     debugPrint(phrase.toString());
-    // groupListSorted();
+    groupListSorted();
     super.onInit();
   }
 
@@ -53,13 +54,13 @@ class PdfController extends GetxController with LoaderMixin, MessageMixin {
     }
   }
 
-  // void groupListSorted() {
-  //   ClassificationService classificationService = Get.find();
-  //   Map<String, ClassGroup> group = classificationService.classification.group;
-  //   List<ClassGroup> groupListTemp = group.entries.map((e) => e.value).toList();
-  //   groupListTemp.sort((a, b) => a.title.compareTo(b.title));
-  //   groupList.addAll(groupListTemp);
-  // }
+  void groupListSorted() {
+    ClassificationService classificationService = Get.find();
+    Map<String, ClassGroup> group = classificationService.classification.group;
+    List<ClassGroup> groupListTemp = group.entries.map((e) => e.value).toList();
+    groupListTemp.sort((a, b) => a.title.compareTo(b.title));
+    groupList.addAll(groupListTemp);
+  }
 
   // void categoryFilter() {
   //   categoryList.clear();

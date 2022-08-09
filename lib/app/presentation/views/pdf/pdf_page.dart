@@ -119,7 +119,7 @@ class PdfPage extends StatelessWidget {
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
         children: [
           pw.Text(
-            'ClassFrase (R) 2021. Feito com carinho pela Família Catalunha. Ore por nós, que Deus te abençõe.',
+            'ClassFrase (R) 2022. Feito com carinho pela Família Catalunha. Ore por nós, que Deus te abençõe.',
             style: const pw.TextStyle(fontSize: 10),
           ),
           pw.Text(

@@ -4,6 +4,7 @@ import 'package:classfrase/app/presentation/controllers/auth/splash/splash_depen
 import 'package:classfrase/app/presentation/controllers/classifying/classifying_dependecies.dart';
 import 'package:classfrase/app/presentation/controllers/home/home_dependencies.dart';
 import 'package:classfrase/app/presentation/controllers/learn/learn_dependecies.dart';
+import 'package:classfrase/app/presentation/controllers/pdf/pdf_dependecies.dart';
 import 'package:classfrase/app/presentation/controllers/phrase/phrase_dependecies.dart';
 import 'package:classfrase/app/presentation/controllers/user/profile/user_profile_dependencies.dart';
 import 'package:classfrase/app/presentation/services/classification/classification_depedencies.dart';
@@ -16,6 +17,7 @@ import 'package:classfrase/app/presentation/views/home/home_page.dart';
 import 'package:classfrase/app/presentation/views/learn/list/learn_list_page.dart';
 import 'package:classfrase/app/presentation/views/learn/list/person_phrase_list_page.dart';
 import 'package:classfrase/app/presentation/views/learn/person_phrase_page.dart';
+import 'package:classfrase/app/presentation/views/pdf/pdf_page.dart';
 import 'package:classfrase/app/presentation/views/phrase/add_edit/phrase_addedit_page.dart';
 import 'package:classfrase/app/presentation/views/phrase/list/phrase_archived_page.dart';
 import 'package:classfrase/app/presentation/views/user/profile/user_profile_page.dart';
@@ -38,6 +40,8 @@ class Routes {
   static const learnList = '/learn/list';
   static const learnPersonPhraseList = '/learn/person/phrase/list';
   static const learnPersonPhrase = '/learn/person/phrase';
+
+  static const pdf = '/pdf';
 
   static final pageList = [
     GetPage(
@@ -106,9 +110,9 @@ class Routes {
       page: () => PersonPhrasePage(),
     ),
     GetPage(
-      name: Routes.learnPersonPhrase,
-      binding: LearnDependencies(),
-      page: () => PersonPhrasePage(),
+      name: Routes.pdf,
+      binding: PdfDependencies(),
+      page: () => PdfPage(),
     ),
   ];
 }

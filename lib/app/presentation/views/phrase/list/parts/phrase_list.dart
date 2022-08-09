@@ -44,14 +44,10 @@ class PhraseList extends StatelessWidget {
           //   width: 50,
           // ),
           IconButton(
-            tooltip: 'Imprimir a classificação desta frase.',
+            tooltip: 'PDF da classificação desta frase.',
             icon: const Icon(AppIconData.print),
             onPressed: () async {
-              Navigator.pushNamed(
-                context,
-                '/pdf',
-                arguments: phrase.id,
-              );
+              Get.toNamed(Routes.pdf, arguments: phrase);
             },
           ),
           AppLink(
