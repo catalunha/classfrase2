@@ -5,9 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class ClassificationService extends GetxService {
-  final List<CatClassModel> _category = <CatClassModel>[];
+  final List<CatClassModel> categoryAll = <CatClassModel>[];
   final List<CatClassModel> category = <CatClassModel>[].obs();
   final List<String> _categoryParentList = <String>[];
+  bool selectedNgb = true;
 
   @override
   void onInit() async {
@@ -18,13 +19,15 @@ class ClassificationService extends GetxService {
   }
 
   Future<void> readCategory() async {
+    print('+++++++++++++++ read json +++++++++++++++');
     dynamic data = await _loadJsonCategory();
-    _category.clear();
+    categoryAll.clear();
     for (var element in data) {
-      _category.add(CatClassModel.fromMap(element));
+      categoryAll.add(CatClassModel.fromMap(element));
     }
     updateOrdem();
-    filterCategory('ngb');
+    categoryFilteredBy('ngb');
+    print('-------------- read json --------------');
   }
 
   Future<dynamic> _loadJsonCategory() async {
@@ -34,10 +37,20 @@ class ClassificationService extends GetxService {
   }
 
   void updateOrdem() {
-    for (var i = 0; i < _category.length; i++) {
-      _category[i].ordem = getParent(ngb: _category[i]);
+    for (var i = 0; i < categoryAll.length; i++) {
+      categoryAll[i].ordem = getParent(ngb: categoryAll[i]);
     }
   }
+
+  // void updateIsSelected(List<String> idSelected) {
+  //   for (var i = 0; i < category.length; i++) {
+  //     if (idSelected.contains(category[i].id)) {
+  //       category[i].isSelected = true;
+  //     } else {
+  //       category[i].isSelected = false;
+  //     }
+  //   }
+  // }
 
   String getParent({required CatClassModel ngb, String delimiter = ' - '}) {
     _categoryParentList.clear();
@@ -50,7 +63,7 @@ class ClassificationService extends GetxService {
     _categoryParentList.add(ngb.name);
 
     CatClassModel? ngbParent =
-        category.firstWhereOrNull((element) => element.id == ngb.parent);
+        categoryAll.firstWhereOrNull((element) => element.id == ngb.parent);
 
     if (ngbParent != null) {
       _getParents(ngbParent);
@@ -59,9 +72,15 @@ class ClassificationService extends GetxService {
   }
 
   // metodos externos
-  void filterCategory(String filter) {
-    List<CatClassModel> categoryTemp =
-        _category.where((element) => element.filter.contains(filter)).toList();
+  void categoryFilteredBy(String filter) {
+    if (filter == 'ngb') {
+      selectedNgb = true;
+    } else {
+      selectedNgb = false;
+    }
+    List<CatClassModel> categoryTemp = categoryAll
+        .where((element) => element.filter.contains(filter))
+        .toList();
     category.clear();
     category.addAll([...categoryTemp]);
   }

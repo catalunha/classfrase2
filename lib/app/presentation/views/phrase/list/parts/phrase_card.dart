@@ -23,7 +23,7 @@ class PhraseCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           ListTile(
-            tileColor: Colors.yellowAccent,
+            // tileColor: Colors.yellowAccent,
             title: Text(
               phrase.phrase,
               // style: AppTextStyles.trailingBold,

@@ -1,3 +1,5 @@
+import 'package:classfrase/app/domain/models/catclass_model.dart';
+import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/presentation/controllers/classifying/classifying_controller.dart';
 import 'package:classfrase/app/presentation/services/classification/classification_service.dart';
 import 'package:classfrase/app/presentation/views/classifying/parts/classification_type.dart';
@@ -92,7 +94,17 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
               )),
           ElevatedButton(
             onPressed: () {
-              Get.toNamed(Routes.phraseCategoryGroup);
+              if (widget
+                  ._classifyingController.selectedPosPhraseList.isNotEmpty) {
+                widget._classifyingController.onUpdateExistCategoryInPos();
+                Get.toNamed(Routes.phraseCategoryGroup);
+              } else {
+                const snackBar = SnackBar(
+                  content: Text('Oops. Selecione um trecho da frase.'),
+                );
+
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
             },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
@@ -107,96 +119,30 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
               ),
             ),
           ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (classBy == ClassBy.grupo)
-                Expanded(
-                  child: Container(
-                      color: Colors.black12,
-                      child: Center(child: Text(ClassBy.grupo.name))),
-                ),
-              if (classBy == ClassBy.selecao)
-                Expanded(
-                  child: Container(
-                      color: Colors.black12,
-                      child: Center(
-                          child: Column(
-                        children: [
-                          Text(ClassBy.selecao.name),
-                          const Text('Você pode reordenar esta lista.',
-                              style: TextStyle(fontSize: 12))
-                        ],
-                      ))),
-                ),
-              IconButton(
-                tooltip: ClassBy.selecao.name,
-                icon: Icon(ClassBy.selecao.icon),
-                onPressed: () {
-                  setState(() {
-                    classBy = ClassBy.selecao;
-                  });
-                },
-              ),
-              IconButton(
-                tooltip: ClassBy.grupo.name,
-                icon: Icon(ClassBy.grupo.icon),
-                onPressed: () {
-                  setState(() {
-                    classBy = ClassBy.grupo;
-                  });
-                },
-              ),
-            ],
-          ),
-          if (classBy == ClassBy.grupo)
+          Container(
+              color: Colors.black12,
+              child: const Center(
+                  child: Text('Você pode reordenar as partes já classificadas.',
+                      style: TextStyle(fontSize: 12)))),
+          if (classBy == ClassBy.selecao)
             Expanded(
-              child: Obx(() => SingleChildScrollView(
-                    child: Column(
-                        // children: buildClassifications2(
-                        //   context: context,
-                        //   groupList: widget._classifyingController.groupList,
-                        //   category2: widget
-                        //       ._classificationService.classification.category,
-                        //   phraseClassifications: widget
-                        //       ._classifyingController.phrase.classifications,
-                        //   classOrder:
-                        //       widget._classifyingController.phrase.classOrder,
-                        //   phraseList:
-                        //       widget._classifyingController.phrase.phraseList,
-                        //   selectedPhrasePosList:
-                        //       widget._classifyingController.selectedPosPhraseList,
-                        //   onSelectPhrase:
-                        //       widget._classifyingController.onSelectPhrase,
-                        // ),
-                        ),
+              child: Obx(() => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ReorderableListView(
+                      onReorder: _onReorder,
+                      children: buildClassByLine2(
+                        phraseClassifications: widget
+                            ._classifyingController.phrase.classifications,
+                        classOrder:
+                            widget._classifyingController.phrase.classOrder,
+                        phraseList:
+                            widget._classifyingController.phrase.phraseList,
+                        onSelectPhrase:
+                            widget._classifyingController.onSelectPhrase,
+                      ),
+                    ),
                   )),
             ),
-          // if (classBy == ClassBy.selecao)
-          //   Expanded(
-          //     child: Obx(() => Padding(
-          //           padding: const EdgeInsets.all(8.0),
-          //           child: ReorderableListView(
-          //             onReorder: _onReorder,
-          //             children: buildClassByLine2(
-          //               context: context,
-          //               groupList: widget._classifyingController.groupList,
-          //               category: widget
-          //                   ._classificationService.classification.category,
-          //               phraseClassifications: widget
-          //                   ._classifyingController.phrase.classifications,
-          //               classOrder:
-          //                   widget._classifyingController.phrase.classOrder,
-          //               phraseList:
-          //                   widget._classifyingController.phrase.phraseList,
-          //               onSelectPhrase:
-          //                   widget._classifyingController.onSelectPhrase,
-          //             ),
-          //           ),
-          //         )),
-          //   ),
         ],
       ),
     );
@@ -216,37 +162,91 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
     widget._classifyingController.onChangeClassOrder(classOrderTemp);
   }
 
-  List<Widget> buildGroup(context) {
-    List<Widget> list = [];
+  List<Widget> buildClassByLine2({
+    required Map<String, Classification> phraseClassifications,
+    required List<String> classOrder,
+    required List<String> phraseList,
+    Function(int)? onSelectPhrase,
+  }) {
+    List<Widget> lineList = [];
 
-    for (var group in widget._classifyingController.groupList) {
-      list.add(
-        TextButton(
-          onPressed: () {
-            if (widget
-                ._classifyingController.selectedPosPhraseList.isNotEmpty) {
-              widget._classifyingController
-                  .onUpdateExistCategoryInPos(group.id!);
-              widget._classifyingController.onGroupSelected(group.id!);
-              // Navigator.pushNamed(context, '/classifications',
-              //     arguments: group.id);
-            } else {
-              const snackBar = SnackBar(
-                content: Text('Oops. Selecione um trecho da frase.'),
-              );
+    for (var classId in classOrder) {
+      Classification classification = phraseClassifications[classId]!;
+      List<int> posPhraseList = classification.posPhraseList;
+      List<InlineSpan> listSpan = [];
+      for (var i = 0; i < phraseList.length; i++) {
+        listSpan.add(TextSpan(
+          text: phraseList[i],
+          style: phraseList[i] != ' ' && posPhraseList.contains(i)
+              ? TextStyle(
+                  color: Colors.orange.shade900,
+                  decoration: TextDecoration.underline,
+                  decorationStyle: TextDecorationStyle.solid,
+                )
+              : null,
+        ));
+      }
+      RichText richText = RichText(
+        text: TextSpan(
+          style: const TextStyle(fontSize: 28, color: Colors.black),
+          children: listSpan,
+        ),
+      );
 
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            }
-          },
-          style: TextButton.styleFrom(
-            textStyle: const TextStyle(fontSize: 18),
+      List<Widget> categoryWidgetList = [];
+      List<String> categoryIdList = classification.categoryIdList;
+      List<String> categoryTitleList = [];
+      for (var id in categoryIdList) {
+        CatClassModel? catClassModel = widget._classificationService.categoryAll
+            .firstWhereOrNull((catClass) => catClass.id == id);
+        if (catClassModel != null) {
+          categoryTitleList.add(catClassModel.ordem);
+        }
+      }
+
+      categoryTitleList.sort();
+      for (var categoryTitle in categoryTitleList) {
+        categoryWidgetList.add(Text(
+          categoryTitle,
+        ));
+      }
+
+      lineList.add(
+        Container(
+          alignment: Alignment.topCenter,
+          key: ValueKey(classId),
+          child: Card(
+            elevation: 25,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: GestureDetector(
+                      onTap: onSelectPhrase != null
+                          ? () {
+                              widget._classifyingController
+                                  .onSelectNonePhrase();
+                              for (var index in posPhraseList) {
+                                onSelectPhrase(index);
+                              }
+                            }
+                          : null,
+                      child: Row(
+                        children: [richText],
+                      ),
+                    ),
+                  ),
+                  ...categoryWidgetList,
+                ],
+              ),
+            ),
           ),
-          child: Text(group.title),
         ),
       );
     }
-    print('groups ${list.length}');
-    return list;
+    return lineList;
   }
 
   void setStateLocal() {

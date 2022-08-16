@@ -23,103 +23,103 @@ extension ClassByExtensionIcon on ClassBy {
   IconData get icon => icons[this]!;
 }
 
-List<Widget> buildClassByLine2({
-  required BuildContext context,
-  required List<ClassGroup> groupList,
-  required Map<String, ClassCategory> category,
-  required Map<String, Classification> phraseClassifications,
-  required List<String> classOrder,
-  required List<String> phraseList,
-  Function(int)? onSelectPhrase,
-}) {
-  List<Widget> lineList = [];
+// List<Widget> buildClassByLine2({
+//   // required BuildContext context,
+//   // required List<ClassGroup> groupList,
+//   // required Map<String, ClassCategory> category,
+//   required Map<String, Classification> phraseClassifications,
+//   required List<String> classOrder,
+//   required List<String> phraseList,
+//   Function(int)? onSelectPhrase,
+// }) {
+//   List<Widget> lineList = [];
 
-  for (var classId in classOrder) {
-    Classification classification = phraseClassifications[classId]!;
-    List<int> posPhraseList = classification.posPhraseList;
-    List<InlineSpan> listSpan = [];
-    for (var i = 0; i < phraseList.length; i++) {
-      listSpan.add(TextSpan(
-        text: phraseList[i],
-        style: phraseList[i] != ' ' && posPhraseList.contains(i)
-            ? TextStyle(
-                color: Colors.orange.shade900,
-                decoration: TextDecoration.underline,
-                decorationStyle: TextDecorationStyle.solid,
-              )
-            : null,
-      ));
-    }
-    RichText richText = RichText(
-      text: TextSpan(
-        style: const TextStyle(fontSize: 28, color: Colors.black),
-        children: listSpan,
-      ),
-    );
+//   for (var classId in classOrder) {
+//     Classification classification = phraseClassifications[classId]!;
+//     List<int> posPhraseList = classification.posPhraseList;
+//     List<InlineSpan> listSpan = [];
+//     for (var i = 0; i < phraseList.length; i++) {
+//       listSpan.add(TextSpan(
+//         text: phraseList[i],
+//         style: phraseList[i] != ' ' && posPhraseList.contains(i)
+//             ? TextStyle(
+//                 color: Colors.orange.shade900,
+//                 decoration: TextDecoration.underline,
+//                 decorationStyle: TextDecorationStyle.solid,
+//               )
+//             : null,
+//       ));
+//     }
+//     RichText richText = RichText(
+//       text: TextSpan(
+//         style: const TextStyle(fontSize: 28, color: Colors.black),
+//         children: listSpan,
+//       ),
+//     );
 
-    List<Widget> categoryWidgetList = [];
-    for (var group in groupList) {
-      List<String> categoryIdList = classification.categoryIdList;
-      List<String> categoryTitleList = [];
-      for (var id in categoryIdList) {
-        if (category.containsKey(id)) {
-          if (category[id]!.group.id == group.id) {
-            categoryTitleList.add(category[id]!.title);
-          }
-        }
-      }
-      if (categoryTitleList.isNotEmpty) {
-        categoryWidgetList.add(Text(
-          '* ${group.title} *',
-          style: const TextStyle(
-            fontSize: 16,
-            color: Colors.black,
-          ),
-        ));
-        categoryTitleList.sort();
-        for (var categoryTitle in categoryTitleList) {
-          categoryWidgetList.add(Text(
-            categoryTitle,
-          ));
-        }
-      }
-    }
+//     // List<Widget> categoryWidgetList = [];
+//     // for (var group in groupList) {
+//     //   List<String> categoryIdList = classification.categoryIdList;
+//     //   List<String> categoryTitleList = [];
+//     //   for (var id in categoryIdList) {
+//     //     if (category.containsKey(id)) {
+//     //       if (category[id]!.group.id == group.id) {
+//     //         categoryTitleList.add(category[id]!.title);
+//     //       }
+//     //     }
+//     //   }
+//     //   if (categoryTitleList.isNotEmpty) {
+//     //     categoryWidgetList.add(Text(
+//     //       '* ${group.title} *',
+//     //       style: const TextStyle(
+//     //         fontSize: 16,
+//     //         color: Colors.black,
+//     //       ),
+//     //     ));
+//     //     categoryTitleList.sort();
+//     //     for (var categoryTitle in categoryTitleList) {
+//     //       categoryWidgetList.add(Text(
+//     //         categoryTitle,
+//     //       ));
+//     //     }
+//     //   }
+//     // }
 
-    lineList.add(
-      Container(
-        alignment: Alignment.topCenter,
-        key: ValueKey(classId),
-        child: Card(
-          elevation: 25,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: GestureDetector(
-                    onTap: onSelectPhrase != null
-                        ? () {
-                            for (var index in posPhraseList) {
-                              onSelectPhrase(index);
-                            }
-                          }
-                        : null,
-                    child: Row(
-                      children: [richText],
-                    ),
-                  ),
-                ),
-                ...categoryWidgetList,
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-  return lineList;
-}
+//     lineList.add(
+//       Container(
+//         alignment: Alignment.topCenter,
+//         key: ValueKey(classId),
+//         child: Card(
+//           elevation: 25,
+//           child: Padding(
+//             padding: const EdgeInsets.all(8.0),
+//             child: Column(
+//               children: [
+//                 SingleChildScrollView(
+//                   scrollDirection: Axis.horizontal,
+//                   child: GestureDetector(
+//                     onTap: onSelectPhrase != null
+//                         ? () {
+//                             for (var index in posPhraseList) {
+//                               onSelectPhrase(index);
+//                             }
+//                           }
+//                         : null,
+//                     child: Row(
+//                       children: [richText],
+//                     ),
+//                   ),
+//                 ),
+//                 // ...categoryWidgetList,
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+//   return lineList;
+// }
 
 List<Widget> buildClassifications2({
   required BuildContext context,

@@ -1,9 +1,12 @@
 class CatClassModel {
   final String id;
   final String name;
-  String ordem = '';
   final String? parent;
   final List<String> filter;
+
+  String ordem = '';
+  bool isSelected = false;
+
   CatClassModel({
     required this.id,
     required this.name,

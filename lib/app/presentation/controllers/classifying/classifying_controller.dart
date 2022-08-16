@@ -19,10 +19,12 @@ import 'package:uuid/uuid.dart';
 class ClassifyingController extends GetxController
     with LoaderMixin, MessageMixin {
   final PhraseUseCase _phraseUseCase;
-
-  ClassifyingController({
-    required PhraseUseCase phraseUseCase,
-  }) : _phraseUseCase = phraseUseCase;
+  final ClassificationService _classificationService;
+  ClassifyingController(
+      {required PhraseUseCase phraseUseCase,
+      required ClassificationService classificationService})
+      : _phraseUseCase = phraseUseCase,
+        _classificationService = classificationService;
 
   final _loading = false.obs;
   set loading(bool value) => _loading(value);
@@ -44,7 +46,7 @@ class ClassifyingController extends GetxController
   // ClassGroup get groupSelected => _groupSelected.value!;
 
 // fase do catClass
-  final category = <CatClassModel>[].obs;
+  // final category = <CatClassModel>[].obs;
 
   @override
   void onClose() {
@@ -61,15 +63,15 @@ class ClassifyingController extends GetxController
     _phraseCurrent(Get.arguments);
     debugPrint(phrase.toString());
     groupListSorted();
-    initCatClass();
+    // initCatClass();
     super.onInit();
   }
 
-  initCatClass() {
-    final ClassificationService classificationService = Get.find();
-    category.clear();
-    category.addAll([...classificationService.category]);
-  }
+  // initCatClass() {
+  //   // final ClassificationService classificationService = Get.find();
+  //   category.clear();
+  //   category.addAll([..._classificationService.category]);
+  // }
 
   onSelectPhrase(int phrasePos) {
     if (_selectedPosPhraseList.contains(phrasePos)) {
@@ -113,7 +115,7 @@ class ClassifyingController extends GetxController
     await _phraseUseCase.onChangeClassOrder(phrase.id!, classOrder);
   }
 
-  void onUpdateExistCategoryInPos(String groupId) {
+  void onUpdateExistCategoryInPos() {
     Map<String, Classification> classifications = phrase.classifications;
     List<int> posPhraseListNow = [..._selectedPosPhraseList];
     posPhraseListNow.sort();
@@ -127,6 +129,7 @@ class ClassifyingController extends GetxController
         break;
       }
     }
+    // _classificationService.updateIsSelected(categoryIdListNow);
     _selectedCategoryIdList(categoryIdListNow);
   }
 
@@ -206,7 +209,7 @@ class ClassifyingController extends GetxController
     } catch (e) {
       _message.value = MessageModel(
         title: 'Oops',
-        message: 'Ocorreu algum erro na classificação',
+        message: 'Ocorreu algum erro ao salvar esta classificação',
         isError: true,
       );
     } finally {
@@ -228,42 +231,50 @@ class ClassifyingController extends GetxController
   TreeNode childrenNodes(CatClassModel? ngb) {
     List<CatClassModel> sub = [];
     if (ngb == null) {
-      sub = category.where((element) => element.parent == null).toList();
+      sub = _classificationService.category
+          .where((element) => element.parent == null)
+          .toList();
     } else {
-      sub = category.where((element) => element.parent == ngb.id).toList();
+      sub = _classificationService.category
+          .where((element) => element.parent == ngb.id)
+          .toList();
     }
     CatClassModel ngbTemp =
-        ngb ?? CatClassModel(id: '...', name: 'Categoria', filter: []);
+        ngb ?? CatClassModel(id: '...', name: 'Classificações', filter: []);
     if (sub.isNotEmpty) {
       return TreeNode(
-          content: InkWell(
-              child: Text(
-                ngbTemp.name,
-                style: TextStyle(
-                    color:
-                        ngbTemp.filter.contains('cc') ? Colors.orange : null),
-              ),
-              onTap: () => copy(ngbTemp)),
+          content: widgetForTree(ngbTemp),
           children: sub.map((e) => childrenNodes(e)).toList());
     }
     return TreeNode(
-      content: InkWell(
-          child: Text(
-            ngbTemp.name,
-            style: TextStyle(
-                color: ngbTemp.filter.contains('cc') ? Colors.orange : null),
-          ),
-          onTap: () => copy(ngbTemp)),
+      content: widgetForTree(ngbTemp),
     );
   }
 
-  copy(CatClassModel ngb) async {
+  Widget widgetForTree(CatClassModel ngbTemp) {
+    return InkWell(
+        child: Text(
+          ngbTemp.name,
+          // style: TextStyle(color: ngbTemp.isSelected ? Colors.orange : null),
+          style: TextStyle(
+              color: _selectedCategoryIdList.contains(ngbTemp.id)
+                  ? Colors.orange
+                  : null),
+          // style: TextStyle(
+          //     color:
+          //         ngbTemp.filter.contains('cc') ? Colors.orange : null),
+        ),
+        onTap: () => onSelectCategory(ngbTemp.id));
+    // onTap: () => copy(ngbTemp.ordem));
+  }
+
+  copy(String ordem) async {
     Get.snackbar(
-      ngb.ordem,
+      ordem,
       'Ordem copiada.',
       backgroundColor: Colors.yellow,
       margin: const EdgeInsets.all(10),
     );
-    await Clipboard.setData(ClipboardData(text: ngb.ordem));
+    await Clipboard.setData(ClipboardData(text: ordem));
   }
 }

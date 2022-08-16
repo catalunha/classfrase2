@@ -20,6 +20,7 @@ class ClassifyingDependencies implements Bindings {
     Get.put<ClassifyingController>(
       ClassifyingController(
         phraseUseCase: Get.find(),
+        classificationService: Get.find(),
       ),
     );
   }
