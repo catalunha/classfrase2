@@ -1,6 +1,7 @@
 import 'package:classfrase/app/presentation/controllers/classifying/classifying_controller.dart';
 import 'package:classfrase/app/presentation/services/classification/classification_service.dart';
 import 'package:classfrase/app/presentation/views/classifying/parts/classification_type.dart';
+import 'package:classfrase/app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,62 +51,63 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
                 tooltip: 'ou clique aqui para selecionar a frase toda.',
                 icon: const Icon(Icons.check_circle_outline),
                 onPressed: () {
-                  setState(() {
-                    widget._classifyingController.onSelectAllPhrase();
-                  });
+                  widget._classifyingController.onSelectAllPhrase();
                 },
               ),
               IconButton(
                 tooltip: 'ou clique aqui para limpar toda seleção.',
                 icon: const Icon(Icons.highlight_off),
                 onPressed: () {
-                  setState(() {
-                    widget._classifyingController.onSelectNonePhrase();
-                  });
+                  widget._classifyingController.onSelectNonePhrase();
                 },
               ),
               IconButton(
                 tooltip: 'ou clique aqui para inverter seleção.',
                 icon: const Icon(Icons.change_circle_outlined),
                 onPressed: () {
-                  setState(() {
-                    widget._classifyingController.onSelectInversePhrase();
-                  });
+                  widget._classifyingController.onSelectInversePhrase();
                 },
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Center(
-              child: RichText(
-                text: TextSpan(
-                  style: const TextStyle(fontSize: 28, color: Colors.black),
-                  children: buildPhrase2(
-                    context: context,
-                    phraseList: widget._classifyingController.phrase.phraseList,
-                    selectedPhrasePosList:
-                        widget._classifyingController.selectedPosPhraseList,
-                    onSelectPhrase:
-                        widget._classifyingController.onSelectPhrase,
-                    setState: setStateLocal,
+          Obx(() => Padding(
+                padding: const EdgeInsets.all(10),
+                child: Center(
+                  child: RichText(
+                    text: TextSpan(
+                      style: const TextStyle(fontSize: 28, color: Colors.black),
+                      children: buildPhrase2(
+                        context: context,
+                        phraseList:
+                            widget._classifyingController.phrase.phraseList,
+                        selectedPhrasePosList:
+                            widget._classifyingController.selectedPosPhraseList,
+                        onSelectPhrase:
+                            widget._classifyingController.onSelectPhrase,
+                        setState: setStateLocal,
+                      ),
+                    ),
                   ),
                 ),
+              )),
+          ElevatedButton(
+            onPressed: () {
+              Get.toNamed(Routes.phraseCategoryGroup);
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              primary: Colors.orangeAccent,
+            ),
+            child: const Text(
+              'Clique aqui para escolher classificações.',
+              style: TextStyle(
+                color: Colors.black,
               ),
             ),
           ),
-          Container(
-            color: Colors.black12,
-            child: const Center(
-              child: Text('Clique num grupo para escolher uma classificação.'),
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: buildGroup(context),
-            ),
-          ),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             mainAxisSize: MainAxisSize.min,
@@ -153,48 +155,48 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
             Expanded(
               child: Obx(() => SingleChildScrollView(
                     child: Column(
-                      children: buildClassifications2(
-                        context: context,
-                        groupList: widget._classifyingController.groupList,
-                        category2: widget
-                            ._classificationService.classification.category,
-                        phraseClassifications: widget
-                            ._classifyingController.phrase.classifications,
-                        classOrder:
-                            widget._classifyingController.phrase.classOrder,
-                        phraseList:
-                            widget._classifyingController.phrase.phraseList,
-                        selectedPhrasePosList:
-                            widget._classifyingController.selectedPosPhraseList,
-                        onSelectPhrase:
-                            widget._classifyingController.onSelectPhrase,
-                      ),
-                    ),
+                        // children: buildClassifications2(
+                        //   context: context,
+                        //   groupList: widget._classifyingController.groupList,
+                        //   category2: widget
+                        //       ._classificationService.classification.category,
+                        //   phraseClassifications: widget
+                        //       ._classifyingController.phrase.classifications,
+                        //   classOrder:
+                        //       widget._classifyingController.phrase.classOrder,
+                        //   phraseList:
+                        //       widget._classifyingController.phrase.phraseList,
+                        //   selectedPhrasePosList:
+                        //       widget._classifyingController.selectedPosPhraseList,
+                        //   onSelectPhrase:
+                        //       widget._classifyingController.onSelectPhrase,
+                        // ),
+                        ),
                   )),
             ),
-          if (classBy == ClassBy.selecao)
-            Expanded(
-              child: Obx(() => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ReorderableListView(
-                      onReorder: _onReorder,
-                      children: buildClassByLine2(
-                        context: context,
-                        groupList: widget._classifyingController.groupList,
-                        category: widget
-                            ._classificationService.classification.category,
-                        phraseClassifications: widget
-                            ._classifyingController.phrase.classifications,
-                        classOrder:
-                            widget._classifyingController.phrase.classOrder,
-                        phraseList:
-                            widget._classifyingController.phrase.phraseList,
-                        onSelectPhrase:
-                            widget._classifyingController.onSelectPhrase,
-                      ),
-                    ),
-                  )),
-            ),
+          // if (classBy == ClassBy.selecao)
+          //   Expanded(
+          //     child: Obx(() => Padding(
+          //           padding: const EdgeInsets.all(8.0),
+          //           child: ReorderableListView(
+          //             onReorder: _onReorder,
+          //             children: buildClassByLine2(
+          //               context: context,
+          //               groupList: widget._classifyingController.groupList,
+          //               category: widget
+          //                   ._classificationService.classification.category,
+          //               phraseClassifications: widget
+          //                   ._classifyingController.phrase.classifications,
+          //               classOrder:
+          //                   widget._classifyingController.phrase.classOrder,
+          //               phraseList:
+          //                   widget._classifyingController.phrase.phraseList,
+          //               onSelectPhrase:
+          //                   widget._classifyingController.onSelectPhrase,
+          //             ),
+          //           ),
+          //         )),
+          //   ),
         ],
       ),
     );

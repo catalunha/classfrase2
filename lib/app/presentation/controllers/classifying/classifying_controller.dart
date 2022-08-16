@@ -1,3 +1,4 @@
+import 'package:classfrase/app/domain/models/catclass_model.dart';
 import 'package:classfrase/app/domain/models/category_group_model.dart';
 import 'package:classfrase/app/domain/models/category_model.dart';
 import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
@@ -9,6 +10,9 @@ import 'package:classfrase/app/presentation/controllers/utils/message_mixin.dart
 import 'package:classfrase/app/presentation/services/classification/classification_service.dart';
 import 'package:classfrase/app/routes.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_simple_treeview/flutter_simple_treeview.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -37,7 +41,10 @@ class ClassifyingController extends GetxController
   //+++ CategoryGroup
   final categoryList = <ClassCategory>[];
   final _groupSelected = Rxn<ClassGroup>();
-  ClassGroup get groupSelected => _groupSelected.value!;
+  // ClassGroup get groupSelected => _groupSelected.value!;
+
+// fase do catClass
+  final category = <CatClassModel>[].obs;
 
   @override
   void onClose() {
@@ -54,7 +61,14 @@ class ClassifyingController extends GetxController
     _phraseCurrent(Get.arguments);
     debugPrint(phrase.toString());
     groupListSorted();
+    initCatClass();
     super.onInit();
+  }
+
+  initCatClass() {
+    final ClassificationService classificationService = Get.find();
+    category.clear();
+    category.addAll([...classificationService.category]);
   }
 
   onSelectPhrase(int phrasePos) {
@@ -66,14 +80,17 @@ class ClassifyingController extends GetxController
   }
 
   void groupListSorted() {
+    /*
     ClassificationService classificationService = Get.find();
     Map<String, ClassGroup> group = classificationService.classification.group;
     List<ClassGroup> groupListTemp = group.entries.map((e) => e.value).toList();
     groupListTemp.sort((a, b) => a.title.compareTo(b.title));
     groupList.addAll(groupListTemp);
+    */
   }
 
   void categoryFilter() {
+    /*
     categoryList.clear();
     ClassificationService classificationService = Get.find();
     Map<String, ClassCategory> category =
@@ -89,6 +106,7 @@ class ClassifyingController extends GetxController
     debugPrint('categoryFilter 2: ${categoryFiltered.length}');
 
     categoryList.addAll(categoryFiltered);
+    */
   }
 
   void onChangeClassOrder(List<String> classOrder) async {
@@ -194,5 +212,58 @@ class ClassifyingController extends GetxController
     } finally {
       _loading(false);
     }
+  }
+
+// modo catClass
+  List<TreeNode> createTree() {
+    List<TreeNode> treeNodeList = [];
+    treeNodeList.clear();
+    treeNodeList.add(
+      childrenNodes(null),
+    );
+
+    return treeNodeList;
+  }
+
+  TreeNode childrenNodes(CatClassModel? ngb) {
+    List<CatClassModel> sub = [];
+    if (ngb == null) {
+      sub = category.where((element) => element.parent == null).toList();
+    } else {
+      sub = category.where((element) => element.parent == ngb.id).toList();
+    }
+    CatClassModel ngbTemp =
+        ngb ?? CatClassModel(id: '...', name: 'Categoria', filter: []);
+    if (sub.isNotEmpty) {
+      return TreeNode(
+          content: InkWell(
+              child: Text(
+                ngbTemp.name,
+                style: TextStyle(
+                    color:
+                        ngbTemp.filter.contains('cc') ? Colors.orange : null),
+              ),
+              onTap: () => copy(ngbTemp)),
+          children: sub.map((e) => childrenNodes(e)).toList());
+    }
+    return TreeNode(
+      content: InkWell(
+          child: Text(
+            ngbTemp.name,
+            style: TextStyle(
+                color: ngbTemp.filter.contains('cc') ? Colors.orange : null),
+          ),
+          onTap: () => copy(ngbTemp)),
+    );
+  }
+
+  copy(CatClassModel ngb) async {
+    Get.snackbar(
+      ngb.ordem,
+      'Ordem copiada.',
+      backgroundColor: Colors.yellow,
+      margin: const EdgeInsets.all(10),
+    );
+    await Clipboard.setData(ClipboardData(text: ngb.ordem));
   }
 }

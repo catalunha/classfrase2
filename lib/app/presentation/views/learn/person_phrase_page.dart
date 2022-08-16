@@ -136,6 +136,8 @@ class _PersonPhrasePageState extends State<PersonPhrasePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
                   child: Column(
+                      /*
+                    voltar com nova abordagem
                     children: buildClassByLine2(
                       context: context,
                       groupList: widget.classificationService.classification
@@ -149,7 +151,8 @@ class _PersonPhrasePageState extends State<PersonPhrasePage> {
                       phraseList:
                           widget._learnController.personPhrase!.phraseList,
                     ),
-                  ),
+                    */
+                      ),
                 ),
               ),
             ),

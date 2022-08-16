@@ -1,1 +1,1 @@
-catalunha@pop-os:~/myapp$ flutter create --project-name=classfrase --org org.brintec --platforms android,web ./classfrase
+catalunha@pop-os:~/myapp$ flutter create --project-name=treengb_classfrase --org org.brintec --platforms android,web ./treengb_classfrase

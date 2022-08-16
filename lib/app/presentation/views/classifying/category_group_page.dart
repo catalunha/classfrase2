@@ -3,20 +3,11 @@ import 'package:classfrase/app/presentation/views/classifying/parts/classificati
 import 'package:classfrase/app/presentation/views/utils/app_icon.dart';
 import 'package:classfrase/app/presentation/views/utils/app_link.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_simple_treeview/flutter_simple_treeview.dart';
 import 'package:get/get.dart';
 
-class CategoryGroupPage extends StatelessWidget {
+class CategoryGroupPage extends StatefulWidget {
   final ClassifyingController _classifyingController = Get.find();
-
-  // final List<String> phraseList;
-  // final List<int> selectedPhrasePosList;
-  // final String groupId;
-  // final ClassGroup groupData;
-  // final List<ClassCategory> categoryList;
-  // final Function(String) onSelectCategory;
-  // final List<String> selectedCategoryIdList;
-  // final VoidCallback onSaveClassification;
-  // final VoidCallback onSetNullSelectedCategoryIdOld;
 
   CategoryGroupPage({
     Key? key,
@@ -32,6 +23,13 @@ class CategoryGroupPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<CategoryGroupPage> createState() => _CategoryGroupPageState();
+}
+
+class _CategoryGroupPageState extends State<CategoryGroupPage> {
+  final TreeController _controller = TreeController(allNodesExpanded: true);
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -42,8 +40,8 @@ class CategoryGroupPage extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: Text(
-            '${_classifyingController.categoryList.length} opções em ${_classifyingController.groupSelected.title}'),
+        // title: Text(
+        //     '${widget._classifyingController.categoryList.length} opções em ${widget._classifyingController.groupSelected.title}'),
       ),
       body: Column(
         children: [
@@ -55,9 +53,9 @@ class CategoryGroupPage extends StatelessWidget {
                   style: const TextStyle(fontSize: 28, color: Colors.black),
                   children: buildPhraseNoSelectable(
                     context: context,
-                    phraseList: _classifyingController.phrase.phraseList,
+                    phraseList: widget._classifyingController.phrase.phraseList,
                     selectedPhrasePosList:
-                        _classifyingController.selectedPosPhraseList,
+                        widget._classifyingController.selectedPosPhraseList,
                   ),
                 ),
               ),
@@ -68,31 +66,45 @@ class CategoryGroupPage extends StatelessWidget {
             child: const Text('clique para escolher uma ou mais opções.'),
           ),
           Expanded(
-            child: SingleChildScrollView(
-              child: Obx(() => Column(
-                    children: [
-                      if (_classifyingController.groupSelected.id ==
-                          '720c16e8-f119-44b8-82dd-80ade6e2feae')
-                        ...buildCategoriesListNotExpanded(context),
-                      if (_classifyingController.groupSelected.id !=
-                          '720c16e8-f119-44b8-82dd-80ade6e2feae')
-                        ...buildCategoriesListExpanded(context),
-                      const SizedBox(
-                        height: 60,
-                      )
-                    ],
-                  )),
-            ),
+            child: Obx(() => SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SingleChildScrollView(child: buildTree()))),
           ),
+          // Expanded(
+          //   child: SingleChildScrollView(
+          //     child: Obx(() => Column(
+          //           children: [
+          //             if (_classifyingController.groupSelected.id ==
+          //                 '720c16e8-f119-44b8-82dd-80ade6e2feae')
+          //               ...buildCategoriesListNotExpanded(context),
+          //             if (_classifyingController.groupSelected.id !=
+          //                 '720c16e8-f119-44b8-82dd-80ade6e2feae')
+          //               ...buildCategoriesListExpanded(context),
+          //             const SizedBox(
+          //               height: 60,
+          //             )
+          //           ],
+          //         )),
+          //   ),
+          // ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(AppIconData.saveInCloud),
         onPressed: () async {
-          await _classifyingController.onSaveClassification();
+          await widget._classifyingController.onSaveClassification();
           Get.back();
         },
       ),
+    );
+  }
+
+  Widget buildTree() {
+    List<TreeNode> nodes = widget._classifyingController.createTree();
+
+    return TreeView(
+      treeController: _controller,
+      nodes: nodes,
     );
   }
 
@@ -101,7 +113,7 @@ class CategoryGroupPage extends StatelessWidget {
     List<Widget> listExpansion = [];
     String setCategory = '';
 
-    for (var category in _classifyingController.categoryList) {
+    for (var category in widget._classifyingController.categoryList) {
       if (category.title.split(' - ').length == 1) {
         if (list.isNotEmpty) {
           listExpansion.add(
@@ -124,7 +136,7 @@ class CategoryGroupPage extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                color: _classifyingController.selectedCategoryIdList
+                color: widget._classifyingController.selectedCategoryIdList
                         .contains(category.id)
                     ? Colors.yellow
                     : null,
@@ -132,7 +144,8 @@ class CategoryGroupPage extends StatelessWidget {
                   title: Text(category.title),
                   // subtitle: Text(category.id!),
                   onTap: () {
-                    _classifyingController.onSelectCategory(category.id!);
+                    widget._classifyingController
+                        .onSelectCategory(category.id!);
                   },
                 ),
               ),
@@ -163,20 +176,21 @@ class CategoryGroupPage extends StatelessWidget {
 
   List<Widget> buildCategoriesListExpanded(context) {
     List<Widget> list = [];
-    for (var category in _classifyingController.categoryList) {
+    for (var category in widget._classifyingController.categoryList) {
       list.add(
         Row(
           children: [
             Expanded(
               child: Container(
-                color: _classifyingController.selectedCategoryIdList
+                color: widget._classifyingController.selectedCategoryIdList
                         .contains(category.id)
                     ? Colors.yellow
                     : null,
                 child: ListTile(
                   title: Text(category.title),
                   onTap: () {
-                    _classifyingController.onSelectCategory(category.id!);
+                    widget._classifyingController
+                        .onSelectCategory(category.id!);
                   },
                 ),
               ),

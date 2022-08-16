@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'package:classfrase/app/domain/models/category_model.dart';
 import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/presentation/controllers/pdf/pdf_controller.dart';
 import 'package:classfrase/app/presentation/services/classification/classification_service.dart';
@@ -216,15 +215,18 @@ class PdfPage extends StatelessWidget {
         List<String> categoryIdList = classification.categoryIdList;
         List<String> categoryTitleList = [];
         ClassificationService classificationService = Get.find();
-        Map<String, ClassCategory> category =
-            classificationService.classification.category;
-        for (var id in categoryIdList) {
-          if (classificationService.classification.category.containsKey(id)) {
-            if (category[id]!.group.id == group.id) {
-              categoryTitleList.add(category[id]!.title);
-            }
-          }
-        }
+        /*
+        voltar com novas abordagens
+        // Map<String, ClassCategory> category =
+        //     classificationService.classification.category;
+        // for (var id in categoryIdList) {
+        //   if (classificationService.classification.category.containsKey(id)) {
+        //     if (category[id]!.group.id == group.id) {
+        //       categoryTitleList.add(category[id]!.title);
+        //     }
+        //   }
+        // }
+        */
         if (categoryTitleList.isNotEmpty) {
           categoryTitleList.sort();
           categoryWidgetList.add(
