@@ -1,6 +1,6 @@
 import 'package:classfrase/app/presentation/controllers/learn/learn_controller.dart';
 import 'package:classfrase/app/presentation/services/classification/classification_service.dart';
-import 'package:classfrase/app/presentation/views/classifying/parts/classification_type.dart';
+import 'package:classfrase/app/presentation/views/classifying/utils/utils.dart';
 import 'package:classfrase/app/presentation/views/learn/parts/person_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,7 +40,7 @@ class PersonPhrasePage extends StatefulWidget {
 }
 
 class _PersonPhrasePageState extends State<PersonPhrasePage> {
-  ClassBy classBy = ClassBy.selecao;
+  // ClassBy classBy = ClassBy.selecao;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +58,7 @@ class _PersonPhrasePageState extends State<PersonPhrasePage> {
       body: Column(
         children: [
           PersonTile(
+            community: widget._learnController.person.profile!.community,
             displayName: widget._learnController.person.profile!.name,
             photoURL: widget._learnController.person.profile!.photo,
             email: widget._learnController.person.email,
@@ -68,7 +69,7 @@ class _PersonPhrasePageState extends State<PersonPhrasePage> {
               child: RichText(
                 text: TextSpan(
                   style: const TextStyle(fontSize: 28, color: Colors.black),
-                  children: buildPhraseNoSelectable(
+                  children: buildPhrase(
                     context: context,
                     phraseList:
                         widget._learnController.personPhrase!.phraseList,
@@ -78,72 +79,11 @@ class _PersonPhrasePageState extends State<PersonPhrasePage> {
               ),
             ),
           ),
-
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     if (classBy == ClassBy.grupo)
-          //       Expanded(
-          //         child: Container(
-          //             color: Colors.black12,
-          //             child: Center(child: Text(ClassBy.grupo.name))),
-          //       ),
-          //     if (classBy == ClassBy.selecao)
-          //       Expanded(
-          //         child: Container(
-          //             color: Colors.black12,
-          //             child: Center(child: Text(ClassBy.selecao.name))),
-          //       ),
-          //     IconButton(
-          //       tooltip: ClassBy.selecao.name,
-          //       icon: Icon(ClassBy.selecao.icon),
-          //       onPressed: () {
-          //         setState(() {
-          //           classBy = ClassBy.selecao;
-          //         });
-          //       },
-          //     ),
-          //     IconButton(
-          //       tooltip: ClassBy.grupo.name,
-          //       icon: Icon(ClassBy.grupo.icon),
-          //       onPressed: () {
-          //         setState(() {
-          //           classBy = ClassBy.grupo;
-          //         });
-          //       },
-          //     ),
-          //   ],
-          // ),
-          // if (classBy == ClassBy.grupo)
-          //   Expanded(
-          //     child: SingleChildScrollView(
-          //       child: Column(
-          //         children: buildClassifications2(
-          //           context: context,
-          //           groupList: widget.groupList,
-          //           category2: widget.category,
-          //           phraseClassifications: widget.phraseClassifications,
-          //           classOrder: widget.classOrder,
-          //           phraseList: widget.phraseList,
-          //           selectedPhrasePosList: widget.selectedPhrasePosList,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          if (classBy == ClassBy.selecao)
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SingleChildScrollView(
+          const Divider(),
+          Expanded(
+            child: Obx(() => SingleChildScrollView(
                   child: Column(
-                      /*
-                    voltar com nova abordagem
-                    children: buildClassByLine2(
-                      context: context,
-                      groupList: widget.classificationService.classification
-                          .selectGroupListSorted(),
-                      category:
-                          widget.classificationService.classification.category,
+                    children: showClassifications(
                       phraseClassifications:
                           widget._learnController.personPhrase!.classifications,
                       classOrder:
@@ -151,11 +91,9 @@ class _PersonPhrasePageState extends State<PersonPhrasePage> {
                       phraseList:
                           widget._learnController.personPhrase!.phraseList,
                     ),
-                    */
-                      ),
-                ),
-              ),
-            ),
+                  ),
+                )),
+          ),
         ],
       ),
     );

@@ -3,7 +3,6 @@ import 'package:classfrase/app/presentation/views/learn/parts/person_tile.dart';
 import 'package:flutter/material.dart';
 
 class LearnCard extends StatelessWidget {
-  final String? folder;
   final UserModel userModel;
   final List<Widget>? widgetList;
 
@@ -11,7 +10,6 @@ class LearnCard extends StatelessWidget {
     Key? key,
     required this.userModel,
     this.widgetList,
-    required this.folder,
   }) : super(key: key);
 
   @override
@@ -19,15 +17,13 @@ class LearnCard extends StatelessWidget {
     return Card(
       elevation: 10,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisSize: MainAxisSize.min,
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 8.0),
-          //   child: Text(folder ?? '/'),
-          // ),
+          const SizedBox(height: 5),
           PersonTile(
+            community: userModel.profile!.community,
             displayName: userModel.profile!.name,
             photoURL: userModel.profile!.photo,
             email: userModel.email,

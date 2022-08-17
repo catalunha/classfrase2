@@ -57,13 +57,6 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
                   controller: _phraseTEC,
                   validator: Validatorless.required('frase é obrigatória'),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Observação: Se o texto da frase for modificada, toda sua classificação gramatical será perdida.',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
                 AppTextFormField(
                   label: 'Pasta desta frase',
                   controller: _folderTEC,

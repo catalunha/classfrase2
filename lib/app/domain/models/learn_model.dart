@@ -5,15 +5,11 @@ import 'package:classfrase/app/domain/models/user_model.dart';
 class LearnModel {
   final String? id;
   final UserModel user;
-  final String? folder;
   final UserModel person;
-  final bool isDeleted;
   LearnModel({
     this.id,
     required this.user,
-    this.folder,
     required this.person,
-    this.isDeleted = false,
   });
 
   LearnModel copyWith({
@@ -26,9 +22,7 @@ class LearnModel {
     return LearnModel(
       id: id ?? this.id,
       user: user ?? this.user,
-      folder: folder ?? this.folder,
       person: person ?? this.person,
-      isDeleted: isDeleted ?? this.isDeleted,
     );
   }
 
@@ -36,9 +30,7 @@ class LearnModel {
     return {
       'id': id,
       'user': user.toMap(),
-      'folder': folder,
       'person': person.toMap(),
-      'isDeleted': isDeleted,
     };
   }
 
@@ -46,9 +38,7 @@ class LearnModel {
     return LearnModel(
       id: map['id'],
       user: UserModel.fromMap(map['user']),
-      folder: map['folder'],
       person: UserModel.fromMap(map['person']),
-      isDeleted: map['isDeleted'] ?? false,
     );
   }
 
@@ -59,7 +49,7 @@ class LearnModel {
 
   @override
   String toString() {
-    return 'LearnModel(id: $id, user: $user, folder: $folder, person: $person, isDeleted: $isDeleted)';
+    return 'LearnModel(id: $id, user: $user, person: $person)';
   }
 
   @override
@@ -69,17 +59,11 @@ class LearnModel {
     return other is LearnModel &&
         other.id == id &&
         other.user == user &&
-        other.folder == folder &&
-        other.person == person &&
-        other.isDeleted == isDeleted;
+        other.person == person;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        user.hashCode ^
-        folder.hashCode ^
-        person.hashCode ^
-        isDeleted.hashCode;
+    return id.hashCode ^ user.hashCode ^ person.hashCode;
   }
 }

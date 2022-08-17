@@ -3,11 +3,12 @@ import 'package:classfrase/app/data/back4app/init_back4app.dart';
 import 'package:classfrase/app/domain/models/user_model.dart';
 import 'package:classfrase/app/domain/models/user_profile_model.dart';
 import 'package:classfrase/app/domain/usecases/auth/auth_usecase.dart';
+import 'package:classfrase/app/presentation/controllers/utils/message_mixin.dart';
 import 'package:classfrase/app/routes.dart';
 import 'package:get/get.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
-class SplashController extends GetxController {
+class SplashController extends GetxController with MessageMixin {
   final AuthUseCase _authUseCase;
   SplashController({required AuthUseCase authUseCase})
       : _authUseCase = authUseCase;
@@ -29,8 +30,12 @@ class SplashController extends GetxController {
     });
   }
 
+  final _message = Rxn<MessageModel>();
+
   @override
   void onInit() async {
+    messageListener(_message);
+
     super.onInit();
     await Future.delayed(const Duration(seconds: 1), () {
       // deleayed code here
@@ -50,7 +55,12 @@ class SplashController extends GetxController {
       if (userModel!.profile!.isActive == true) {
         Get.offAllNamed(Routes.home);
       } else {
-        Get.offAllNamed(Routes.authLogin);
+        // Get.offAllNamed(Routes.authLogin);
+        _message.value = MessageModel(
+          title: 'Oops.',
+          message: 'Estamos analisando seu cadastro...',
+          isError: true,
+        );
       }
     } else {
       print('NAO tem user indo para LOGIN');

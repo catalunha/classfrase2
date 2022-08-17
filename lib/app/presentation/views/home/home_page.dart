@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
         title: widget._splashController.userModel?.profile?.name == null
             ? const Text("Atualize seu perfil.")
             : Text(
-                "Olá, ${widget._splashController.userModel!.profile!.name!}"),
+                "Olá, ${widget._splashController.userModel!.profile!.name!}."),
         actions: [
           PopMenuButtonPhotoUser(),
         ],

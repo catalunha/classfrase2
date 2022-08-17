@@ -11,7 +11,7 @@ import 'package:classfrase/app/presentation/services/classification/classificati
 import 'package:classfrase/app/presentation/views/auth/login/auth_login_page.dart';
 import 'package:classfrase/app/presentation/views/auth/register/email/auth_register_email.page.dart';
 import 'package:classfrase/app/presentation/views/auth/splash/splash_page.dart';
-import 'package:classfrase/app/presentation/views/classifying/category_group_page.dart';
+import 'package:classfrase/app/presentation/views/classifying/categories_page.dart';
 import 'package:classfrase/app/presentation/views/classifying/classifying_page.dart';
 import 'package:classfrase/app/presentation/views/home/home_page.dart';
 import 'package:classfrase/app/presentation/views/learn/list/learn_list_page.dart';
@@ -92,7 +92,7 @@ class Routes {
     GetPage(
       name: Routes.phraseCategoryGroup,
       binding: ClassifyingDependencies(),
-      page: () => CategoryGroupPage(),
+      page: () => CategoriesPage(),
     ),
     GetPage(
       name: Routes.learnList,

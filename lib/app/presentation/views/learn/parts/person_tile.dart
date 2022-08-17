@@ -2,6 +2,7 @@ import 'package:classfrase/app/presentation/views/utils/app_icon.dart';
 import 'package:flutter/material.dart';
 
 class PersonTile extends StatelessWidget {
+  final String? community;
   final String? displayName;
   final String? photoURL;
   final String email;
@@ -11,6 +12,7 @@ class PersonTile extends StatelessWidget {
 
   const PersonTile({
     Key? key,
+    required this.community,
     required this.displayName,
     required this.photoURL,
     required this.email,
@@ -37,7 +39,7 @@ class PersonTile extends StatelessWidget {
         displayName ?? 'Nome não informado',
       ),
       subtitle: Text(
-        email,
+        '$email\n${community ?? "..."}',
       ),
       // trailing: trailingIconButton,
     );

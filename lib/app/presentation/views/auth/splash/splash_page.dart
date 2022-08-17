@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Text('Atualizando seus dados...'),
+          const Text('Analisando seus dados...'),
           const SizedBox(
             height: 20,
           ),

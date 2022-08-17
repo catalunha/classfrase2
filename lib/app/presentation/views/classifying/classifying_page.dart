@@ -1,8 +1,6 @@
-import 'package:classfrase/app/domain/models/catclass_model.dart';
-import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/presentation/controllers/classifying/classifying_controller.dart';
 import 'package:classfrase/app/presentation/services/classification/classification_service.dart';
-import 'package:classfrase/app/presentation/views/classifying/parts/classification_type.dart';
+import 'package:classfrase/app/presentation/views/classifying/utils/utils.dart';
 import 'package:classfrase/app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,19 +19,12 @@ class ClassifyingPage extends StatefulWidget {
 
 class _ClassifyingPageState extends State<ClassifyingPage> {
   bool isHorizontal = true;
-  ClassBy classBy = ClassBy.selecao;
+  // ClassBy classBy = ClassBy.selecao;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Classificando esta frase'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            // widget.onSetNullSelectedPhraseAndCategory();
-            Navigator.pop(context);
-          },
-        ),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
@@ -45,7 +36,7 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
                 child: Container(
                   color: Colors.black12,
                   child: const Center(
-                    child: Text('Selecione partes da frase.'),
+                    child: Text('Click em partes da frase.'),
                   ),
                 ),
               ),
@@ -78,7 +69,7 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
                   child: RichText(
                     text: TextSpan(
                       style: const TextStyle(fontSize: 28, color: Colors.black),
-                      children: buildPhrase2(
+                      children: buildPhrase(
                         context: context,
                         phraseList:
                             widget._classifyingController.phrase.phraseList,
@@ -93,10 +84,11 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
                 ),
               )),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (widget
                   ._classifyingController.selectedPosPhraseList.isNotEmpty) {
-                widget._classifyingController.onUpdateExistCategoryInPos();
+                await widget._classifyingController
+                    .onMarkCategoryIfAlreadyClassifiedInPos();
                 Get.toNamed(Routes.phraseCategoryGroup);
               } else {
                 const snackBar = SnackBar(
@@ -124,25 +116,24 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
               child: const Center(
                   child: Text('Você pode reordenar as partes já classificadas.',
                       style: TextStyle(fontSize: 12)))),
-          if (classBy == ClassBy.selecao)
-            Expanded(
-              child: Obx(() => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ReorderableListView(
-                      onReorder: _onReorder,
-                      children: buildClassByLine2(
-                        phraseClassifications: widget
-                            ._classifyingController.phrase.classifications,
-                        classOrder:
-                            widget._classifyingController.phrase.classOrder,
-                        phraseList:
-                            widget._classifyingController.phrase.phraseList,
-                        onSelectPhrase:
-                            widget._classifyingController.onSelectPhrase,
-                      ),
+          Expanded(
+            child: Obx(() => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ReorderableListView(
+                    onReorder: _onReorder,
+                    children: showClassifications(
+                      phraseClassifications:
+                          widget._classifyingController.phrase.classifications,
+                      classOrder:
+                          widget._classifyingController.phrase.classOrder,
+                      phraseList:
+                          widget._classifyingController.phrase.phraseList,
+                      onSelectPhrase:
+                          widget._classifyingController.onSelectPhrase,
                     ),
-                  )),
-            ),
+                  ),
+                )),
+          ),
         ],
       ),
     );
@@ -160,93 +151,6 @@ class _ClassifyingPageState extends State<ClassifyingPage> {
     classOrderTemp.removeAt(oldIndex);
     classOrderTemp.insert(newIndex, resourceId);
     widget._classifyingController.onChangeClassOrder(classOrderTemp);
-  }
-
-  List<Widget> buildClassByLine2({
-    required Map<String, Classification> phraseClassifications,
-    required List<String> classOrder,
-    required List<String> phraseList,
-    Function(int)? onSelectPhrase,
-  }) {
-    List<Widget> lineList = [];
-
-    for (var classId in classOrder) {
-      Classification classification = phraseClassifications[classId]!;
-      List<int> posPhraseList = classification.posPhraseList;
-      List<InlineSpan> listSpan = [];
-      for (var i = 0; i < phraseList.length; i++) {
-        listSpan.add(TextSpan(
-          text: phraseList[i],
-          style: phraseList[i] != ' ' && posPhraseList.contains(i)
-              ? TextStyle(
-                  color: Colors.orange.shade900,
-                  decoration: TextDecoration.underline,
-                  decorationStyle: TextDecorationStyle.solid,
-                )
-              : null,
-        ));
-      }
-      RichText richText = RichText(
-        text: TextSpan(
-          style: const TextStyle(fontSize: 28, color: Colors.black),
-          children: listSpan,
-        ),
-      );
-
-      List<Widget> categoryWidgetList = [];
-      List<String> categoryIdList = classification.categoryIdList;
-      List<String> categoryTitleList = [];
-      for (var id in categoryIdList) {
-        CatClassModel? catClassModel = widget._classificationService.categoryAll
-            .firstWhereOrNull((catClass) => catClass.id == id);
-        if (catClassModel != null) {
-          categoryTitleList.add(catClassModel.ordem);
-        }
-      }
-
-      categoryTitleList.sort();
-      for (var categoryTitle in categoryTitleList) {
-        categoryWidgetList.add(Text(
-          categoryTitle,
-        ));
-      }
-
-      lineList.add(
-        Container(
-          alignment: Alignment.topCenter,
-          key: ValueKey(classId),
-          child: Card(
-            elevation: 25,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: GestureDetector(
-                      onTap: onSelectPhrase != null
-                          ? () {
-                              widget._classifyingController
-                                  .onSelectNonePhrase();
-                              for (var index in posPhraseList) {
-                                onSelectPhrase(index);
-                              }
-                            }
-                          : null,
-                      child: Row(
-                        children: [richText],
-                      ),
-                    ),
-                  ),
-                  ...categoryWidgetList,
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-    return lineList;
   }
 
   void setStateLocal() {

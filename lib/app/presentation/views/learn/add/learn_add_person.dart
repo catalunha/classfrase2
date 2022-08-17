@@ -23,12 +23,10 @@ class LearnAddPerson extends StatefulWidget {
 class _LearnAddPersonState extends State<LearnAddPerson> {
   final _formKey = GlobalKey<FormState>();
   final _emailTEC = TextEditingController();
-  final _folderTEC = TextEditingController();
   @override
   void initState() {
     super.initState();
     _emailTEC.text = '';
-    _folderTEC.text = '';
   }
 
   @override
@@ -47,10 +45,6 @@ class _LearnAddPersonState extends State<LearnAddPerson> {
                   label: 'Informe o email',
                   controller: _emailTEC,
                   validator: Validatorless.required('email é obrigatório'),
-                ),
-                AppTextFormField(
-                  label: 'Informe a pasta',
-                  controller: _folderTEC,
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.min,
@@ -72,7 +66,6 @@ class _LearnAddPersonState extends State<LearnAddPerson> {
                           if (formValid) {
                             await widget._learnController.add(
                               email: _emailTEC.text,
-                              folder: _folderTEC.text,
                             );
                             // Navigator.pop(context);
                           }

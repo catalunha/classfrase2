@@ -10,9 +10,7 @@ class LearnEntity {
     LearnModel model = LearnModel(
       id: parseObject.objectId!,
       user: UserEntity().fromParse(parseObject.get('user') as ParseUser),
-      folder: parseObject.get<String>('folder') ?? '/',
       person: UserEntity().fromParse(parseObject.get('person') as ParseUser),
-      isDeleted: parseObject.get<bool>('isDeleted') ?? false,
     );
     return model;
   }
@@ -26,8 +24,6 @@ class LearnEntity {
       // }
       print('personId ${model.person.id}');
       parseObject.set('user', (await ParseUser.currentUser()));
-      parseObject.set('folder', model.folder);
-      parseObject.set('isDeleted', model.isDeleted);
       parseObject.set('person',
           (ParseObject('_User')..objectId = model.person.id).toPointer());
       // parseObject.set(

@@ -24,11 +24,12 @@ class PersonPhraseListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Classificações para aprender'),
+        title: const Text('Frases compartilhadas'),
       ),
       body: Column(
         children: [
           PersonTile(
+            community: _learnController.person.profile!.community,
             displayName: _learnController.person.profile!.name,
             photoURL: _learnController.person.profile!.photo,
             email: _learnController.person.email,

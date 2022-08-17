@@ -28,7 +28,7 @@ class LearnListPage extends StatelessWidget {
       ),
       body: Obx(() => SingleChildScrollView(
             child: Column(
-              children: buildItens(context),
+              children: buildListOfPeople(context),
             ),
           )),
       floatingActionButton: FloatingActionButton(
@@ -43,7 +43,7 @@ class LearnListPage extends StatelessWidget {
     );
   }
 
-  List<Widget> buildItens(context) {
+  List<Widget> buildListOfPeople(context) {
     List<Widget> list = [];
 
     for (var learn in _learnController.learnList) {
@@ -51,7 +51,6 @@ class LearnListPage extends StatelessWidget {
         Container(
           key: ValueKey(learn),
           child: LearnCard(
-            folder: learn.folder,
             userModel: learn.person,
             widgetList: [
               IconButton(
@@ -80,7 +79,7 @@ class LearnListPage extends StatelessWidget {
                 tooltip: 'Remover esta pessoa do grupo.',
                 icon: const Icon(AppIconData.delete),
                 onPressed: () {
-                  // onUserDelete(person.id);
+                  _learnController.onDeleteLearn(learn.id!);
                 },
               ),
             ],

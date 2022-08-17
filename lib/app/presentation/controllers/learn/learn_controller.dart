@@ -61,7 +61,6 @@ class LearnController extends GetxController with LoaderMixin, MessageMixin {
 
   Future<void> add({
     required String email,
-    String folder = '/',
   }) async {
     print('add $email');
     try {
@@ -76,7 +75,6 @@ class LearnController extends GetxController with LoaderMixin, MessageMixin {
         log('pessoa encontrada ${person.id}');
         LearnModel model = LearnModel(
           user: userModel,
-          folder: folder,
           person: person,
         );
         log(model.toString());
@@ -135,5 +133,10 @@ class LearnController extends GetxController with LoaderMixin, MessageMixin {
     PhraseModel? temp = await _phraseUseCase.read(phraseId);
     _personPhrase(temp);
     Get.toNamed(Routes.learnPersonPhrase);
+  }
+
+  void onDeleteLearn(String id) async {
+    await _learnUseCase.delete(id);
+    _learnList.removeWhere((element) => element.id == id);
   }
 }

@@ -8,7 +8,6 @@ import 'package:classfrase/app/presentation/controllers/phrase/phrase_controller
 import 'package:classfrase/app/presentation/controllers/utils/loader_mixin.dart';
 import 'package:classfrase/app/presentation/controllers/utils/message_mixin.dart';
 import 'package:classfrase/app/presentation/services/classification/classification_service.dart';
-import 'package:classfrase/app/routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,8 +29,8 @@ class ClassifyingController extends GetxController
   set loading(bool value) => _loading(value);
   final _message = Rxn<MessageModel>();
 
-  final _phraseCurrent = Rxn<PhraseModel>();
-  PhraseModel get phrase => _phraseCurrent.value!;
+  final _phrase = Rxn<PhraseModel>();
+  PhraseModel get phrase => _phrase.value!;
 
   final _selectedPosPhraseList = <int>[].obs;
   List<int> get selectedPosPhraseList => _selectedPosPhraseList;
@@ -57,21 +56,11 @@ class ClassifyingController extends GetxController
 
   @override
   void onInit() async {
-    debugPrint('+++ onInit ClassifyingController');
     loaderListener(_loading);
     messageListener(_message);
-    _phraseCurrent(Get.arguments);
-    debugPrint(phrase.toString());
-    groupListSorted();
-    // initCatClass();
+    _phrase(Get.arguments);
     super.onInit();
   }
-
-  // initCatClass() {
-  //   // final ClassificationService classificationService = Get.find();
-  //   category.clear();
-  //   category.addAll([..._classificationService.category]);
-  // }
 
   onSelectPhrase(int phrasePos) {
     if (_selectedPosPhraseList.contains(phrasePos)) {
@@ -81,60 +70,30 @@ class ClassifyingController extends GetxController
     }
   }
 
-  void groupListSorted() {
-    /*
-    ClassificationService classificationService = Get.find();
-    Map<String, ClassGroup> group = classificationService.classification.group;
-    List<ClassGroup> groupListTemp = group.entries.map((e) => e.value).toList();
-    groupListTemp.sort((a, b) => a.title.compareTo(b.title));
-    groupList.addAll(groupListTemp);
-    */
-  }
-
-  void categoryFilter() {
-    /*
-    categoryList.clear();
-    ClassificationService classificationService = Get.find();
-    Map<String, ClassCategory> category =
-        classificationService.classification.category;
-    debugPrint('categoryFilter 1: ${category.length}');
-    List<ClassCategory> categoryListTemp =
-        category.entries.map((e) => e.value).toList();
-    debugPrint('categoryFilter 2: ${categoryListTemp.length}');
-    List<ClassCategory> categoryFiltered = categoryListTemp
-        .where((element) => element.group.id == groupSelected.id)
-        .toList();
-    categoryFiltered.sort((a, b) => a.title.compareTo(b.title));
-    debugPrint('categoryFilter 2: ${categoryFiltered.length}');
-
-    categoryList.addAll(categoryFiltered);
-    */
-  }
-
   void onChangeClassOrder(List<String> classOrder) async {
     await _phraseUseCase.onChangeClassOrder(phrase.id!, classOrder);
   }
 
-  void onUpdateExistCategoryInPos() {
+  Future<void> onMarkCategoryIfAlreadyClassifiedInPos() async {
+    _loading(true);
     Map<String, Classification> classifications = phrase.classifications;
     List<int> posPhraseListNow = [..._selectedPosPhraseList];
     posPhraseListNow.sort();
     List<String> categoryIdListNow = [];
-    for (var classificationsItem in classifications.entries) {
-      if (listEquals(
-          classificationsItem.value.posPhraseList, posPhraseListNow)) {
-        for (var categoryId in classificationsItem.value.categoryIdList) {
-          categoryIdListNow.add(categoryId);
-        }
+    for (var classification in classifications.values) {
+      if (listEquals(classification.posPhraseList, posPhraseListNow)) {
+        categoryIdListNow.addAll(classification.categoryIdList);
+        // for (var categoryId in classification.categoryIdList) {
+        //   categoryIdListNow.add(categoryId);
+        // }
         break;
       }
     }
-    // _classificationService.updateIsSelected(categoryIdListNow);
     _selectedCategoryIdList(categoryIdListNow);
+    _loading(false);
   }
 
   void onSelectAllPhrase() {
-    // List<int> allPos = [];
     _selectedPosPhraseList.clear();
     for (var wordPos = 0; wordPos < phrase.phrase.length; wordPos++) {
       if (phrase.phrase[wordPos] != ' ') {
@@ -155,14 +114,6 @@ class ClassifyingController extends GetxController
     }
   }
 
-  //+++ CategoryGroup
-  void onGroupSelected(String id) {
-    var groupTemp = groupList.firstWhere((element) => element.id == id);
-    _groupSelected(groupTemp);
-    categoryFilter();
-    Get.toNamed(Routes.phraseCategoryGroup);
-  }
-
   void onSelectCategory(String categoryId) {
     if (_selectedCategoryIdList.contains(categoryId)) {
       _selectedCategoryIdList.remove(categoryId);
@@ -174,7 +125,6 @@ class ClassifyingController extends GetxController
   Future<void> onSaveClassification() async {
     try {
       _loading(true);
-      // ClassificationService classificationService = Get.find();
       Map<String, Classification> classifications = phrase.classifications;
 
       List<int> posPhraseListNow = [..._selectedPosPhraseList];
@@ -205,7 +155,7 @@ class ClassifyingController extends GetxController
       await _phraseUseCase.onSaveClassification(
           phrase.id!, classificationsTemp, classOrderTemp);
       PhraseModel? temp = await _phraseUseCase.read(phrase.id!);
-      _phraseCurrent(temp);
+      _phrase(temp);
     } catch (e) {
       _message.value = MessageModel(
         title: 'Oops',
@@ -255,17 +205,12 @@ class ClassifyingController extends GetxController
     return InkWell(
         child: Text(
           ngbTemp.name,
-          // style: TextStyle(color: ngbTemp.isSelected ? Colors.orange : null),
           style: TextStyle(
               color: _selectedCategoryIdList.contains(ngbTemp.id)
                   ? Colors.orange
                   : null),
-          // style: TextStyle(
-          //     color:
-          //         ngbTemp.filter.contains('cc') ? Colors.orange : null),
         ),
         onTap: () => onSelectCategory(ngbTemp.id));
-    // onTap: () => copy(ngbTemp.ordem));
   }
 
   copy(String ordem) async {

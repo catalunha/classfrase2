@@ -32,19 +32,27 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
 
   var isSortedByFolder = true.obs;
   @override
+  void onReady() async {
+    // TODO: implement onReady
+    await listAll();
+    super.onReady();
+  }
+
+  @override
   void onInit() async {
     debugPrint('+++ onInit PhraseController');
     loaderListener(_loading);
     messageListener(_message);
-    await listAll();
     super.onInit();
   }
 
   Future<void> listAll() async {
+    _loading(true);
     _phraseList.clear();
     List<PhraseModel> temp =
         await _phraseUseCase.list(GetQueryFilterPhrase.all);
     _phraseList(temp);
+    _loading(false);
   }
 
   Future<void> listArchived() async {
@@ -66,13 +74,11 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
   }
 
   void add() {
-    debugPrint('phrase add');
     _phrase.value = null;
     Get.toNamed(Routes.phraseAddEdit);
   }
 
   void edit(String id) {
-    debugPrint('phrase edit: $id');
     var phraseTemp = _phraseList.firstWhere((element) => element.id == id);
     _phrase(phraseTemp);
     Get.toNamed(Routes.phraseAddEdit);
@@ -128,15 +134,8 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
     }
   }
 
-  // sortFolder(bool isSortedByAlpha) {
-  //   _phraseList.sort((a, b) => a.folder.compareTo(b.folder));
-  // }
-
-  // sortAlpha(bool isSortedByAlpha) {
-  //   _phraseList.sort((a, b) => a.phrase.compareTo(b.phrase));
-  // }
   sortByFolder(bool value) {
-    isSortedByFolder.value = value;
+    isSortedByFolder(value);
     sortBy();
   }
 

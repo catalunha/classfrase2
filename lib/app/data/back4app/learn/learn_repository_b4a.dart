@@ -12,8 +12,7 @@ class LearnRepositoryB4a extends GetxService implements LearnRepository {
     var currentUser = await ParseUser.currentUser() as ParseUser?;
 
     query.whereEqualTo('user', currentUser);
-    query.whereEqualTo('isDeleted', false);
-    query.orderByAscending('folder');
+    query.orderByAscending('user.profile.email');
     query.includeObject(['user', 'user.profile', 'person', 'person.profile']);
     return query;
   }
