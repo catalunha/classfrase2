@@ -86,21 +86,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(width: 10),
-            // Tooltip(
-            //   message: 'Para observar frases em classificação em tempo real.',
-            //   child: Container(
-            //     width: 130,
-            //     child: ElevatedButton.icon(
-            //       onPressed: () => Navigator.pushNamed(
-            //         context,
-            //         '/observer_list',
-            //         arguments: '',
-            //       ),
-            //       icon: Icon(AppIconData.eye),
-            //       label: Text('Observar.'),
-            //     ),
-            //   ),
-            // ),
             const SizedBox(width: 10),
             Tooltip(
               message: 'Para aprender com a classificação de outras pessoas.',
@@ -132,7 +117,6 @@ class _HomePageState extends State<HomePage> {
             ),
             Text(
               'Minhas frases em classificação ',
-              // style: AppTextStyles.trailingBold,
             ),
           ],
         ),

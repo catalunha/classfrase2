@@ -14,7 +14,14 @@ class SplashPage extends StatelessWidget {
         children: [
           Image.asset(
             AppAssets.splash,
-            height: 200,
+            // height: 200,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Text('Atualizando seus dados...'),
+          const SizedBox(
+            height: 20,
           ),
           const CircularProgressIndicator(),
         ],

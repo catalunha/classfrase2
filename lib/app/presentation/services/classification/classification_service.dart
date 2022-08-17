@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:classfrase/app/domain/models/catclass_model.dart';
+import 'package:classfrase/app/presentation/views/utils/app_assets.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +32,7 @@ class ClassificationService extends GetxService {
   }
 
   Future<dynamic> _loadJsonCategory() async {
-    var jsonData = await rootBundle.loadString('assets/catclass/catclass.json');
+    var jsonData = await rootBundle.loadString(AppAssets.catclass);
     final data = json.decode(jsonData);
     return data;
   }

@@ -15,69 +15,170 @@ class PhraseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Obx(() => Column(
-            children: buildPhraseList(context),
-          )),
+      child: Obx(
+        () => Column(
+          children: _phraseController.isSortedByFolder
+              ? buildPhraseListOrderedByFolder(context)
+              : buildPhraseListOrderedByAlpha(context),
+        ),
+      ),
     );
+    // return SingleChildScrollView(
+    //   child: Obx(() => Column(
+    //         children: buildPhraseList(context),
+    //       )),
+    // );
   }
 
-  List<Widget> buildPhraseList(context) {
+  List<Widget> buildPhraseListOrderedByFolder(context) {
     List<Widget> list = [];
-    print(" phraseList build com ${_phraseController.phraseList.length}");
-
+    List<Widget> listExpansionTile = [];
+    String folder = '';
+    if (_phraseController.phraseList.isNotEmpty) {
+      folder = _phraseController.phraseList.first.folder;
+    }
+    print('folder: $folder');
     for (var phrase in _phraseController.phraseList) {
-      list.add(PhraseCard(
-        key: ValueKey(phrase),
-        phrase: phrase,
-        isPublic: phrase.isPublic,
-        widgetList: [
-          IconButton(
-              tooltip: 'Classificar esta frase',
-              icon: const Icon(AppIconData.letter),
-              onPressed: () =>
-                  Get.toNamed(Routes.phraseClassifying, arguments: phrase)),
-          // SizedBox(
-          //   width: 50,
-          // ),
+      if (phrase.folder != folder) {
+        listExpansionTile.add(
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: const BorderSide(color: Colors.black),
+            ),
+            child: ExpansionTile(
+              title: Text(folder),
+              children: [
+                ...list,
+              ],
+            ),
+          ),
+        );
+        list.clear();
+        folder = phrase.folder;
+      }
+      list.add(
+        PhraseCard(
+          key: ValueKey(phrase),
+          phrase: phrase,
+          isPublic: phrase.isPublic,
+          widgetList: [
+            IconButton(
+                tooltip: 'Classificar esta frase',
+                icon: const Icon(AppIconData.letter),
+                onPressed: () =>
+                    Get.toNamed(Routes.phraseClassifying, arguments: phrase)),
+            IconButton(
+              tooltip: 'PDF da classificação desta frase.',
+              icon: const Icon(AppIconData.print),
+              onPressed: () async {
+                Get.toNamed(Routes.pdf, arguments: phrase);
+              },
+            ),
+            AppLink(
+              url: phrase.diagramUrl,
+              icon: AppIconData.diagram,
+              tooltipMsg: 'Ver diagrama desta frase',
+            ),
+            IconButton(
+              tooltip: 'Copiar a frase para área de transferência.',
+              icon: const Icon(AppIconData.copy),
+              onPressed: () {
+                Future<void> _copyToClipboard() async {
+                  await Clipboard.setData(ClipboardData(text: phrase.phrase));
+                }
 
-          // SizedBox(
-          //   width: 50,
-          // ),
-          IconButton(
-            tooltip: 'PDF da classificação desta frase.',
-            icon: const Icon(AppIconData.print),
-            onPressed: () async {
-              Get.toNamed(Routes.pdf, arguments: phrase);
-            },
+                _copyToClipboard();
+                const snackBar =
+                    SnackBar(content: Text('Ok. A frase foi copiada.'));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+            ),
+            IconButton(
+              tooltip: 'Editar esta frase',
+              icon: const Icon(AppIconData.edit),
+              onPressed: () => _phraseController.edit(phrase.id!),
+            ),
+          ],
+        ),
+      );
+    }
+    if (_phraseController.phraseList.isNotEmpty) {
+      listExpansionTile.add(
+        Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: const BorderSide(color: Colors.black),
           ),
-          AppLink(
-            url: phrase.diagramUrl,
-            icon: AppIconData.diagram,
-            tooltipMsg: 'Ver diagrama desta frase',
+          child: ExpansionTile(
+            title: Text(folder),
+            children: [
+              ...list,
+            ],
           ),
-          IconButton(
-            tooltip: 'Copiar a frase para área de transferência.',
-            icon: const Icon(AppIconData.copy),
-            onPressed: () {
-              Future<void> _copyToClipboard() async {
-                await Clipboard.setData(ClipboardData(text: phrase.phrase));
-              }
-
-              _copyToClipboard();
-              const snackBar =
-                  SnackBar(content: Text('Ok. A frase foi copiada.'));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            },
-          ),
-          IconButton(
-            tooltip: 'Editar esta frase',
-            icon: const Icon(AppIconData.edit),
-            onPressed: () => _phraseController.edit(phrase.id!),
-          ),
-        ],
+        ),
+      );
+    }
+    if (listExpansionTile.isEmpty) {
+      list.add(const ListTile(
+        leading: Icon(AppIconData.smile),
+        title: Text('Ops. Vc ainda não criou nenhuma frase.'),
       ));
     }
-    print(" list build com ${list.length}");
+    return listExpansionTile;
+  }
+
+  List<Widget> buildPhraseListOrderedByAlpha(context) {
+    List<Widget> list = [];
+
+    for (var phrase in _phraseController.phraseList) {
+      list.add(
+        PhraseCard(
+          key: ValueKey(phrase),
+          phrase: phrase,
+          isPublic: phrase.isPublic,
+          widgetList: [
+            IconButton(
+                tooltip: 'Classificar esta frase',
+                icon: const Icon(AppIconData.letter),
+                onPressed: () =>
+                    Get.toNamed(Routes.phraseClassifying, arguments: phrase)),
+            IconButton(
+              tooltip: 'PDF da classificação desta frase.',
+              icon: const Icon(AppIconData.print),
+              onPressed: () async {
+                Get.toNamed(Routes.pdf, arguments: phrase);
+              },
+            ),
+            AppLink(
+              url: phrase.diagramUrl,
+              icon: AppIconData.diagram,
+              tooltipMsg: 'Ver diagrama desta frase',
+            ),
+            IconButton(
+              tooltip: 'Copiar a frase para área de transferência.',
+              icon: const Icon(AppIconData.copy),
+              onPressed: () {
+                Future<void> _copyToClipboard() async {
+                  await Clipboard.setData(ClipboardData(text: phrase.phrase));
+                }
+
+                _copyToClipboard();
+                const snackBar =
+                    SnackBar(content: Text('Ok. A frase foi copiada.'));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+            ),
+            IconButton(
+              tooltip: 'Editar esta frase',
+              icon: const Icon(AppIconData.edit),
+              onPressed: () => _phraseController.edit(phrase.id!),
+            ),
+          ],
+        ),
+      );
+    }
+
     if (list.isEmpty) {
       list.add(const ListTile(
         leading: Icon(AppIconData.smile),

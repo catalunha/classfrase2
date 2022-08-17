@@ -49,6 +49,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: constrainsts.maxHeight,
+                maxWidth: 400,
               ),
               child: IntrinsicHeight(
                 child: Padding(
@@ -56,7 +57,8 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                   child: Form(
                     key: _formKey,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           'Login',
@@ -69,7 +71,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                           height: 30,
                         ),
                         AppTextFormField(
-                          label: 'E-Mail',
+                          label: 'Informe seu e-mail',
                           controller: _emailTec,
                           validator: Validatorless.multiple([
                             Validatorless.required('email obrigatório.'),
@@ -80,12 +82,15 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                           height: 50,
                         ),
                         AppTextFormField(
-                          label: 'Senha',
+                          label: 'Informe a Senha',
                           controller: _passwordTec,
-                          validator: Validatorless.multiple([
-                            Validatorless.required('Senha obrigatória.'),
-                            Validatorless.min(6, 'Minimo de 6 caracteres.'),
-                          ]),
+                          obscureText: true,
+                          validator: Validatorless.multiple(
+                            [
+                              Validatorless.required('Senha obrigatória.'),
+                              Validatorless.min(6, 'Minimo de 6 caracteres.'),
+                            ],
+                          ),
                         ),
                         const SizedBox(
                           height: 50,
@@ -106,7 +111,9 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                           },
                           width: context.width,
                         ),
-                        const Spacer(),
+                        const SizedBox(
+                          height: 50,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -126,7 +133,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                                 }
                               },
                               child: const Text(
-                                'Crie uma nova.',
+                                'Criar uma nova.',
                                 style: AppTheme.textBold,
                               ),
                             )

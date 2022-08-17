@@ -92,18 +92,17 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
       _loading(true);
       UserModel userModel;
       String? modelId;
+      Map<String, Classification> classifications = <String, Classification>{};
+      List<String> classOrder = [];
       if (this.phrase == null) {
         SplashController splashController = Get.find();
         userModel = splashController.userModel!;
       } else {
+        classifications.addAll(this.phrase!.classifications);
+        classOrder.addAll(this.phrase!.classOrder);
         userModel = this.phrase!.user;
         modelId = this.phrase!.id;
       }
-      Map<String, Classification> temp = <String, Classification>{};
-      // temp['123'] = Classification(categoryIdList: ['456'], posPhraseList: [1]);
-      // temp['123a'] =
-      //     Classification(categoryIdList: ['456a'], posPhraseList: [2]);
-      // debugPrint(temp);
       PhraseModel model = PhraseModel(
           id: modelId,
           user: userModel,
@@ -114,8 +113,8 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
           isPublic: isPublic,
           isDeleted: isDeleted,
           phraseList: PhraseModel.setPhraseList(phrase),
-          classifications: temp,
-          classOrder: []);
+          classifications: classifications,
+          classOrder: classOrder);
       modelId = await _phraseUseCase.append(model);
     } on PhraseRepositoryException {
       _message.value = MessageModel(
@@ -152,6 +151,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
   void updatePhraseInPhraseList(PhraseModel phraseClassifying) {
     _phraseList.removeWhere((element) => element.id == phraseClassifying.id);
     _phraseList.add(phraseClassifying);
+    _phraseList.sort((a, b) => a.phrase.compareTo(b.phrase));
     sortBy();
   }
 }
