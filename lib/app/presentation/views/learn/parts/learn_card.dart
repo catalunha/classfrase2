@@ -23,10 +23,10 @@ class LearnCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text(folder ?? '/'),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 8.0),
+          //   child: Text(folder ?? '/'),
+          // ),
           PersonTile(
             displayName: userModel.profile!.name,
             photoURL: userModel.profile!.photo,

@@ -17,7 +17,7 @@ class PhraseList extends StatelessWidget {
     return SingleChildScrollView(
       child: Obx(
         () => Column(
-          children: _phraseController.isSortedByFolder
+          children: _phraseController.isSortedByFolder.value
               ? buildPhraseListOrderedByFolder(context)
               : buildPhraseListOrderedByAlpha(context),
         ),

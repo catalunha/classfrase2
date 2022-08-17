@@ -2,7 +2,6 @@ import 'package:classfrase/app/presentation/controllers/auth/splash/splash_contr
 import 'package:classfrase/app/presentation/controllers/phrase/phrase_controller.dart';
 import 'package:classfrase/app/presentation/views/home/parts/popmenu_user.dart';
 import 'package:classfrase/app/presentation/views/phrase/list/parts/phrase_list.dart';
-import 'package:classfrase/app/presentation/views/utils/app_appbar.dart';
 import 'package:classfrase/app/presentation/views/utils/app_icon.dart';
 import 'package:classfrase/app/routes.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +21,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppAppbar(
-        title: appBarTitle(),
+      appBar: AppBar(
+        title: widget._splashController.userModel?.profile?.name == null
+            ? const Text("Atualize seu perfil.")
+            : Text(
+                "Olá, ${widget._splashController.userModel!.profile!.name!}"),
         actions: [
           PopMenuButtonPhotoUser(),
         ],
@@ -31,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           // admin(context),
-          const Center(child: Text('Como deseja usar o ClassFrase ?')),
+          // const Center(child: Text('Como deseja usar o ClassFrase ?')),
           optionsForUse(context),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -75,22 +77,22 @@ class _HomePageState extends State<HomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Tooltip(
-              message: 'Para criar uma frase e classificá-la.',
+              message: 'Criar uma frase e classificá-la.',
               child: SizedBox(
-                width: 130,
+                width: 170,
                 child: ElevatedButton.icon(
                   onPressed: () => widget._phraseController.add(),
                   icon: const Icon(AppIconData.phrase),
-                  label: const Text('Criar.'),
+                  label: const Text('Criar frase.'),
                 ),
               ),
             ),
             const SizedBox(width: 10),
             const SizedBox(width: 10),
             Tooltip(
-              message: 'Para aprender com a classificação de outras pessoas.',
+              message: 'Aprender com a classificação de outras pessoas.',
               child: SizedBox(
-                width: 130,
+                width: 170,
                 child: ElevatedButton.icon(
                   onPressed: () => Get.toNamed(Routes.learnList),
                   icon: const Icon(AppIconData.learn),
@@ -116,7 +118,7 @@ class _HomePageState extends State<HomePage> {
               width: 10,
             ),
             Text(
-              'Minhas frases em classificação ',
+              'Minhas frases em classificação.',
             ),
           ],
         ),
@@ -139,7 +141,12 @@ class _HomePageState extends State<HomePage> {
         flex: 1,
         child: IconButton(
           tooltip: 'Ordenação alfabética das frases',
-          icon: const Icon(AppIconData.sortAlpha),
+          icon: Obx(() => Icon(
+                AppIconData.sortAlpha,
+                color: !widget._phraseController.isSortedByFolder.value
+                    ? Colors.green
+                    : Colors.black,
+              )),
           onPressed: () => widget._phraseController.sortByFolder(false),
         ));
   }
@@ -149,7 +156,12 @@ class _HomePageState extends State<HomePage> {
         flex: 1,
         child: IconButton(
           tooltip: 'Ordenação por folder das frases',
-          icon: const Icon(AppIconData.sortFolder),
+          icon: Obx(() => Icon(
+                AppIconData.sortFolder,
+                color: widget._phraseController.isSortedByFolder.value
+                    ? Colors.green
+                    : Colors.black,
+              )),
           onPressed: () => widget._phraseController.sortByFolder(true),
         ));
   }

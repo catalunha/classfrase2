@@ -30,7 +30,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
   final _phrase = Rxn<PhraseModel>();
   PhraseModel? get phrase => _phrase.value;
 
-  bool isSortedByFolder = true;
+  var isSortedByFolder = true.obs;
   @override
   void onInit() async {
     debugPrint('+++ onInit PhraseController');
@@ -136,12 +136,12 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
   //   _phraseList.sort((a, b) => a.phrase.compareTo(b.phrase));
   // }
   sortByFolder(bool value) {
-    isSortedByFolder = value;
+    isSortedByFolder.value = value;
     sortBy();
   }
 
   sortBy() {
-    if (isSortedByFolder) {
+    if (isSortedByFolder.isTrue) {
       _phraseList.sort((a, b) => a.folder.compareTo(b.folder));
     } else {
       _phraseList.sort((a, b) => a.phrase.compareTo(b.phrase));
