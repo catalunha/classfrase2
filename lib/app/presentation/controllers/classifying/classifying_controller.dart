@@ -1,5 +1,4 @@
 import 'package:classfrase/app/domain/models/catclass_model.dart';
-import 'package:classfrase/app/domain/models/category_group_model.dart';
 import 'package:classfrase/app/domain/models/category_model.dart';
 import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/domain/models/phrase_model.dart';
@@ -36,16 +35,9 @@ class ClassifyingController extends GetxController
   List<int> get selectedPosPhraseList => _selectedPosPhraseList;
   final _selectedCategoryIdList = <String>[].obs;
   List<String> get selectedCategoryIdList => _selectedCategoryIdList;
-  final groupList = <ClassGroup>[];
-  // List<ClassGroup> get groupList => _groupList;
 
   //+++ CategoryGroup
   final categoryList = <ClassCategory>[];
-  final _groupSelected = Rxn<ClassGroup>();
-  // ClassGroup get groupSelected => _groupSelected.value!;
-
-// fase do catClass
-  // final category = <CatClassModel>[].obs;
 
   @override
   void onClose() {

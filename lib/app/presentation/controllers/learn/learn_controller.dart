@@ -115,7 +115,7 @@ class LearnController extends GetxController with LoaderMixin, MessageMixin {
     }
   }
 
-  void selectPerson(String learnId) async {
+  void selectedLearn(String learnId) async {
     print('learnId : $learnId');
     var phraseTemp = _learnList.firstWhere((element) => element.id == learnId);
     _person(phraseTemp.person);

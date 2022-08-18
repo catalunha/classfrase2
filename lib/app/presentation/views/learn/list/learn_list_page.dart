@@ -57,7 +57,7 @@ class LearnListPage extends StatelessWidget {
                 tooltip: 'Ver frases desta pessoa.',
                 icon: const Icon(AppIconData.list),
                 onPressed: () {
-                  _learnController.selectPerson(learn.id!);
+                  _learnController.selectedLearn(learn.id!);
                 },
               ),
               const SizedBox(
