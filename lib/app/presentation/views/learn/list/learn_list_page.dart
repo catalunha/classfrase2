@@ -2,6 +2,7 @@ import 'package:classfrase/app/presentation/controllers/learn/learn_controller.d
 import 'package:classfrase/app/presentation/views/learn/add/learn_add_person.dart';
 import 'package:classfrase/app/presentation/views/learn/parts/learn_card.dart';
 import 'package:classfrase/app/presentation/views/utils/app_icon.dart';
+import 'package:classfrase/app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -56,21 +57,13 @@ class LearnListPage extends StatelessWidget {
               IconButton(
                 tooltip: 'Ver frases desta pessoa.',
                 icon: const Icon(AppIconData.list),
-                onPressed: () {
-                  _learnController.selectedLearn(learn.id!);
+                onPressed: () async {
+                  await _learnController.selectedLearn(learn.id!);
+                  Get.toNamed(Routes.learnPersonPhraseList);
                 },
               ),
               const SizedBox(
                 width: 50,
-              ),
-              IconButton(
-                tooltip: 'Filtrar frases desta pessoa.',
-                icon: const Icon(AppIconData.search),
-                onPressed: () {
-                  // onSetUserGetPhrases(person.id);
-                  // Navigator.pushNamed(context, '/learn_phrase_filter',
-                  //     arguments: person.id);
-                },
               ),
               const SizedBox(
                 width: 50,

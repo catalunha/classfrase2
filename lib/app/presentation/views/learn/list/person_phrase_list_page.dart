@@ -25,6 +25,23 @@ class PersonPhraseListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Frases compartilhadas'),
+        actions: [
+          IconButton(
+            tooltip: 'Filtrar frases desta pessoa.',
+            icon: const Icon(AppIconData.search),
+            onPressed: () async {
+              await _learnController.onMarkCategoryIfAlreadyClassified();
+              Get.toNamed(Routes.learnCategoriesByPerson);
+            },
+          ),
+          IconButton(
+            tooltip: 'Remover filtro',
+            icon: const Icon(AppIconData.search_off),
+            onPressed: () {
+              _learnController.removeFilter();
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [

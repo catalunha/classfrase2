@@ -14,6 +14,7 @@ import 'package:classfrase/app/presentation/views/auth/splash/splash_page.dart';
 import 'package:classfrase/app/presentation/views/classifying/categories_page.dart';
 import 'package:classfrase/app/presentation/views/classifying/classifying_page.dart';
 import 'package:classfrase/app/presentation/views/home/home_page.dart';
+import 'package:classfrase/app/presentation/views/learn/list/categories_by_person_page.dart';
 import 'package:classfrase/app/presentation/views/learn/list/learn_list_page.dart';
 import 'package:classfrase/app/presentation/views/learn/list/person_phrase_list_page.dart';
 import 'package:classfrase/app/presentation/views/learn/person_phrase_page.dart';
@@ -40,6 +41,7 @@ class Routes {
   static const learnList = '/learn/list';
   static const learnPersonPhraseList = '/learn/person/phrase/list';
   static const learnPersonPhrase = '/learn/person/phrase';
+  static const learnCategoriesByPerson = '/learn/categories/person';
 
   static const pdf = '/pdf';
 
@@ -113,6 +115,10 @@ class Routes {
       name: Routes.pdf,
       binding: PdfDependencies(),
       page: () => PdfPage(),
+    ),
+    GetPage(
+      name: Routes.learnCategoriesByPerson,
+      page: () => CategoriesByPersonPage(),
     ),
   ];
 }

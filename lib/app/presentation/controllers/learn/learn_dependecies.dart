@@ -42,9 +42,11 @@ class LearnDependencies implements Bindings {
     );
     Get.put<LearnController>(
       LearnController(
-          learnUseCase: Get.find(),
-          userUseCase: Get.find(),
-          phraseUseCase: Get.find()),
+        learnUseCase: Get.find(),
+        userUseCase: Get.find(),
+        phraseUseCase: Get.find(),
+        classificationService: Get.find(),
+      ),
     );
   }
 }

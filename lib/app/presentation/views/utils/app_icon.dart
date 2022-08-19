@@ -38,6 +38,7 @@ class AppIconData {
   static const smile = Icons.sentiment_satisfied_alt_outlined;
   static const attachFile = Icons.attach_file;
   static const search = Icons.search;
+  static const search_off = Icons.search_off;
 
   static const situation = Icons.quiz_outlined;
 }
