@@ -11,6 +11,9 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
   Future<QueryBuilder<ParseObject>> getQueryAll() async {
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(PhraseEntity.className));
+    final user = await ParseUser.currentUser() as ParseUser;
+
+    query.whereEqualTo('user', user);
     query.whereEqualTo('isArchived', false);
     query.whereEqualTo('isDeleted', false);
     query.orderByAscending('folder');
@@ -21,6 +24,8 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
   Future<QueryBuilder<ParseObject>> getQueryArchived() async {
     QueryBuilder<ParseObject> query =
         QueryBuilder<ParseObject>(ParseObject(PhraseEntity.className));
+    final user = await ParseUser.currentUser() as ParseUser;
+    query.whereEqualTo('user', user);
     query.whereEqualTo('isDeleted', false);
     query.whereEqualTo('isArchived', true);
     query.orderByAscending('folder');

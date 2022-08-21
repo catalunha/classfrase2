@@ -112,6 +112,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     onPressed: () {
                       setState(() {
                         _controller.collapseAll();
+                        const Key key = ValueKey(22);
+                        _controller.expandNode(key);
                       });
                     },
                     icon: Icon(Icons.close_fullscreen_sharp,

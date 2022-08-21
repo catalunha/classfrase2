@@ -22,18 +22,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: widget._splashController.userModel?.profile?.name == null
-            ? const Text("Atualize seu perfil.")
-            : Text(
-                "Olá, ${widget._splashController.userModel!.profile!.name!}."),
+        title: Obx(() => Text(
+            "Olá, ${widget._splashController.userModel!.profile!.name ?? 'Atualize seu perfil.'}.")),
         actions: [
           PopMenuButtonPhotoUser(),
         ],
       ),
       body: Column(
         children: [
-          // admin(context),
-          // const Center(child: Text('Como deseja usar o ClassFrase ?')),
           optionsForUse(context),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -77,7 +73,8 @@ class _HomePageState extends State<HomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Tooltip(
-              message: 'Criar uma frase e classificá-la.',
+              message:
+                  'Clique aqui para criar uma frase e depois classificá-la.',
               child: SizedBox(
                 width: 170,
                 child: ElevatedButton.icon(
@@ -90,7 +87,8 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(width: 10),
             const SizedBox(width: 10),
             Tooltip(
-              message: 'Aprender com a classificação de outras pessoas.',
+              message:
+                  'Clique aqui para aprender com a classificação de outras pessoas.',
               child: SizedBox(
                 width: 170,
                 child: ElevatedButton.icon(

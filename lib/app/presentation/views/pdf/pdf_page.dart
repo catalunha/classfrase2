@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:classfrase/app/domain/models/catclass_model.dart';
 import 'package:classfrase/app/domain/models/phrase_classification_model.dart';
 import 'package:classfrase/app/presentation/controllers/pdf/pdf_controller.dart';
 import 'package:classfrase/app/presentation/services/classification/classification_service.dart';
@@ -10,30 +11,9 @@ import 'package:printing/printing.dart';
 
 class PdfPage extends StatelessWidget {
   final PdfController _pdfController = Get.find();
-  // final List<String> phraseList;
-  // final List<ClassGroup> groupList;
-  // final Map<String, ClassCategory> category;
-
-  // final Map<String, Classification> phraseClassifications;
-  // final List<String> classOrder;
-  // final String phraseFont;
-  // final String authorDisplayName;
-  // final String authorPhoto;
-  // final String pdfFileName;
-  // final String diagramUrl;
 
   PdfPage({
     Key? key,
-    // required this.phraseList,
-    // required this.groupList,
-    // required this.category,
-    // required this.phraseClassifications,
-    // required this.classOrder,
-    // required this.authorDisplayName,
-    // required this.authorPhoto,
-    // this.phraseFont = '',
-    // required this.pdfFileName,
-    // required this.diagramUrl,
   }) : super(key: key);
 
   @override
@@ -49,20 +29,20 @@ class PdfPage extends StatelessWidget {
 
   Future<Uint8List> _generatePdf(PdfPageFormat format, String title) async {
     final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
-    final font1 = await PdfGoogleFonts.openSansRegular();
-    final font2 = await PdfGoogleFonts.openSansBold();
+    // final font1 = await PdfGoogleFonts.openSansRegular();
+    // final font2 = await PdfGoogleFonts.openSansBold();
     pw.ImageProvider? image;
 
-    try {
-      final provider = await flutterImageProvider(
-          NetworkImage(_pdfController.phrase.user.profile!.photo ?? ''));
-      image = provider;
-    } catch (e) {
-      print("--> Erro em _generatePdf: $e");
-    }
+    // try {
+    //   final provider = await flutterImageProvider(
+    //       NetworkImage(_pdfController.phrase.user.profile!.photo ?? ''));
+    //   image = provider;
+    // } catch (e) {
+    //   print("--> Erro em _generatePdf: $e");
+    // }
     pdf.addPage(
       pw.MultiPage(
-        theme: theme(font1, font2),
+        // theme: theme(font1, font2),
         pageFormat: pageFormat(format),
         orientation: pw.PageOrientation.portrait,
         crossAxisAlignment: pw.CrossAxisAlignment.start,
@@ -74,6 +54,10 @@ class PdfPage extends StatelessWidget {
             'Fonte: ${_pdfController.phrase.font}',
             style: const pw.TextStyle(fontSize: 10),
           ),
+          pw.Text(
+            'Pasta: ${_pdfController.phrase.folder}',
+            style: const pw.TextStyle(fontSize: 10),
+          ),
           header('Classificações:'),
           ...buildClassByLine(context),
           header('Diagrama:'),
@@ -82,10 +66,13 @@ class PdfPage extends StatelessWidget {
               ? pw.Row(
                   children: [
                     pw.Text(
-                      'Para ver o diagrama online, ',
+                      'Para ver o diagrama online consulte: ',
                       style: const pw.TextStyle(fontSize: 10),
                     ),
-                    _UrlText('clique aqui.', _pdfController.phrase.diagramUrl!),
+                    _UrlText(
+                        _pdfController.phrase.diagramUrl ?? 'Sem diagrama.',
+                        _pdfController.phrase.diagramUrl ?? 'Sem diagrama'),
+                    // _UrlText('clique aqui.', _pdfController.phrase.diagramUrl!),
                   ],
                 )
               : pw.Text(''),
@@ -160,13 +147,13 @@ class PdfPage extends StatelessWidget {
             pw.Text(_pdfController.phrase.user.profile!.name ?? 'Sem nome'),
             pw.Text('Classificador da frase:'),
           ]),
-          image != null
-              ? pw.Image(
-                  image,
-                  width: 50,
-                  height: 100,
-                )
-              : pw.Text(':-(('),
+          // image != null
+          //     ? pw.Image(
+          //         image,
+          //         width: 50,
+          //         height: 100,
+          //       )
+          //     : pw.Text(':-(('),
         ],
       ),
     );
@@ -211,32 +198,30 @@ class PdfPage extends StatelessWidget {
 
       // +++ Montando classificações desta seleção
       List<pw.Widget> categoryWidgetList = [];
-      for (var group in _pdfController.groupList) {
-        List<String> categoryIdList = classification.categoryIdList;
-        List<String> categoryTitleList = [];
-        ClassificationService classificationService = Get.find();
-        /*
-        voltar com novas abordagens
-        // Map<String, ClassCategory> category =
-        //     classificationService.classification.category;
-        // for (var id in categoryIdList) {
-        //   if (classificationService.classification.category.containsKey(id)) {
-        //     if (category[id]!.group.id == group.id) {
-        //       categoryTitleList.add(category[id]!.title);
-        //     }
-        //   }
-        // }
-        */
-        if (categoryTitleList.isNotEmpty) {
-          categoryTitleList.sort();
+      List<String> categoryIdList = classification.categoryIdList;
+      List<String> classOrdemList = [];
+      ClassificationService classificationService = Get.find();
+      for (var id in categoryIdList) {
+        CatClassModel? catClassModel = classificationService.categoryAll
+            .firstWhereOrNull((catClass) => catClass.id == id);
+        if (catClassModel != null) {
+          classOrdemList.add(catClassModel.ordem);
+        }
+      }
+
+      if (classOrdemList.isNotEmpty) {
+        classOrdemList.sort();
+
+        for (var element in classOrdemList) {
           categoryWidgetList.add(
             pw.Bullet(
-              text: '${group.title}: ${categoryTitleList.join(" | ")}',
+              text: element,
               style: const pw.TextStyle(fontSize: 10, color: PdfColors.black),
             ),
           );
         }
       }
+
       // Juntando frase e classificações
       lineList.add(
         pw.Column(

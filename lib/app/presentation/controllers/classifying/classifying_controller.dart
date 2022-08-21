@@ -183,8 +183,11 @@ class ClassifyingController extends GetxController
     }
     CatClassModel ngbTemp =
         ngb ?? CatClassModel(id: '...', name: 'Classificações', filter: []);
+    const Key key = ValueKey(22);
+
     if (sub.isNotEmpty) {
       return TreeNode(
+          key: ngbTemp.id == '...' ? key : null,
           content: widgetForTree(ngbTemp),
           children: sub.map((e) => childrenNodes(e)).toList());
     }

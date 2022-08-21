@@ -45,137 +45,139 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
       backgroundColor: Colors.white,
       body: LayoutBuilder(
         builder: (_, constrainsts) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constrainsts.maxHeight,
-                maxWidth: 400,
-              ),
-              child: IntrinsicHeight(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Login',
-                          style: context.textTheme.headline6?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: context.theme.primaryColorDark,
+          return Center(
+            child: SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constrainsts.maxHeight,
+                  maxWidth: 400,
+                ),
+                child: IntrinsicHeight(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Login',
+                            style: context.textTheme.headline6?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: context.theme.primaryColorDark,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        AppTextFormField(
-                          label: 'Informe seu e-mail',
-                          controller: _emailTec,
-                          validator: Validatorless.multiple([
-                            Validatorless.required('email obrigatório.'),
-                            Validatorless.email('Email inválido.'),
-                          ]),
-                        ),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        AppTextFormField(
-                          label: 'Informe a Senha',
-                          controller: _passwordTec,
-                          obscureText: true,
-                          validator: Validatorless.multiple(
-                            [
-                              Validatorless.required('Senha obrigatória.'),
-                              Validatorless.min(6, 'Minimo de 6 caracteres.'),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          AppTextFormField(
+                            label: 'Informe seu e-mail',
+                            controller: _emailTec,
+                            validator: Validatorless.multiple([
+                              Validatorless.required('email obrigatório.'),
+                              Validatorless.email('Email inválido.'),
+                            ]),
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          AppTextFormField(
+                            label: 'Informe a Senha',
+                            controller: _passwordTec,
+                            obscureText: true,
+                            validator: Validatorless.multiple(
+                              [
+                                Validatorless.required('Senha obrigatória.'),
+                                Validatorless.min(6, 'Minimo de 6 caracteres.'),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          AppButton(
+                            label: 'Acessar',
+                            onPressed: () {
+                              final formValid =
+                                  _formKey.currentState?.validate() ?? false;
+                              if (formValid) {
+                                log('formValid');
+                                widget._loginController.loginEmail(
+                                    _emailTec.text.trim(),
+                                    _passwordTec.text.trim());
+                              } else {
+                                log('formNotValid');
+                              }
+                            },
+                            width: context.width,
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text('Esqueceu sua senha ?'),
+                              TextButton(
+                                onPressed: () {
+                                  if (_emailTec.text.isNotEmpty) {
+                                    widget._loginController
+                                        .forgotPassword(_emailTec.text.trim());
+                                  } else {
+                                    Get.snackbar(
+                                      'Oops',
+                                      'Digite email para prosseguir',
+                                      backgroundColor: Colors.red,
+                                      margin: const EdgeInsets.all(10),
+                                    );
+                                  }
+                                },
+                                child: const Text(
+                                  'Criar uma nova.',
+                                  style: AppTheme.textBold,
+                                ),
+                              )
                             ],
                           ),
-                        ),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        AppButton(
-                          label: 'Acessar',
-                          onPressed: () {
-                            final formValid =
-                                _formKey.currentState?.validate() ?? false;
-                            if (formValid) {
-                              log('formValid');
-                              widget._loginController.loginEmail(
-                                  _emailTec.text.trim(),
-                                  _passwordTec.text.trim());
-                            } else {
-                              log('formNotValid');
-                            }
-                          },
-                          width: context.width,
-                        ),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('Esqueceu sua senha ?'),
-                            TextButton(
-                              onPressed: () {
-                                if (_emailTec.text.isNotEmpty) {
-                                  widget._loginController
-                                      .forgotPassword(_emailTec.text.trim());
-                                } else {
-                                  Get.snackbar(
-                                    'Oops',
-                                    'Digite email para prosseguir',
-                                    backgroundColor: Colors.red,
-                                    margin: const EdgeInsets.all(10),
-                                  );
-                                }
-                              },
-                              child: const Text(
-                                'Criar uma nova.',
-                                style: AppTheme.textBold,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text('Não possui uma conta ?'),
+                              TextButton(
+                                onPressed: () {
+                                  Get.toNamed(Routes.authRegisterEmail);
+                                },
+                                child: const Text(
+                                  'CADASTRE-SE.',
+                                  style: AppTheme.textBold,
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextButton(
+                                onPressed: () => AppLaunch.launchLink(
+                                    'https://bens.cemec.net.br/terms-of-use/'),
+                                child: Text(
+                                  'Terms of use',
+                                  style: GoogleFonts.pacifico(fontSize: 14.0),
+                                ),
                               ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('Não possui uma conta ?'),
-                            TextButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.authRegisterEmail);
-                              },
-                              child: const Text(
-                                'CADASTRE-SE.',
-                                style: AppTheme.textBold,
+                              TextButton(
+                                onPressed: () => AppLaunch.launchLink(
+                                    'https://bens.cemec.net.br/privacy-policy/'),
+                                child: Text(
+                                  'Privacy policy',
+                                  style: GoogleFonts.pacifico(fontSize: 14.0),
+                                ),
                               ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextButton(
-                              onPressed: () => AppLaunch.launchLink(
-                                  'https://bens.cemec.net.br/terms-of-use/'),
-                              child: Text(
-                                'Terms of use',
-                                style: GoogleFonts.pacifico(fontSize: 14.0),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () => AppLaunch.launchLink(
-                                  'https://bens.cemec.net.br/privacy-policy/'),
-                              child: Text(
-                                'Privacy policy',
-                                style: GoogleFonts.pacifico(fontSize: 14.0),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
