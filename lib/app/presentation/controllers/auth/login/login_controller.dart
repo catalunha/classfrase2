@@ -56,11 +56,12 @@ class LoginController extends GetxController with LoaderMixin, MessageMixin {
           isError: true,
         );
       }
-    } on AuthRepositoryException catch (e) {
+    } on AuthRepositoryException {
       _loading(false);
       _message.value = MessageModel(
         title: 'Oops',
-        message: '${e.code} ${e.message}',
+        message: 'Conecte-se a internet ou Email/Senha inválidos.',
+        // message: '${e.code} ${e.message}',
         isError: true,
       );
     } finally {

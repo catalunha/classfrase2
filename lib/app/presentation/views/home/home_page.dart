@@ -1,4 +1,5 @@
 import 'package:classfrase/app/presentation/controllers/auth/splash/splash_controller.dart';
+import 'package:classfrase/app/presentation/controllers/home/home_controller.dart';
 import 'package:classfrase/app/presentation/controllers/phrase/phrase_controller.dart';
 import 'package:classfrase/app/presentation/views/home/parts/popmenu_user.dart';
 import 'package:classfrase/app/presentation/views/phrase/list/parts/phrase_list.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 class HomePage extends StatefulWidget {
   final SplashController _splashController = Get.find();
   final PhraseController _phraseController = Get.find();
+  final HomeController _homeController = Get.find();
 
   HomePage({Key? key}) : super(key: key);
 
@@ -25,6 +27,9 @@ class _HomePageState extends State<HomePage> {
         title: Obx(() => Text(
             "Olá, ${widget._splashController.userModel!.profile!.name ?? 'Atualize seu perfil.'}.")),
         actions: [
+          // const IconButton(
+          //     onPressed: () => widget._homeController.createAccount(),
+          //     icon: Icon(Icons.abc)),
           PopMenuButtonPhotoUser(),
         ],
       ),

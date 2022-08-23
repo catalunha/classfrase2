@@ -157,6 +157,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
         child: const Icon(AppIconData.saveInCloud),
         onPressed: () async {
           await widget._classifyingController.onSaveClassification();
+          widget._classifyingController.onSelectNonePhrase();
+
           Get.back();
         },
       ),

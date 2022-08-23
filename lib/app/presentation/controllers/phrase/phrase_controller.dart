@@ -114,6 +114,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
           user: userModel,
           phrase: phrase,
           folder: folder,
+          font: font,
           isArchived: isArchived,
           diagramUrl: diagramUrl,
           isPublic: isPublic,
