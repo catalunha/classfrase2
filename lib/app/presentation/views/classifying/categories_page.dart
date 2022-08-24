@@ -19,7 +19,7 @@ class CategoriesPage extends StatefulWidget {
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  final TreeController _controller = TreeController(allNodesExpanded: true);
+  final TreeController _controller = TreeController(allNodesExpanded: false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -167,6 +167,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
 
   Widget buildTree() {
     List<TreeNode> nodes = widget._classifyingController.createTree();
+    const Key key = ValueKey(22);
+    _controller.expandNode(key);
 
     return TreeView(
       treeController: _controller,

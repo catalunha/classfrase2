@@ -90,6 +90,7 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
                 widget._phraseController.phrase == null
                     ? Container()
                     : CheckboxListTile(
+                        tileColor: _isDeleted ? Colors.red : null,
                         title: const Text("Apagar esta frase"),
                         onChanged: (value) {
                           setState(() {
@@ -98,7 +99,7 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
                         },
                         value: _isDeleted,
                       ),
-                const SizedBox(height: 60),
+                const SizedBox(height: 120),
               ],
             )),
       ),

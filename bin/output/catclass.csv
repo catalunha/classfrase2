@@ -100,7 +100,7 @@ cfea4000-932e-45f9-beaa-59508142d847|Morfologia - Adjetivo - Biforme|Biforme|96d
 5f0def22-9aff-4327-8372-8a1fd720a588|Morfologia - Adjetivo - Composto|Composto|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|ngb|cc
 c6661ccf-4d9f-4643-84f6-0a7db55d5bee|Morfologia - Adjetivo - Derivado|Derivado|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|ngb|cc
 8b538289-a7f8-407f-8b95-d9cf1e0e4049|Morfologia - Adjetivo - Diminutivo|Diminutivo|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|ngb
-74f275ed-efc7-406f-b182-595934ee13b7|Morfologia - Adjetivo - Grau|Grau|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|
+74f275ed-efc7-406f-b182-595934ee13b7|Morfologia - Adjetivo - Grau|Grau|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|ngb
 8ba58fd0-4cea-4041-be97-9ced5835b967|Morfologia - Adjetivo - Grau - Comparativo|Comparativo|74f275ed-efc7-406f-b182-595934ee13b7|ngb|cc
 f071e926-2935-42cb-bed8-7fc82d673d07|Morfologia - Adjetivo - Grau - Comparativo - Igualdade|Igualdade|8ba58fd0-4cea-4041-be97-9ced5835b967|ngb|cc
 3ee9029f-f3df-416e-9004-889a3a27c10e|Morfologia - Adjetivo - Grau - Comparativo - Inferioridade|Inferioridade|8ba58fd0-4cea-4041-be97-9ced5835b967|ngb|cc
@@ -114,11 +114,11 @@ f47d32aa-3f1d-4fed-b98f-dcdeb45e35b6|Morfologia - Adjetivo - Grau - Superlativo 
 51e9c37c-5466-4bec-ba11-0cb6a52638a2|Morfologia - Adjetivo - Grau - Superlativo - Relativo|Relativo|2e683bb2-6e1d-46d6-bf29-1ddea6ac6ed8|ngb|cc
 1839fd3d-cfd6-4107-a915-fd7fc6db49ce|Morfologia - Adjetivo - Grau - Superlativo - Relativo - Inferioridade|Inferioridade|51e9c37c-5466-4bec-ba11-0cb6a52638a2|ngb|cc
 6070bcb5-38c6-4b5f-b715-cabb9e8cd9dc|Morfologia - Adjetivo - Grau - Superlativo - Relativo - Superioridade|Superioridade|51e9c37c-5466-4bec-ba11-0cb6a52638a2|ngb|cc
-fc4b3e5a-2c3c-44a9-b0e9-93eb563c4e39|Morfologia - Adjetivo - Gênero|Gênero|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|
+fc4b3e5a-2c3c-44a9-b0e9-93eb563c4e39|Morfologia - Adjetivo - Gênero|Gênero|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|ngb
 8dc7f235-27f8-4d4e-8284-47b9d0396bf2|Morfologia - Adjetivo - Gênero - Feminino|Feminino|fc4b3e5a-2c3c-44a9-b0e9-93eb563c4e39|ngb
 7153b94f-cf25-4b1a-a9b9-ca3b89c50d6d|Morfologia - Adjetivo - Gênero - Masculino|Masculino|fc4b3e5a-2c3c-44a9-b0e9-93eb563c4e39|ngb
 3b7f3e3a-3395-4c7b-bf4e-f3fd6c1e2506|Morfologia - Adjetivo - Locução adjetiva|Locução adjetiva|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|ngb|cc
-cd99441c-6a5f-4c58-a784-29ca5eb5e339|Morfologia - Adjetivo - Número|Número|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|
+cd99441c-6a5f-4c58-a784-29ca5eb5e339|Morfologia - Adjetivo - Número|Número|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|ngb
 fa017602-c8fe-469f-aeb9-b11f528042fd|Morfologia - Adjetivo - Número - Plural|Plural|cd99441c-6a5f-4c58-a784-29ca5eb5e339|ngb
 bca13ed7-15e6-4057-b814-c5237fb0425a|Morfologia - Adjetivo - Número - Singular|Singular|cd99441c-6a5f-4c58-a784-29ca5eb5e339|ngb
 1ba88519-5cb1-4d87-bdf5-024e7af152ae|Morfologia - Adjetivo - Primitivo|Primitivo|96d6c0a1-2513-4b1d-9d79-b5ac616b7926|ngb|cc
@@ -129,7 +129,7 @@ a9717c3a-bfe4-41f7-9b47-cc3349e853c7|Morfologia - Adjetivo - Uniforme|Uniforme|9
 b3087912-fe0e-45eb-8a93-a02a29bb4dec|Morfologia - Advérbio - Afirmação|Afirmação|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|ngb|cc
 8d1a2b9b-84a5-4e14-b15a-db5f47f9e3e7|Morfologia - Advérbio - Causa|Causa|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|ngb
 d7aa02c7-0663-4bb1-a7bf-99cc4e2d76a2|Morfologia - Advérbio - Dúvida|Dúvida|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|ngb|cc
-8d9245cd-42d2-4c98-8f34-ff59b18883a9|Morfologia - Advérbio - Grau|Grau|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|
+8d9245cd-42d2-4c98-8f34-ff59b18883a9|Morfologia - Advérbio - Grau|Grau|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|ngb
 5a270c64-2deb-4302-be25-e047df35e611|Morfologia - Advérbio - Grau - Comparativo|Comparativo|8d9245cd-42d2-4c98-8f34-ff59b18883a9|ngb
 657a0759-5b84-4d32-92e4-603d2df57af2|Morfologia - Advérbio - Grau - Comparativo - Igualdade|Igualdade|5a270c64-2deb-4302-be25-e047df35e611|ngb|cc
 a568567f-0833-4911-ace0-e422ab963834|Morfologia - Advérbio - Grau - Comparativo - Inferioridade|Inferioridade|5a270c64-2deb-4302-be25-e047df35e611|ngb|cc
@@ -139,7 +139,7 @@ d1c3c084-6f43-442d-a23f-881bc5407227|Morfologia - Advérbio - Intensidade|Intens
 253dd2ae-d716-4b2d-9430-ef1d0efe0789|Morfologia - Advérbio - Lugar|Lugar|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|ngb|cc
 2dc9a5a1-ab95-4441-a377-7d2bdceb98e7|Morfologia - Advérbio - Modo|Modo|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|ngb|cc
 61e6e60e-de90-4a9c-9a6a-0e513099284c|Morfologia - Advérbio - Negação|Negação|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|ngb|cc
-03c49b8d-2b32-421d-90bc-73d8e7063b93|Morfologia - Advérbio - Superlativo|Superlativo|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|
+03c49b8d-2b32-421d-90bc-73d8e7063b93|Morfologia - Advérbio - Superlativo|Superlativo|36ea9dbd-1b3d-482a-bb57-f8d1a291efbd|ngb
 f16d7420-5277-4d33-bf60-3c349941f671|Morfologia - Advérbio - Superlativo - absoluto|absoluto|03c49b8d-2b32-421d-90bc-73d8e7063b93|ngb|cc
 316e2b4c-9ff9-465c-b139-ba80d466cdb0|Morfologia - Advérbio - Superlativo - absoluto - Analítico|Analítico|f16d7420-5277-4d33-bf60-3c349941f671|ngb|cc
 04ca2142-ee84-4c15-98e2-f5b15073b4bf|Morfologia - Advérbio - Superlativo - absoluto - Sintético|Sintético|f16d7420-5277-4d33-bf60-3c349941f671|ngb|cc
@@ -198,12 +198,12 @@ a27c2904-ec12-4f1c-8c20-b60bc3322c58|Morfologia - Numeral - Fracionário|Fracion
 627ba9c0-8abf-4cd7-bf7e-a2059f1d760c|Morfologia - Numeral - Multiplicativo|Multiplicativo|47eb4fb0-bc3f-4dff-8e3a-9e3a9a13a538|ngb|cc
 21349f72-0526-4289-adc1-240d667fe22f|Morfologia - Numeral - Ordinal|Ordinal|47eb4fb0-bc3f-4dff-8e3a-9e3a9a13a538|ngb|cc
 a8af2306-1bf8-41cf-b648-d710400ec679|Morfologia - Pronome|Pronome|720c16e8-f119-44b8-82dd-80ade6e2feae|ngb|cc
-abab2eb2-9d1a-4ee1-a62d-d136ab0b1e00|Morfologia - Pronome - Colocação pronominal|Colocação pronominal|a8af2306-1bf8-41cf-b648-d710400ec679|
-396df340-d22f-42ea-ab61-d06c1227d460|Morfologia - Pronome - Colocação pronominal - Mesóclise|Mesóclise|abab2eb2-9d1a-4ee1-a62d-d136ab0b1e00|
-eed7efea-0146-4460-b415-4abfb0535856|Morfologia - Pronome - Colocação pronominal - Próclise|Próclise|abab2eb2-9d1a-4ee1-a62d-d136ab0b1e00|
-57dcfee9-90ec-4e24-bb0c-08d001c98e2f|Morfologia - Pronome - Colocação pronominal - Ênclise|Ênclise|abab2eb2-9d1a-4ee1-a62d-d136ab0b1e00|
+abab2eb2-9d1a-4ee1-a62d-d136ab0b1e00|Morfologia - Pronome - Colocação pronominal|Colocação pronominal|a8af2306-1bf8-41cf-b648-d710400ec679|ngb
+396df340-d22f-42ea-ab61-d06c1227d460|Morfologia - Pronome - Colocação pronominal - Mesóclise|Mesóclise|abab2eb2-9d1a-4ee1-a62d-d136ab0b1e00|ngb
+eed7efea-0146-4460-b415-4abfb0535856|Morfologia - Pronome - Colocação pronominal - Próclise|Próclise|abab2eb2-9d1a-4ee1-a62d-d136ab0b1e00|ngb
+57dcfee9-90ec-4e24-bb0c-08d001c98e2f|Morfologia - Pronome - Colocação pronominal - Ênclise|Ênclise|abab2eb2-9d1a-4ee1-a62d-d136ab0b1e00|ngb
 7dd8b25f-4bc3-4875-96e8-f51d01812924|Morfologia - Pronome - Demonstrativo|Demonstrativo|a8af2306-1bf8-41cf-b648-d710400ec679|ngb|cc
-9990e747-f3aa-4b71-818a-a2557415ab6c|Morfologia - Pronome - Gênero|Gênero|a8af2306-1bf8-41cf-b648-d710400ec679|
+9990e747-f3aa-4b71-818a-a2557415ab6c|Morfologia - Pronome - Gênero|Gênero|a8af2306-1bf8-41cf-b648-d710400ec679|ngb
 62f92042-7b53-4ab2-a6dc-5efed801a2d6|Morfologia - Pronome - Gênero - Feminino|Feminino|9990e747-f3aa-4b71-818a-a2557415ab6c|ngb
 e15f776e-fefa-4813-9078-ae98293d8947|Morfologia - Pronome - Gênero - Masculino|Masculino|9990e747-f3aa-4b71-818a-a2557415ab6c|ngb
 632db470-1579-4cbb-9ba7-d7cdcf32f536|Morfologia - Pronome - Indefinido|Indefinido|a8af2306-1bf8-41cf-b648-d710400ec679|ngb|cc
@@ -231,10 +231,10 @@ dc5185ae-9239-4cc7-a79f-9b28933f97f5|Morfologia - Pronome - Tratamento|Tratament
 5f5722c9-8177-49c4-a3f8-66777b96b8e6|Morfologia - Substantivo - Comum|Comum|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|ngb|cc
 ee34aa79-0f15-4440-b2fd-a8397fd935fe|Morfologia - Substantivo - Concreto|Concreto|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|ngb|cc
 96de8b21-7b8a-4ff0-a1b4-ae84aa97a229|Morfologia - Substantivo - Derivado|Derivado|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|ngb|cc
-f2c42b82-4e11-46e6-b659-15ae09cbd8a8|Morfologia - Substantivo - Grau|Grau|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|
+f2c42b82-4e11-46e6-b659-15ae09cbd8a8|Morfologia - Substantivo - Grau|Grau|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|ngb
 ad97b8bb-8da1-4853-9e7a-3c9b6c4ce0f5|Morfologia - Substantivo - Grau - Aumentativo|Aumentativo|f2c42b82-4e11-46e6-b659-15ae09cbd8a8|ngb
 a1363b2e-11d6-463d-869e-4da4f394c060|Morfologia - Substantivo - Grau - Diminutivo|Diminutivo|f2c42b82-4e11-46e6-b659-15ae09cbd8a8|ngb
-7705c33d-3719-4696-a597-389c9e616d70|Morfologia - Substantivo - Gênero|Gênero|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|
+7705c33d-3719-4696-a597-389c9e616d70|Morfologia - Substantivo - Gênero|Gênero|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|ngb
 38d4c4eb-0d5d-4e15-a6f2-3d71d323b096|Morfologia - Substantivo - Gênero - Biforme|Biforme|7705c33d-3719-4696-a597-389c9e616d70|ngb
 8b8d5731-8919-4312-8ca5-ef94bb4aa548|Morfologia - Substantivo - Gênero - Comum de dois|Comum de dois|7705c33d-3719-4696-a597-389c9e616d70|ngb
 52659fa2-b9e1-402b-a04a-08d8b397cc8b|Morfologia - Substantivo - Gênero - Epiceno|Epiceno|7705c33d-3719-4696-a597-389c9e616d70|ngb
@@ -242,7 +242,7 @@ a1363b2e-11d6-463d-869e-4da4f394c060|Morfologia - Substantivo - Grau - Diminutiv
 6c191d07-77da-4838-aaf0-c627c5413925|Morfologia - Substantivo - Gênero - Incerto|Incerto|7705c33d-3719-4696-a597-389c9e616d70|ngb
 0fa653c8-cd41-4da0-8a8d-6038dd2e00c6|Morfologia - Substantivo - Gênero - Masculino|Masculino|7705c33d-3719-4696-a597-389c9e616d70|ngb
 2c037be0-abc2-478b-80c0-be417fc8788a|Morfologia - Substantivo - Gênero - Sobrecomum|Sobrecomum|7705c33d-3719-4696-a597-389c9e616d70|ngb
-ef74c206-cb49-4180-9e7a-cae3d7b4a2c6|Morfologia - Substantivo - Número|Número|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|
+ef74c206-cb49-4180-9e7a-cae3d7b4a2c6|Morfologia - Substantivo - Número|Número|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|ngb
 ee99eb99-bc81-4669-9f70-26b9d9d368d8|Morfologia - Substantivo - Número - Plural|Plural|ef74c206-cb49-4180-9e7a-cae3d7b4a2c6|ngb
 02cb4277-76a5-4545-8f28-7f62536c4646|Morfologia - Substantivo - Número - Singular|Singular|ef74c206-cb49-4180-9e7a-cae3d7b4a2c6|ngb
 b18c036f-60ec-4606-9927-344d962c5775|Morfologia - Substantivo - Primitivo|Primitivo|38f29fbd-5654-4ec7-b4fd-9b3260587f9d|ngb|cc
@@ -254,6 +254,10 @@ b6b1c093-d201-4a90-94e2-aa282ebeda06|Morfologia - Substantivo - Próprio|Própri
 1976bf4e-6486-4d2e-a5b9-8f63865b503f|Morfologia - Verbo - Auxiliar|Auxiliar|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb|cc
 dcd7988e-3d61-425f-9f22-92b39d56abfd|Morfologia - Verbo - Bitransitivo|Bitransitivo|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb
 52581331-8899-4df4-aea0-c8d956a33731|Morfologia - Verbo - Composto|Composto|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb
+6344fa8c-e30c-4c9a-adbb-d3dc156e8ac6|Morfologia - Verbo - Conjugação|Conjugação|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb
+5dd9d162-f7c0-4a33-9a12-019f60f0fe34|Morfologia - Verbo - Conjugação - 1ª Pessoa|1ª Pessoa|6344fa8c-e30c-4c9a-adbb-d3dc156e8ac6|ngb
+c0960a1a-e572-4a17-82f9-2f4f47cc879e|Morfologia - Verbo - Conjugação - 2ª Pessoa|2ª Pessoa|6344fa8c-e30c-4c9a-adbb-d3dc156e8ac6|ngb|cc
+713befec-2ce5-4836-905a-e644e065cf2b|Morfologia - Verbo - Conjugação - 3ª Pessoa|3ª Pessoa|6344fa8c-e30c-4c9a-adbb-d3dc156e8ac6|ngb|cc
 95853835-c407-4db9-9a8e-cc43cf41c1cc|Morfologia - Verbo - Defectivo|Defectivo|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb
 69e42cc9-d328-4841-a84a-e73f9e18ffc8|Morfologia - Verbo - Derivado|Derivado|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb
 7a50e492-f497-4ba6-b9cd-ec97afdd13c8|Morfologia - Verbo - Intransitivo|Intransitivo|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb|cc
@@ -271,10 +275,10 @@ ffc159c4-8870-4708-b0e3-ef2c5aca77d4|Morfologia - Verbo - Número - Plural|Plura
 627f2ff0-ad90-4250-87b2-7f5af493b2ae|Morfologia - Verbo - Número - Singular|Singular|4f85ed91-60cd-4700-9953-c9c15d008a74|ngb|cc
 bc77de07-88ac-4cc0-b8ad-dad2cab0206a|Morfologia - Verbo - Pessoa|Pessoa|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb|cc
 6beb2044-8862-4785-acfa-aa8a0d9bc62e|Morfologia - Verbo - Pessoa - 1ª Pessoa|1ª Pessoa|bc77de07-88ac-4cc0-b8ad-dad2cab0206a|ngb|cc
-c0960a1a-e572-4a17-82f9-2f4f47cc879e|Morfologia - Verbo - Pessoa - 2ª Pessoa|2ª Pessoa|bc77de07-88ac-4cc0-b8ad-dad2cab0206a|ngb|cc
-713befec-2ce5-4836-905a-e644e065cf2b|Morfologia - Verbo - Pessoa - 3ª Pessoa|3ª Pessoa|bc77de07-88ac-4cc0-b8ad-dad2cab0206a|ngb|cc
+7637420c-a14e-4cc2-9524-4aab0c580415|Morfologia - Verbo - Pessoa - 2ª Pessoa|2ª Pessoa|bc77de07-88ac-4cc0-b8ad-dad2cab0206a|ngb
+f5f82624-137d-4e83-be67-6a9b66239c34|Morfologia - Verbo - Pessoa - 3ª Pessoa|3ª Pessoa|bc77de07-88ac-4cc0-b8ad-dad2cab0206a|ngb
 c4bdc4d9-a5b2-4633-b8aa-5cfb870fbca1|Morfologia - Verbo - Primitivo|Primitivo|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb
-76c891ab-f1ca-4319-a4ea-dee853fbc5d9|Morfologia - Verbo - Pronominal|Pronominal|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|
+76c891ab-f1ca-4319-a4ea-dee853fbc5d9|Morfologia - Verbo - Pronominal|Pronominal|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb
 a97175ec-5a5c-4964-8cff-3b069028a9f4|Morfologia - Verbo - Regular|Regular|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb
 eb24fc88-b26a-4d93-8dc7-0433340cf4a7|Morfologia - Verbo - Simples|Simples|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb
 9497e69f-bf19-4044-82b1-0a1996c975ac|Morfologia - Verbo - Tempo verbal|Tempo verbal|08096fbe-4e8a-47a1-bb0d-f37d8f51e2a5|ngb|cc
@@ -336,12 +340,17 @@ f8d31996-c274-418c-bf31-a289671293ce|Sintaxe - Complemento nominal|Complemento n
 3a5c09c7-ee7f-42c3-af11-a0cd29654995|Sintaxe - Concordância|Concordância|fcb86ff1-859e-465b-8b9c-2ee88ebe84cc|ngb
 74c24dda-f1e6-44c1-8f87-48ddf40692a4|Sintaxe - Concordância - Nominal|Nominal|3a5c09c7-ee7f-42c3-af11-a0cd29654995|ngb
 37813ed0-ae89-4f54-9b79-a77444ea6520|Sintaxe - Concordância - Verbal|Verbal|3a5c09c7-ee7f-42c3-af11-a0cd29654995|ngb
+16d56af4-993f-4dd9-9248-17af98a4a526|Sintaxe - Conjunção|Conjunção|fcb86ff1-859e-465b-8b9c-2ee88ebe84cc|ngb
+29fedd99-b86f-4733-bdff-2e16be960327|Sintaxe - Núcleo|Núcleo|fcb86ff1-859e-465b-8b9c-2ee88ebe84cc|ngb
 aa72c6c1-9b99-404f-8010-2a24e6648fbf|Sintaxe - Objeto direto|Objeto direto|fcb86ff1-859e-465b-8b9c-2ee88ebe84cc|ngb|cc
 8dbfedfa-81c9-45d1-9105-1314cafeb520|Sintaxe - Objeto indireto|Objeto indireto|fcb86ff1-859e-465b-8b9c-2ee88ebe84cc|ngb|cc
 186c16c4-93e1-4d18-8fd5-ffee98456f26|Sintaxe - Oração|Oração|fcb86ff1-859e-465b-8b9c-2ee88ebe84cc|ngb
 40f295f1-e671-4e46-b6f0-51ca5ce9eb7c|Sintaxe - Oração - Absoluta|Absoluta|186c16c4-93e1-4d18-8fd5-ffee98456f26|ngb
 8d0cd110-295d-49e9-933c-72049eec7234|Sintaxe - Oração - Coordenada|Coordenada|186c16c4-93e1-4d18-8fd5-ffee98456f26|ngb
 c56847ac-12c6-4643-95d4-d88e358fa972|Sintaxe - Oração - Coordenada - Assindética|Assindética|8d0cd110-295d-49e9-933c-72049eec7234|ngb
+4be5f7bb-b113-4a68-a694-b46527a8cf72|Sintaxe - Oração - Coordenada - Reduzida independente|Reduzida independente|8d0cd110-295d-49e9-933c-72049eec7234|ngb
+43d9c0b9-7745-4112-9cd1-e66696bfb7e3|Sintaxe - Oração - Coordenada - Reduzida independente - Gerúndio|Gerúndio|4be5f7bb-b113-4a68-a694-b46527a8cf72|ngb
+3719eded-7b76-4116-ba4a-2bd5a73ef7ec|Sintaxe - Oração - Coordenada - Reduzida independente - Infinitivo|Infinitivo|4be5f7bb-b113-4a68-a694-b46527a8cf72|ngb
 4600aeeb-cd3a-48b8-895a-430b729387ca|Sintaxe - Oração - Coordenada - Sindética|Sindética|8d0cd110-295d-49e9-933c-72049eec7234|ngb
 9d34c9de-b1e8-4ee8-9dde-9c9344ff11ae|Sintaxe - Oração - Coordenada - Sindética - Aditiva|Aditiva|4600aeeb-cd3a-48b8-895a-430b729387ca|ngb
 cf6b8c36-1ef3-4a78-b373-983c01153b80|Sintaxe - Oração - Coordenada - Sindética - Adversativa|Adversativa|4600aeeb-cd3a-48b8-895a-430b729387ca|ngb
@@ -356,12 +365,17 @@ fe130382-4cbb-4dd4-942c-8084cb3b878c|Sintaxe - Oração - Coordenada - Sindétic
 7ea047b8-c526-4643-bdf5-f842a59f4934|Sintaxe - Oração - Subordinada - Adverbial|Adverbial|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
 653292eb-04f9-470e-8786-138aa0b2ae47|Sintaxe - Oração - Subordinada - Adverbial - Causal|Causal|7ea047b8-c526-4643-bdf5-f842a59f4934|ngb
 ec747100-e9f4-4649-984c-7d3c667ff585|Sintaxe - Oração - Subordinada - Adverbial - Comparativa|Comparativa|7ea047b8-c526-4643-bdf5-f842a59f4934|ngb
-b63b01c9-2e10-46f9-8e23-aec69cf08dc1|Sintaxe - Oração - Subordinada - Concessiva|Concessiva|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
-93acbb55-ba44-4954-9ee7-916eb1be0757|Sintaxe - Oração - Subordinada - Condicional|Condicional|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
-ac7c6349-c19a-4be2-b11a-0e3bc29eff63|Sintaxe - Oração - Subordinada - Conformativa|Conformativa|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
-487ffbcb-1dd5-4b20-8d8b-9d8ad0dd00d9|Sintaxe - Oração - Subordinada - Consecutiva|Consecutiva|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
-b4627f91-c5c1-45b8-8886-3be5c0c120f3|Sintaxe - Oração - Subordinada - Final|Final|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
-0e5412f5-b67d-4480-835b-3cdc768b26eb|Sintaxe - Oração - Subordinada - Proporcional|Proporcional|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
+b63b01c9-2e10-46f9-8e23-aec69cf08dc1|Sintaxe - Oração - Subordinada - Adverbial - Concessiva|Concessiva|7ea047b8-c526-4643-bdf5-f842a59f4934|ngb
+93acbb55-ba44-4954-9ee7-916eb1be0757|Sintaxe - Oração - Subordinada - Adverbial - Condicional|Condicional|7ea047b8-c526-4643-bdf5-f842a59f4934|ngb
+ac7c6349-c19a-4be2-b11a-0e3bc29eff63|Sintaxe - Oração - Subordinada - Adverbial - Conformativa|Conformativa|7ea047b8-c526-4643-bdf5-f842a59f4934|ngb
+487ffbcb-1dd5-4b20-8d8b-9d8ad0dd00d9|Sintaxe - Oração - Subordinada - Adverbial - Consecutiva|Consecutiva|7ea047b8-c526-4643-bdf5-f842a59f4934|ngb
+b4627f91-c5c1-45b8-8886-3be5c0c120f3|Sintaxe - Oração - Subordinada - Adverbial - Final|Final|7ea047b8-c526-4643-bdf5-f842a59f4934|ngb
+0e5412f5-b67d-4480-835b-3cdc768b26eb|Sintaxe - Oração - Subordinada - Adverbial - Proporcional|Proporcional|7ea047b8-c526-4643-bdf5-f842a59f4934|ngb
+3828d31b-f1a2-4670-8bfa-c23fd077d17f|Sintaxe - Oração - Subordinada - Adverbial - Temporal|Temporal|7ea047b8-c526-4643-bdf5-f842a59f4934|ngb
+ea73e2a4-5d21-4252-92f3-f65c1c84a479|Sintaxe - Oração - Subordinada - Reduzida|Reduzida|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
+1208d9a1-cd23-427c-9854-ec3ad36ca6d3|Sintaxe - Oração - Subordinada - Reduzida - Gerúndio|Gerúndio|ea73e2a4-5d21-4252-92f3-f65c1c84a479|ngb
+2ca46f2e-ea14-4cf9-86d9-3ac6e5e589cf|Sintaxe - Oração - Subordinada - Reduzida - Infinitivo|Infinitivo|ea73e2a4-5d21-4252-92f3-f65c1c84a479|ngb
+5ade32d3-7763-4a34-beeb-31430f93d2c2|Sintaxe - Oração - Subordinada - Reduzida - Particípio|Particípio|ea73e2a4-5d21-4252-92f3-f65c1c84a479|ngb
 473e4a6d-6002-462d-bc45-9a9f31e42f27|Sintaxe - Oração - Subordinada - Substantiva|Substantiva|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
 4ade8bd5-b89e-46d9-8ddc-1d6655335f06|Sintaxe - Oração - Subordinada - Substantiva - Apositiva|Apositiva|473e4a6d-6002-462d-bc45-9a9f31e42f27|ngb
 791b0eba-27aa-4834-912b-5a6957f6693d|Sintaxe - Oração - Subordinada - Substantiva - Completiva nominal|Completiva nominal|473e4a6d-6002-462d-bc45-9a9f31e42f27|ngb
@@ -369,7 +383,6 @@ b0d2680f-9295-456b-8c69-b907f7992e99|Sintaxe - Oração - Subordinada - Substant
 c04b518d-c4d6-49cc-a4cd-ba582bae6878|Sintaxe - Oração - Subordinada - Substantiva - Objetiva Indireta|Objetiva Indireta|473e4a6d-6002-462d-bc45-9a9f31e42f27|ngb
 b5e66283-bc60-4968-8004-544a21d54f18|Sintaxe - Oração - Subordinada - Substantiva - Predicativa|Predicativa|473e4a6d-6002-462d-bc45-9a9f31e42f27|ngb
 ce2b79d2-bb87-4bcc-b000-df6179339ec3|Sintaxe - Oração - Subordinada - Substantiva - Subjetiva|Subjetiva|473e4a6d-6002-462d-bc45-9a9f31e42f27|ngb
-3828d31b-f1a2-4670-8bfa-c23fd077d17f|Sintaxe - Oração - Subordinada - Temporal|Temporal|996d49fa-a140-4727-be81-3ec943b2d64e|ngb
 97ade8be-11f3-456e-ae1c-c9b904f980e7|Sintaxe - Período|Período|fcb86ff1-859e-465b-8b9c-2ee88ebe84cc|ngb|cc
 96299690-89fd-457b-9fef-631a0bc6f3e8|Sintaxe - Período - Composto|Composto|97ade8be-11f3-456e-ae1c-c9b904f980e7|ngb|cc
 bb3d73bc-ce41-4a12-805f-8f6de20c12af|Sintaxe - Período - Composto - Coordenação|Coordenação|96299690-89fd-457b-9fef-631a0bc6f3e8|ngb|cc
@@ -393,7 +406,6 @@ f2805f93-0783-4e5c-878d-a3f16f5c5052|Sintaxe - Preposição - Locução preposit
 dd33bb07-c08f-4667-9e5e-e70950ce28fd|Sintaxe - Sujeito - Composto|Composto|96345139-cb63-4853-ab1a-d1ec908a9ffb|ngb
 0741bfba-6987-4043-b98a-c5f8fc2187c6|Sintaxe - Sujeito - Indeterminado|Indeterminado|96345139-cb63-4853-ab1a-d1ec908a9ffb|ngb
 377af1b2-39c4-4583-8184-e17ce92327c3|Sintaxe - Sujeito - Simples|Simples|96345139-cb63-4853-ab1a-d1ec908a9ffb|ngb
-be9c17a5-d8e8-4bc4-a706-77253cbfa1a7|Sintaxe - Sujeito - sujeito|sujeito|96345139-cb63-4853-ab1a-d1ec908a9ffb|ngb
 28d58ab2-9802-435d-a4eb-78f341b349e8|Sintaxe - Tipo|Tipo|fcb86ff1-859e-465b-8b9c-2ee88ebe84cc|ngb|cc
 03912922-993a-4f72-b4fa-4e737d31399d|Sintaxe - Tipo - Declarativa (.)|Declarativa (.)|28d58ab2-9802-435d-a4eb-78f341b349e8|ngb|cc
 e9ed10cc-7383-4061-b9fd-5df170893abc|Sintaxe - Tipo - Exclamativa (!)|Exclamativa (!)|28d58ab2-9802-435d-a4eb-78f341b349e8|ngb|cc
