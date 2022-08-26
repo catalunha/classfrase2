@@ -38,7 +38,7 @@ class PdfPage extends StatelessWidget {
     //       NetworkImage(_pdfController.phrase.user.profile!.photo ?? ''));
     //   image = provider;
     // } catch (e) {
-    //   print("--> Erro em _generatePdf: $e");
+    //   //print"--> Erro em _generatePdf: $e");
     // }
     pdf.addPage(
       pw.MultiPage(

@@ -2,13 +2,11 @@ import 'dart:developer';
 
 import 'package:classfrase/app/presentation/controllers/auth/login/login_controller.dart';
 import 'package:classfrase/app/presentation/views/utils/app_button.dart';
-import 'package:classfrase/app/presentation/views/utils/app_launch.dart';
 import 'package:classfrase/app/presentation/views/utils/app_textformfield.dart';
 import 'package:classfrase/app/presentation/views/utils/app_theme.dart';
 import 'package:classfrase/app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:validatorless/validatorless.dart';
 
 class AuthLoginPage extends StatefulWidget {
@@ -83,7 +81,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                             height: 50,
                           ),
                           AppTextFormField(
-                            label: 'Informe a Senha',
+                            label: 'Informe sua senha',
                             controller: _passwordTec,
                             obscureText: true,
                             validator: Validatorless.multiple(
@@ -155,27 +153,27 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                               )
                             ],
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextButton(
-                                onPressed: () => AppLaunch.launchLink(
-                                    'https://bens.cemec.net.br/terms-of-use/'),
-                                child: Text(
-                                  'Terms of use',
-                                  style: GoogleFonts.pacifico(fontSize: 14.0),
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: () => AppLaunch.launchLink(
-                                    'https://bens.cemec.net.br/privacy-policy/'),
-                                child: Text(
-                                  'Privacy policy',
-                                  style: GoogleFonts.pacifico(fontSize: 14.0),
-                                ),
-                              ),
-                            ],
-                          )
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     TextButton(
+                          //       onPressed: () => AppLaunch.launchLink(
+                          //           'https://bens.cemec.net.br/terms-of-use/'),
+                          //       child: Text(
+                          //         'Terms of use',
+                          //         style: GoogleFonts.pacifico(fontSize: 14.0),
+                          //       ),
+                          //     ),
+                          //     TextButton(
+                          //       onPressed: () => AppLaunch.launchLink(
+                          //           'https://bens.cemec.net.br/privacy-policy/'),
+                          //       child: Text(
+                          //         'Privacy policy',
+                          //         style: GoogleFonts.pacifico(fontSize: 14.0),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // )
                         ],
                       ),
                     ),

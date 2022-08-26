@@ -23,7 +23,7 @@ class HomeController extends GetxController with LoaderMixin, MessageMixin {
   }
 
   Future<void> logout() async {
-    print('em home logout ');
+    //print'em home logout ');
     await _authUseCase.logout();
     Get.offAllNamed(Routes.authLogin);
   }
@@ -117,7 +117,7 @@ class HomeController extends GetxController with LoaderMixin, MessageMixin {
   //   list.add('vaniaregina10@gmail.com');
   //   list.add('veronezcamilaa@gmail.com');
   //   for (var element in list) {
-  //     print(element);
+  //     //printelement);
   //     final user = ParseUser.createUser(element, '123456', element);
   //     await user.signUp();
   //   }

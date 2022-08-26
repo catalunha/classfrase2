@@ -4,7 +4,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 class CategoryGroupEntity {
   static const String className = 'CategoryGroup';
   ClassGroup fromParse(ParseObject parseObject) {
-    // print('CategoryGroupEntity: ${parseObject.objectId}');
+    // //print'CategoryGroupEntity: ${parseObject.objectId}');
 
     ClassGroup model = ClassGroup(
       id: parseObject.objectId!,

@@ -8,7 +8,6 @@ import 'package:classfrase/app/presentation/controllers/auth/splash/splash_contr
 import 'package:classfrase/app/presentation/controllers/utils/loader_mixin.dart';
 import 'package:classfrase/app/presentation/controllers/utils/message_mixin.dart';
 import 'package:classfrase/app/routes.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class PhraseController extends GetxController with LoaderMixin, MessageMixin {
@@ -40,7 +39,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
 
   @override
   void onInit() async {
-    debugPrint('+++ onInit PhraseController');
+    // debug//print'+++ onInit PhraseController');
     loaderListener(_loading);
     messageListener(_message);
     super.onInit();
@@ -64,7 +63,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
   }
 
   void unArchivePhrase(String id) async {
-    debugPrint('UnarchivePhrase: $id');
+    // debug//print'UnarchivePhrase: $id');
     var phraseTemp =
         _phraseArchivedList.firstWhere((element) => element.id == id);
     _phraseArchivedList.clear();
@@ -93,7 +92,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
     bool isPublic = false,
     bool isDeleted = false,
   }) async {
-    debugPrint('addedit $phrase');
+    // debug//print'addedit $phrase');
     try {
       _loading(true);
       UserModel userModel;

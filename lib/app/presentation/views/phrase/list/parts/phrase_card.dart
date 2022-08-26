@@ -29,7 +29,7 @@ class PhraseCard extends StatelessWidget {
               // style: AppTextStyles.trailingBold,
             ),
             subtitle: Text(
-              phrase.folder,
+              phrase.font ?? '',
               // style: AppTextStyles.trailingBold,
             ),
             trailing: isPublic

@@ -20,7 +20,7 @@ class ClassificationService extends GetxService {
   }
 
   Future<void> readCategory() async {
-    print('+++++++++++++++ read json +++++++++++++++');
+    //print'+++++++++++++++ read json +++++++++++++++');
     dynamic data = await _loadJsonCategory();
     categoryAll.clear();
     for (var element in data) {
@@ -28,7 +28,7 @@ class ClassificationService extends GetxService {
     }
     updateOrdem();
     categoryFilteredBy('ngb');
-    print('-------------- read json --------------');
+    //print'-------------- read json --------------');
   }
 
   Future<dynamic> _loadJsonCategory() async {

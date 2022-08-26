@@ -7,12 +7,12 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 class UserProfileRepositoryB4a implements UserProfileRepository {
   @override
   Future<String> create(UserProfileModel userProfileModel) async {
-    print('userProfile Repo create');
-    print(userProfileModel);
+    //print'userProfile Repo create');
+    //printuserProfileModel);
 
     final userProfileParse =
         await UserProfileEntity().toParse(userProfileModel);
-    print(userProfileParse);
+    //printuserProfileParse);
     final ParseResponse responseUserProfile = await userProfileParse.save();
     if (responseUserProfile.success && responseUserProfile.results != null) {
       ParseObject userProfile =
@@ -26,11 +26,11 @@ class UserProfileRepositoryB4a implements UserProfileRepository {
 
   @override
   Future<String> update(UserProfileModel userProfileModel) async {
-    print('UserProfileRepositoryB4a.update');
-    print(userProfileModel);
+    //print'UserProfileRepositoryB4a.update');
+    //printuserProfileModel);
     final userProfileParse =
         await UserProfileEntity().toParse(userProfileModel);
-    print(userProfileParse);
+    //printuserProfileParse);
 
     final ParseResponse responseUserProfile = await userProfileParse.save();
     if (responseUserProfile.success && responseUserProfile.results != null) {

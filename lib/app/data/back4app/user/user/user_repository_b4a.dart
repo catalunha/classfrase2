@@ -27,13 +27,13 @@ class UserRepositoryB4a extends GetxService implements UserRepository {
     UserModel? temp;
     if (response.success && response.results != null) {
       for (var element in response.results!) {
-        print((element as ParseObject).objectId);
+        //print(element as ParseObject).objectId);
         temp = UserEntity().fromParse(element as ParseUser);
       }
-      print(temp);
+      //printtemp);
       return temp;
     } else {
-      print('nao encontrei este User...');
+      //print'nao encontrei este User...');
       return null;
     }
   }

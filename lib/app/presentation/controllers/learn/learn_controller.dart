@@ -59,12 +59,12 @@ class LearnController extends GetxController with LoaderMixin, MessageMixin {
 
   @override
   void onInit() async {
-    print('+++ init learn');
+    //print'+++ init learn');
     loaderListener(_loading);
     messageListener(_message);
     await listAll();
     super.onInit();
-    print('--- init learn');
+    //print'--- init learn');
   }
 
   Future<void> listAll() async {
@@ -76,7 +76,7 @@ class LearnController extends GetxController with LoaderMixin, MessageMixin {
   Future<void> add({
     required String email,
   }) async {
-    print('add $email');
+    //print'add $email');
     try {
       Get.back();
       _loading(true);
@@ -130,7 +130,7 @@ class LearnController extends GetxController with LoaderMixin, MessageMixin {
   }
 
   Future<void> selectedLearn(String learnId) async {
-    print('learnId : $learnId');
+    //print'learnId : $learnId');
     var phraseTemp = _learnList.firstWhere((element) => element.id == learnId);
     _person(phraseTemp.person);
     await listPhrasesThisPerson(person.id);
@@ -190,7 +190,7 @@ class LearnController extends GetxController with LoaderMixin, MessageMixin {
       }
       if (!contain) {
         _personPhraseList.removeWhere((element) => element.id == phrase.id);
-        print('removendo ${phrase.id}');
+        //print'removendo ${phrase.id}');
       }
     }
     Get.back();

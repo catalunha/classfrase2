@@ -13,8 +13,8 @@ class PhraseUseCaseImpl implements PhraseUseCase {
   Future<String> append(PhraseModel model) async =>
       await _repository.append(model);
 
-  @override
-  Future<void> delete(String id) async => await _repository.delete(id);
+  // @override
+  // Future<void> delete(String id) async => await _repository.delete(id);
 
   @override
   Future<List<PhraseModel>> list(GetQueryFilterPhrase queryType) async =>

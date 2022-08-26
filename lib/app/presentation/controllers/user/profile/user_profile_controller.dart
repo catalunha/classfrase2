@@ -30,7 +30,7 @@ class UserProfileController extends GetxController
     loaderListener(_loading);
     messageListener(_message);
     UserProfileModel? model = Get.arguments;
-    // print('Get.arguments = ${Get.arguments}');
+    // //print'Get.arguments = ${Get.arguments}');
     _userProfile(model);
     super.onInit();
   }
@@ -45,7 +45,7 @@ class UserProfileController extends GetxController
       _loading(true);
 
       // if (_userProfile.value == null) {
-      //   print('profile create');
+      //   //print'profile create');
       //   var userProfile = UserProfileModel(
       //     id: null,
       //     fullName: fullName,
@@ -63,7 +63,7 @@ class UserProfileController extends GetxController
       //       attributeClass: 'photo',
       //     );
       //   }
-      //   print(userProfile);
+      //   //printuserProfile);
 
       // } else {
       var userProfile = _userProfile.value!.copyWith(

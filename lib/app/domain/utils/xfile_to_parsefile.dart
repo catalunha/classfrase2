@@ -14,7 +14,7 @@ class XFileToParseFile {
       String fileName = xfile.name;
       fileName = fileName.replaceAll(RegExp(r'[^A-Za-z0-9]'), '_');
       ParseFileBase? parseFile;
-      print('===> fileName: $fileName');
+      //print'===> fileName: $fileName');
       if (kIsWeb) {
         //Flutter Web
         parseFile = ParseWebFile(await xfile.readAsBytes(),
@@ -49,7 +49,7 @@ class XFileToParseFile {
   //   String fileName = xfile.name;
   //   fileName = fileName.replaceAll(RegExp(r'[^A-Za-z0-9]'), '_');
   //   ParseFileBase? parseFile;
-  //   print('===> fileName: $fileName');
+  //   //print'===> fileName: $fileName');
   //   if (kIsWeb) {
   //     //Flutter Web
   //     parseFile = ParseWebFile(await xfile.readAsBytes(),

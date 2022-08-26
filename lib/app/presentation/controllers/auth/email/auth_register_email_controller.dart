@@ -31,12 +31,12 @@ class AuthRegisterEmailController extends GetxController
         password: password,
       );
       _loading(true);
-      print('após registerEmail ');
+      //print'após registerEmail ');
       if (user != null) {
-        print('Success register');
+        //print'Success register');
         Get.offAllNamed(Routes.authLogin);
       } else {
-        print('user==null in register');
+        //print'user==null in register');
         // _authUseCase.logout();
         _message.value = MessageModel(
           title: 'Erro',
@@ -45,7 +45,7 @@ class AuthRegisterEmailController extends GetxController
         );
       }
     } on AuthRepositoryException {
-      print('error em  registerEmail');
+      //print'error em  registerEmail');
       _authUseCase.logout();
       _message.value = MessageModel(
         title: 'AuthRepositoryException',

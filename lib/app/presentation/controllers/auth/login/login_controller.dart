@@ -36,10 +36,10 @@ class LoginController extends GetxController with LoaderMixin, MessageMixin {
         final parseUser = await ParseUser.currentUser() as ParseUser;
         _splashController.parseUser = parseUser;
         if (user.profile!.isActive == true) {
-          print('logado com isActive=true');
+          //print'logado com isActive=true');
           Get.offAllNamed(Routes.home);
         } else {
-          print('logado com isActive=false');
+          //print'logado com isActive=false');
           _loading(false);
           _message.value = MessageModel(
             title: 'Atenção',

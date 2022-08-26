@@ -58,12 +58,12 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
     List<PhraseModel> listTemp = <PhraseModel>[];
     if (response.success && response.results != null) {
       for (var element in response.results!) {
-        print((element as ParseObject).objectId);
+        //print(element as ParseObject).objectId);
         listTemp.add(PhraseEntity().fromParse(element));
       }
       return listTemp;
     } else {
-      print('Sem Phrases...');
+      //print'Sem Phrases...');
       return [];
     }
   }
@@ -81,11 +81,11 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
     }
   }
 
-  @override
-  Future<void> delete(String id) async {
-    var parseObject = ParseObject(PhraseEntity.className)..objectId = id;
-    await parseObject.delete();
-  }
+  // @override
+  // Future<void> delete(String id) async {
+  //   var parseObject = ParseObject(PhraseEntity.className)..objectId = id;
+  //   await parseObject.delete();
+  // }
 
   @override
   Future<void> isArchive(String id, bool mode) async {
@@ -111,7 +111,7 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
     for (var item in classifications.entries) {
       data[item.key] = item.value.toMap();
     }
-    print('data: $data');
+    //print'data: $data');
     parseObject.set('classifications', data);
     parseObject.set('classOrder', classOrder);
     await parseObject.save();
@@ -128,12 +128,12 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
     PhraseModel? temp;
     if (response.success && response.results != null) {
       for (var element in response.results!) {
-        // print((element as ParseObject).objectId);
+        // //print(element as ParseObject).objectId);
         temp = PhraseEntity().fromParse(element);
       }
       // return listTemp;
     } else {
-      print('nao encontrei esta Phrase...');
+      //print'nao encontrei esta Phrase...');
       // return [];
     }
     return temp;
@@ -148,12 +148,12 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
     List<PhraseModel> listTemp = <PhraseModel>[];
     if (response.success && response.results != null) {
       for (var element in response.results!) {
-        print((element as ParseObject).objectId);
+        //print(element as ParseObject).objectId);
         listTemp.add(PhraseEntity().fromParse(element));
       }
       return listTemp;
     } else {
-      print('Sem Phrases this person $personId...');
+      //print'Sem Phrases this person $personId...');
       return [];
     }
   }

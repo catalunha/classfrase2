@@ -6,7 +6,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 class PhraseEntity {
   static const String className = 'Phrase';
   PhraseModel fromParse(ParseObject parseObject) {
-    print('PhraseEntity: ${parseObject.objectId}');
+    //print'PhraseEntity: ${parseObject.objectId}');
 
     Map<String, Classification>? classifications = <String, Classification>{};
     Map<String, dynamic>? tempClass =
@@ -16,8 +16,8 @@ class PhraseEntity {
         classifications[item.key] = Classification.fromMap(item.value);
       }
     }
-    print(tempClass);
-    print(classifications);
+    //printtempClass);
+    //printclassifications);
     PhraseModel model = PhraseModel(
       id: parseObject.objectId!,
       user: UserEntity().fromParse(parseObject.get('user') as ParseUser),

@@ -14,16 +14,16 @@ class AuthRepositoryB4a implements AuthRepository {
       final user = ParseUser.createUser(email, password, email);
       var response = await user.signUp();
       if (response.success) {
-        print('register success');
+        //print'register success');
         UserModel userModel = UserEntity().fromParse(response.results!.first);
         return userModel;
       } else {
-        print('register error');
+        //print'register error');
         throw AuthRepositoryException(
             code: '${response.error!.code}', message: response.error!.message);
       }
     } on AuthRepositoryException catch (e) {
-      print(e);
+      //printe);
       throw AuthRepositoryException(
           code: '000', message: 'Erro no createUser ou SigUp. ${e.message}');
     }
@@ -45,7 +45,7 @@ class AuthRepositoryB4a implements AuthRepository {
           email: user.emailAddress!,
           profile: await getProfile(),
         );
-        print(userModel);
+        //printuserModel);
         return userModel;
       } else {
         throw AuthRepositoryException(
@@ -88,8 +88,8 @@ class AuthRepositoryB4a implements AuthRepository {
     var parseUser = await ParseUser.currentUser() as ParseUser;
 
     var profileField = parseUser.get('profile');
-    print('===> profile');
-    print(profileField);
+    //print'===> profile');
+    //printprofileField);
     var profileObj = ParseObject(UserProfileEntity.className);
     var profileData = await profileObj.getObject(profileField.objectId);
     UserProfileModel? userProfileEntity;
@@ -97,7 +97,7 @@ class AuthRepositoryB4a implements AuthRepository {
       userProfileEntity =
           UserProfileEntity().fromParse(profileData.result as ParseObject);
     } else {
-      print('nao foi');
+      //print'nao foi');
     }
     return userProfileEntity;
   }

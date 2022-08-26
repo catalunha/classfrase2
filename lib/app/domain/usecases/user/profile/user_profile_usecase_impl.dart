@@ -9,13 +9,13 @@ class UserProfileUseCaseImpl implements UserProfileUseCase {
 
   @override
   Future<String> create(UserProfileModel userProfileModel) async {
-    print(userProfileModel);
+    //printuserProfileModel);
     return await _userProfileRepository.create(userProfileModel);
   }
 
   @override
   Future<String> update(UserProfileModel userProfileModel) async {
-    print(userProfileModel);
+    //printuserProfileModel);
     return await _userProfileRepository.update(userProfileModel);
   }
 }

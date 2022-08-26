@@ -5,7 +5,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 class CategoryEntity {
   static const String className = 'Category';
   ClassCategory fromParse(ParseObject parseObject) {
-    // print('CategoryEntity: ${parseObject.objectId}');
+    // //print'CategoryEntity: ${parseObject.objectId}');
 
     ClassCategory model = ClassCategory(
       id: parseObject.objectId!,

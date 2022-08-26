@@ -28,13 +28,13 @@ class ClassificationRepositoryB4a extends ClassificationRepository {
     final ParseResponse response = await query.query();
     Map<String, ClassGroup> group = <String, ClassGroup>{};
     if (response.success && response.results != null) {
-      print('groups: ${response.results!.length}');
+      //print'groups: ${response.results!.length}');
       for (var element in response.results!) {
-        // print((element as ParseObject).objectId);
+        // //print(element as ParseObject).objectId);
         group[element.objectId!] = CategoryGroupEntity().fromParse(element);
       }
     } else {
-      print('Sem groups...');
+      //print'Sem groups...');
     }
 
     var queryCat = await getQueryCategory();
@@ -42,14 +42,14 @@ class ClassificationRepositoryB4a extends ClassificationRepository {
     final ParseResponse responseCat = await queryCat.query();
     Map<String, ClassCategory> category = <String, ClassCategory>{};
     if (responseCat.success && responseCat.results != null) {
-      print('categorys: ${responseCat.results!.length}');
+      //print'categorys: ${responseCat.results!.length}');
 
       for (var element in responseCat.results!) {
-        // print((element as ParseObject).objectId);
+        // //print(element as ParseObject).objectId);
         category[element.objectId!] = CategoryEntity().fromParse(element);
       }
     } else {
-      print('Sem categorys...');
+      //print'Sem categorys...');
     }
     return ClassificationModel(group: group, category: category);
   }

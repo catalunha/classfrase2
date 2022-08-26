@@ -25,12 +25,12 @@ class LearnRepositoryB4a extends GetxService implements LearnRepository {
     List<LearnModel> listTemp = <LearnModel>[];
     if (response.success && response.results != null) {
       for (var element in response.results!) {
-        print((element as ParseObject).objectId);
+        //print(element as ParseObject).objectId);
         listTemp.add(LearnEntity().fromParse(element));
       }
       return listTemp;
     } else {
-      print('Sem Learns...');
+      //print'Sem Learns...');
       return [];
     }
   }
@@ -48,9 +48,9 @@ class LearnRepositoryB4a extends GetxService implements LearnRepository {
             code: 1, message: 'Não foi possivel cadastrar/atualizar o bem.');
       }
     } catch (e) {
-      print('+++ print error em append');
-      print(e);
-      print('--- print error em append');
+      //print'+++ print error em append');
+      //printe);
+      //print'--- print error em append');
       throw LearnRepositoryException(
           code: 1, message: 'Erro ao cadastrar learn');
     }

@@ -39,19 +39,19 @@ class SplashController extends GetxController with MessageMixin {
     super.onInit();
     await Future.delayed(const Duration(seconds: 1), () {
       // deleayed code here
-      print('delayed execution');
+      //print'delayed execution');
     });
 
-    print('+++ initParse');
+    //print'+++ initParse');
     InitBack4app initBack4app = InitBack4app();
     bool initParse = await initBack4app.init();
-    print('initParse: $initParse');
-    print('--- initParse');
+    //print'initParse: $initParse');
+    //print'--- initParse');
 
     final isLogged = await _hasUserLogged();
     if (isLogged) {
-      print('tem user indo para home');
-      print(userModel);
+      //print'tem user indo para home');
+      //printuserModel);
       if (userModel!.profile!.isActive == true) {
         Get.offAllNamed(Routes.home);
       } else {
@@ -63,14 +63,14 @@ class SplashController extends GetxController with MessageMixin {
         );
       }
     } else {
-      print('NAO tem user indo para LOGIN');
-      print(userModel);
+      //print'NAO tem user indo para LOGIN');
+      //printuserModel);
       Get.offAllNamed(Routes.authLogin);
     }
   }
 
   Future<bool> _hasUserLogged() async {
-    print('===> _hasUserLogged');
+    //print'===> _hasUserLogged');
     parseUser = await ParseUser.currentUser() as ParseUser?;
     // ParseUser? currentUser = await ParseUser.currentUser() as ParseUser?;
     if (parseUser == null) {
@@ -91,12 +91,12 @@ class SplashController extends GetxController with MessageMixin {
       // queryUser.includeObject(['profile']);
       // ParseUser? parseUser2 = await queryUser.first();
 
-      // print('===> profile');
+      // //print'===> profile');
       // userModel = UserModel.fromParse(parseUser2!);
-      // print(userModel);
+      // //printuserModel);
       // var profileField = parseUser!.get('profile');
-      // print('===> profile');
-      // print(profileField);
+      // //print'===> profile');
+      // //printprofileField);
       // var profileObj = ParseObject('Profile');
       // var profileData = await profileObj.getObject(profileField.objectId);
       // UserProfileEntity? userProfileEntity;
@@ -105,7 +105,7 @@ class SplashController extends GetxController with MessageMixin {
       //   userProfileEntity =
       //       UserProfileEntity.fromParse(profileData.result as ParseObject);
       // } else {
-      //   print('nao foi');
+      //   //print'nao foi');
       // }
       userModel = UserModel(
         id: parseUser!.objectId!,
@@ -125,20 +125,20 @@ class SplashController extends GetxController with MessageMixin {
       //   phone: parseUser!.username!,
       //   profile: userProfileEntity,
       // ));
-      print('===> _hasUserLogged. userModel');
-      print(userModel);
-      print('===> isActive');
-      print(userModel!.profile!.isActive);
+      //print'===> _hasUserLogged. userModel');
+      //printuserModel);
+      //print'===> isActive');
+      //printuserModel!.profile!.isActive);
       return true;
     }
   }
 
   Future<void> updateUserProfile() async {
-    print('entrando no updateUserProfile');
+    //print'entrando no updateUserProfile');
     // parseUser = await ParseUser.currentUser() as ParseUser;
     // var profileField = parseUser!.get('profile');
-    // print('===> profile');
-    // print(profileField);
+    // //print'===> profile');
+    // //printprofileField);
     // var profileObj = ParseObject('Profile');
     // var profileData = await profileObj.getObject(profileField.objectId);
     // UserProfileEntity? userProfileEntity;
@@ -147,7 +147,7 @@ class SplashController extends GetxController with MessageMixin {
     //   userProfileEntity =
     //       UserProfileEntity.fromParse(profileData.result as ParseObject);
     // } else {
-    //   print('nao foi');
+    //   //print'nao foi');
     // }
     userModel = UserModel(
       id: parseUser!.objectId!,
@@ -167,16 +167,16 @@ class SplashController extends GetxController with MessageMixin {
     //   phone: parseUser!.username!,
     //   profile: userProfileEntity,
     // ));
-    print('===> user');
-    print(userModel);
+    //print'===> user');
+    //printuserModel);
   }
 
   Future<UserProfileModel?> getProfile() async {
     parseUser = await ParseUser.currentUser() as ParseUser;
 
     var profileField = parseUser!.get('profile');
-    print('===> profile');
-    print(profileField);
+    //print'===> profile');
+    //printprofileField);
     var profileObj = ParseObject(UserProfileEntity.className);
     var profileData = await profileObj.getObject(profileField.objectId);
     UserProfileModel? userProfileEntity;
@@ -184,7 +184,7 @@ class SplashController extends GetxController with MessageMixin {
       userProfileEntity =
           UserProfileEntity().fromParse(profileData.result as ParseObject);
     } else {
-      print('nao foi');
+      //print'nao foi');
     }
     return userProfileEntity;
   }
