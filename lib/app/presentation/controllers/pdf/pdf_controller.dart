@@ -44,13 +44,13 @@ class PdfController extends GetxController with LoaderMixin, MessageMixin {
     super.onInit();
   }
 
-  onSelectPhrase(int phrasePos) {
-    if (_selectedPosPhraseList.contains(phrasePos)) {
-      _selectedPosPhraseList.remove(phrasePos);
-    } else {
-      _selectedPosPhraseList.add(phrasePos);
-    }
-  }
+  // onSelectPhrase(int phrasePos) {
+  //   if (_selectedPosPhraseList.contains(phrasePos)) {
+  //     _selectedPosPhraseList.remove(phrasePos);
+  //   } else {
+  //     _selectedPosPhraseList.add(phrasePos);
+  //   }
+  // }
 
   // void groupListSorted() {
   //   /*

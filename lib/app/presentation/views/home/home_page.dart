@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
               phraseInClass(),
               sortAlpha(context),
               sortFolder(context),
+              pdfAllPhrases(context),
               phraseArchived(context),
             ],
           ),
@@ -139,6 +140,16 @@ class _HomePageState extends State<HomePage> {
           tooltip: 'Minhas frases arquivadas',
           icon: const Icon(AppIconData.box),
           onPressed: () => widget._phraseController.listArchived(),
+        ));
+  }
+
+  Expanded pdfAllPhrases(BuildContext context) {
+    return Expanded(
+        flex: 1,
+        child: IconButton(
+          tooltip: 'PDF de todas as frases',
+          icon: const Icon(AppIconData.print),
+          onPressed: () => Get.toNamed(Routes.pdfAll),
         ));
   }
 

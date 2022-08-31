@@ -21,7 +21,7 @@ class PdfPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('ClassFrase em PDF')),
       body: PdfPreview(
-        pdfFileName: _pdfController.phrase.id,
+        pdfFileName: _pdfController.phrase.phrase,
         build: (format) => _generatePdf(format, 'ClassFrase em PDF'),
       ),
     );
@@ -51,11 +51,15 @@ class PdfPage extends StatelessWidget {
           headerClassificator(image),
           phrase(),
           pw.Text(
+            'Pasta: ${_pdfController.phrase.folder}',
+            style: const pw.TextStyle(fontSize: 10),
+          ),
+          pw.Text(
             'Fonte: ${_pdfController.phrase.font}',
             style: const pw.TextStyle(fontSize: 10),
           ),
           pw.Text(
-            'Pasta: ${_pdfController.phrase.folder}',
+            'Observações: ${_pdfController.phrase.note}',
             style: const pw.TextStyle(fontSize: 10),
           ),
           header('Classificações:'),
@@ -214,10 +218,12 @@ class PdfPage extends StatelessWidget {
 
         for (var element in classOrdemList) {
           categoryWidgetList.add(
-            pw.Bullet(
-              text: element,
-              style: const pw.TextStyle(fontSize: 10, color: PdfColors.black),
-            ),
+            pw.Text('      $element'),
+
+            // pw.Bullet(
+            //   text: element,
+            //   style: const pw.TextStyle(fontSize: 10, color: PdfColors.black),
+            // ),
           );
         }
       }
@@ -229,6 +235,7 @@ class PdfPage extends StatelessWidget {
           children: <pw.Widget>[
             richText,
             ...categoryWidgetList,
+            pw.SizedBox(height: 5)
           ],
         ),
       );

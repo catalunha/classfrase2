@@ -51,6 +51,9 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
     List<PhraseModel> temp =
         await _phraseUseCase.list(GetQueryFilterPhrase.all);
     _phraseList(temp);
+    for (var element in phraseList) {
+      print('${element.id} - ${element.folder}');
+    }
     _loading(false);
   }
 
@@ -88,6 +91,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
     String folder = '',
     String font = '',
     String diagramUrl = '',
+    String note = '',
     bool isArchived = false,
     bool isPublic = false,
     bool isDeleted = false,
@@ -116,6 +120,7 @@ class PhraseController extends GetxController with LoaderMixin, MessageMixin {
           font: font,
           isArchived: isArchived,
           diagramUrl: diagramUrl,
+          note: note,
           isPublic: isPublic,
           isDeleted: isDeleted,
           phraseList: PhraseModel.setPhraseList(phrase),

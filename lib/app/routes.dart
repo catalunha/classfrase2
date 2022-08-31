@@ -18,6 +18,7 @@ import 'package:classfrase/app/presentation/views/learn/list/categories_by_perso
 import 'package:classfrase/app/presentation/views/learn/list/learn_list_page.dart';
 import 'package:classfrase/app/presentation/views/learn/list/person_phrase_list_page.dart';
 import 'package:classfrase/app/presentation/views/learn/person_phrase_page.dart';
+import 'package:classfrase/app/presentation/views/pdf/pdf_all_page.dart';
 import 'package:classfrase/app/presentation/views/pdf/pdf_page.dart';
 import 'package:classfrase/app/presentation/views/phrase/add_edit/phrase_addedit_page.dart';
 import 'package:classfrase/app/presentation/views/phrase/list/phrase_archived_page.dart';
@@ -44,6 +45,7 @@ class Routes {
   static const learnCategoriesByPerson = '/learn/categories/person';
 
   static const pdf = '/pdf';
+  static const pdfAll = '/pdf/all';
 
   static final pageList = [
     GetPage(
@@ -115,6 +117,11 @@ class Routes {
       name: Routes.pdf,
       binding: PdfDependencies(),
       page: () => PdfPage(),
+    ),
+    GetPage(
+      name: Routes.pdfAll,
+      // binding: PdfDependencies(),
+      page: () => PdfAllPage(),
     ),
     GetPage(
       name: Routes.learnCategoriesByPerson,

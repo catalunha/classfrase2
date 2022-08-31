@@ -18,6 +18,7 @@ class PhraseRepositoryB4a extends GetxService implements PhraseRepository {
     query.whereEqualTo('isDeleted', false);
     query.orderByAscending('folder');
     query.includeObject(['user', 'user.profile']);
+    query.setLimit(1000);
     return query;
   }
 

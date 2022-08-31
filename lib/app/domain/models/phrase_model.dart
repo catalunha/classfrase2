@@ -18,6 +18,7 @@ class PhraseModel {
   final String folder;
   final String? font;
   final String? diagramUrl;
+  final String? note;
 
   final bool isArchived;
   final bool isDeleted;
@@ -35,6 +36,7 @@ class PhraseModel {
     this.allCategoryList,
     this.font,
     this.diagramUrl,
+    this.note,
     this.folder = '/',
   });
 
@@ -46,6 +48,7 @@ class PhraseModel {
     String? folder,
     String? font,
     String? diagramUrl,
+    String? note,
     bool? isArchived,
     bool? isPublic,
     bool? isDeleted,
@@ -61,6 +64,7 @@ class PhraseModel {
       folder: folder ?? this.folder,
       font: font ?? this.font,
       diagramUrl: diagramUrl ?? diagramUrl,
+      note: note ?? note,
       isArchived: isArchived ?? this.isArchived,
       classifications: classifications ?? this.classifications,
       allCategoryList: allCategoryList ?? this.allCategoryList,
@@ -88,6 +92,7 @@ class PhraseModel {
     data['folder'] = folder;
     if (font != null) data['font'] = font;
     if (diagramUrl != null) data['diagramUrl'] = diagramUrl;
+    if (note != null) data['note'] = note;
     return data;
   }
 
@@ -122,6 +127,7 @@ class PhraseModel {
       isPublic: map['isPublic'] ?? false,
       font: map['font'],
       diagramUrl: map['diagramUrl'],
+      note: map['note'],
       folder: map['folder'],
     );
     return temp;
@@ -173,6 +179,7 @@ class PhraseModel {
         other.phrase == phrase &&
         other.phraseList == phraseList &&
         other.font == font &&
+        other.note == note &&
         other.diagramUrl == diagramUrl &&
         other.isArchived == isArchived &&
         other.isPublic == isPublic &&
@@ -189,6 +196,7 @@ class PhraseModel {
         phrase.hashCode ^
         phraseList.hashCode ^
         font.hashCode ^
+        note.hashCode ^
         diagramUrl.hashCode ^
         isArchived.hashCode ^
         isPublic.hashCode ^
@@ -200,6 +208,6 @@ class PhraseModel {
 
   @override
   String toString() {
-    return 'PhraseModel(id: $id, user: $user, phrase: $phrase, phraseList: $phraseList, classifications: $classifications, classOrder: $classOrder, allCategoryList: $allCategoryList, folder: $folder, font: $font, diagramUrl: $diagramUrl, isArchived: $isArchived, isDeleted: $isDeleted, isPublic: $isPublic)';
+    return 'PhraseModel(id: $id, user: $user, phrase: $phrase, phraseList: $phraseList, classifications: $classifications, classOrder: $classOrder, allCategoryList: $allCategoryList, folder: $folder, font: $font, diagramUrl: $diagramUrl,note: $note, isArchived: $isArchived, isDeleted: $isDeleted, isPublic: $isPublic)';
   }
 }

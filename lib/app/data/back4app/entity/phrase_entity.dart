@@ -34,6 +34,7 @@ class PhraseEntity {
       folder: parseObject.get<String>('folder') ?? '/',
       font: parseObject.get<String>('font'),
       diagramUrl: parseObject.get<String>('diagramUrl'),
+      note: parseObject.get<String>('note'),
       isArchived: parseObject.get<bool>('isArchived') ?? false,
       isPublic: parseObject.get<bool>('isPublic') ?? false,
       isDeleted: parseObject.get<bool>('isDeleted') ?? false,
@@ -60,6 +61,7 @@ class PhraseEntity {
     parseObject.set('font', model.font);
     parseObject.set('folder', model.folder);
     parseObject.set('diagramUrl', model.diagramUrl);
+    parseObject.set('note', model.note);
     parseObject.set('isArchived', model.isArchived);
     parseObject.set('isDeleted', model.isDeleted);
     parseObject.set('isPublic', model.isPublic);

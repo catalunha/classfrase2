@@ -22,6 +22,7 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
   final _fontTEC = TextEditingController();
   final _folderTEC = TextEditingController();
   final _diagramUrlTEC = TextEditingController();
+  final _noteTEC = TextEditingController();
   bool _isArchived = false;
   bool _isPublic = false;
   bool _isDeleted = false;
@@ -32,6 +33,7 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
     _fontTEC.text = widget._phraseController.phrase?.font ?? '';
     _folderTEC.text = widget._phraseController.phrase?.folder ?? '';
     _diagramUrlTEC.text = widget._phraseController.phrase?.diagramUrl ?? '';
+    _noteTEC.text = widget._phraseController.phrase?.note ?? '';
     _isArchived = widget._phraseController.phrase?.isArchived ?? false;
     _isPublic = widget._phraseController.phrase?.isPublic ?? false;
     _isDeleted = widget._phraseController.phrase?.isDeleted ?? false;
@@ -64,6 +66,10 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
                 AppTextFormField(
                   label: 'Fonte desta frase',
                   controller: _fontTEC,
+                ),
+                AppTextFormField(
+                  label: 'Observações',
+                  controller: _noteTEC,
                 ),
                 AppTextFormField(
                   label: 'Link para o diagrama online desta frase',
@@ -114,6 +120,7 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
               folder: _folderTEC.text,
               font: _fontTEC.text,
               diagramUrl: _diagramUrlTEC.text,
+              note: _noteTEC.text,
               isPublic: _isPublic,
               isArchived: _isArchived,
               isDeleted: _isDeleted,
