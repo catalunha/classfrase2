@@ -5,7 +5,7 @@ import 'package:classfrase/app/domain/models/catclass_model.dart';
 
 final List<CatClassModel> categoryAll = <CatClassModel>[];
 void main() {
-  print('ola');
+  print('Start');
   var jsonData =
       File('/home/catalunha/myapp/classfrase/assets/data/catclass.json')
           .readAsStringSync();
@@ -29,11 +29,21 @@ void main() {
         '${cat.id}|${cat.ordem}|${cat.name}|${cat.parent}|${cat.filter.join("|")}');
   }
   fileOpen.close();
+  var fileOpen2 =
+      File('/home/catalunha/myapp/classfrase/bin/output/catclass-ordered.json')
+          .openWrite(mode: FileMode.append);
+
+  fileOpen2.writeln("[");
+  for (var cat in ordem.categoryAll) {
+    fileOpen2.writeln('${cat.toJson()},');
+  }
+  fileOpen2.writeln("]");
+  fileOpen2.close();
 }
 
 class Ordem {
   final List<CatClassModel> categoryAll = <CatClassModel>[];
-  final List<CatClassModel> category = <CatClassModel>[];
+  // final List<CatClassModel> category = <CatClassModel>[];
   final List<String> _categoryParentList = <String>[];
   void updateOrdem() {
     for (var i = 0; i < categoryAll.length; i++) {

@@ -9,7 +9,7 @@ class ClassificationService extends GetxService {
   final List<CatClassModel> categoryAll = <CatClassModel>[];
   final List<CatClassModel> category = <CatClassModel>[].obs();
   final List<String> _categoryParentList = <String>[];
-  bool selectedNgb = true;
+  String selectedFilter = 'ngb';
 
   @override
   void onInit() async {
@@ -74,11 +74,7 @@ class ClassificationService extends GetxService {
 
   // metodos externos
   void categoryFilteredBy(String filter) {
-    if (filter == 'ngb') {
-      selectedNgb = true;
-    } else {
-      selectedNgb = false;
-    }
+    selectedFilter = filter;
     List<CatClassModel> categoryTemp = categoryAll
         .where((element) => element.filter.contains(filter))
         .toList();

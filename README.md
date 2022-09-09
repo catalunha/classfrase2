@@ -10,6 +10,8 @@ cd /home/catalunha/myapp/classfrase && flutter build web && cd /home/catalunha/m
 https://medium.com/@flutterqueen/how-do-i-add-material-3-custom-colors-in-flutter-3c2f7f2a8141
 https://m3.material.io/theme-builder#/custom
 
+https://medium.com/@andres.escobar.9103/flutter-theme-all-with-less-code-5cd610541406
+
 
 # Os 7 esquemas do CC
 * Esquemas

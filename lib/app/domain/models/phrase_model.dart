@@ -143,7 +143,7 @@ class PhraseModel {
     List<String> phraseList = [];
     for (var i = 0; i < phrase.length; i++) {
       if (phrase[i].contains(RegExp(
-          r"[A-Za-záàãâäÁÀÃÂÄéèêëÉÈÊËíìîïÍÌÎÏóòõôöÓÒÕÖÔúùûüÚÙÛÜçÇñÑ0123456789]"))) {
+          r"[A-Za-záàãâäāăÁÀÃÂÄĀĂéèêëẽēĕÉÈÊËẼĒĔíìîïĩīĭÍÌÎÏĨĪĬóòõôöōŏÓÒÕÖÔŌŎúùûüũūŭŨÚÙÛÜŪŬçÇñÑ0123456789]"))) {
         word += phrase[i];
       } else {
         if (word.isNotEmpty) {

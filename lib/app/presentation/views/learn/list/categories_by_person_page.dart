@@ -48,9 +48,11 @@ class _CategoriesBypersonPageState extends State<CategoriesByPersonPage> {
                       child: Text(
                         'NGB',
                         style: TextStyle(
-                            color: widget._classificationService.selectedNgb
-                                ? Colors.green
-                                : Colors.black),
+                            color:
+                                widget._classificationService.selectedFilter ==
+                                        'ngb'
+                                    ? Colors.green
+                                    : Colors.black),
                       ),
                       onTap: () {
                         widget._classificationService.categoryFilteredBy('ngb');
@@ -72,12 +74,41 @@ class _CategoriesBypersonPageState extends State<CategoriesByPersonPage> {
                       child: Text(
                         'CC',
                         style: TextStyle(
-                            color: widget._classificationService.selectedNgb
-                                ? Colors.black
-                                : Colors.green),
+                            color:
+                                widget._classificationService.selectedFilter ==
+                                        'cc'
+                                    ? Colors.green
+                                    : Colors.black),
                       ),
                       onTap: () {
                         widget._classificationService.categoryFilteredBy('cc');
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 5),
+              Tooltip(
+                message: 'Classificações mais comuns ao CC e outras',
+                child: SizedBox(
+                  // color: Colors.red,
+                  width: 35,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: InkWell(
+                      child: Text(
+                        'Latin',
+                        style: TextStyle(
+                            color:
+                                widget._classificationService.selectedFilter ==
+                                        'latin'
+                                    ? Colors.green
+                                    : Colors.black),
+                      ),
+                      onTap: () {
+                        widget._classificationService
+                            .categoryFilteredBy('latin');
                         setState(() {});
                       },
                     ),
