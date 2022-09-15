@@ -70,6 +70,7 @@ class _PhraseAddEditPageState extends State<PhraseAddEditPage> {
                 AppTextFormField(
                   label: 'Observações',
                   controller: _noteTEC,
+                  maxLines: 5,
                 ),
                 AppTextFormField(
                   label: 'Link para o diagrama online desta frase',
