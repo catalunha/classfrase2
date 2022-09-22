@@ -85,3 +85,5 @@ Diane e Marcos, que são um casal experiente, nos ajudaram muito, por isso os el
   }
 ]
 ```
+
+https://suragch.medium.com/how-to-paint-in-flutter-d18c6c26df10
